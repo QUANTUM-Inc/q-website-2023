@@ -1,0 +1,466 @@
+@mixin unstyled-link {
+  color: inherit;
+  text-decoration: inherit;
+  cursor: inherit;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+@mixin sup($offset: 0.1rem) {
+  vertical-align: top;
+  position: relative;
+  top: $offset;
+}
+
+@mixin yugo-bold() {
+  font-weight: 600;
+}
+
+@mixin noto() {
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+}
+
+@mixin noto-light() {
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+  font-weight: 300;
+}
+
+@mixin roboto {
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+}
+@mixin roboto-light {
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+  font-weight: 300;
+}
+
+@mixin antialiased() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@mixin subpixel() {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: unset;
+}
+
+@function vw($size, $viewport: $spWidth) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+
+@function percent($value) {
+  @return to-fixed(percentage($value), 1, "round");
+}
+
+@function to-fixed($number, $digits: 0, $round: "round") {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $round == "round" {
+    @return math.div(round($number * $n), $n);
+  } @else if $round == "ceil" {
+    @return math.div(ceil($number * $n), $n);
+  } @else if $round == "floor" {
+    @return math.div(floor($number * $n), $n);
+  } @else {
+    @warn '#{ $round } is undefined keyword.';
+    @return $number;
+  }
+}
+
+@mixin textborderlink {
+  position: relative;
+  @include mq_pc {
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: #000;
+      @include ease-out-quint($animationTime);
+      transform-origin: 0 0;
+      transform: scale(0, 1);
+    }
+    &:hover {
+      &::after {
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
+@mixin textdecoration-line {
+  @include ease-out-quint($animationTime);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+
+  @include mq_pc {
+    &:hover {
+      text-decoration-color: $gray;
+    }
+  }
+}
+
+@mixin maskappear {
+  mask-image: url($imagePath + "mask.png");
+  mask-position: 150% 0;
+  mask-origin: padding-box;
+  mask-size: 300%;
+  mask-mode: alpha;
+  mask-repeat: no-repeat;
+  @include ease-in-out-quint(1000);
+  &.appear {
+    mask-position: 0 0;
+  }
+}
+
+@mixin spfontsize($px) {
+  @media all and (max-width: 420px) {
+    font-size: to-fixed(math.div($px, $spWidth) * 100, 1, "round") + vw;
+  }
+  @media all and (min-width: 421px) {
+    font-size: to-fixed(math.div($px, $spWidth) * 100, 1, "round") + vw;
+  }
+  @media all and (min-width: 601px) {
+    font-size: to-fixed(math.div($px, $spWidth) * 100, 1, "round") + vw;
+  }
+}
+@mixin fontsize($px, $baseW: 1324px) {
+  @media all and (max-width: ($baseW - 1px)) {
+    font-size: to-fixed(math.div($px, $baseW) * 100, 1, "round") + vw;
+  }
+  @media all and (min-width: $baseW) {
+    font-size: $px;
+  }
+}
+
+@mixin mq_tab() {
+  @media all and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin mq_sp() {
+  @media all and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mq_tab-base() {
+  @media all and (max-width: ($innerWidth + 240px)) {
+    @content;
+  }
+}
+
+@mixin mq_large() {
+  @media all and (min-width: ($baseWidth + 240px)) {
+    @content;
+  }
+}
+
+@mixin mq_pc() {
+  @media all and (min-width: 769px) {
+    @content;
+  }
+}
+@mixin mq_pcheader() {
+  @media all and (min-width: 993px) {
+    @content;
+  }
+}
+
+@mixin lazyappear($delay: 0) {
+  @include ease-out-cubic($appearTime, $delay);
+  opacity: 0;
+  transform: translate(0, 30px);
+  &.appear {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@mixin placeholderColor($color) {
+  &:placeholder-shown {
+    color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin unselectable() {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@mixin ease-out-quint($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.23, 1, 0.32, 1) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.23, 1, 0.32, 1) $delay + ms; /* easeOutQuint */
+}
+
+@mixin ease-in-quint($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.755, 0.05, 0.855, 0.06) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.755, 0.05, 0.855, 0.06) $delay + ms; /* easeInQuint */
+}
+
+@mixin ease-in-out-quint($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.86, 0, 0.07, 1) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.86, 0, 0.07, 1) $delay + ms; /* easeInOutQuint */
+}
+
+@mixin ease-out-cubic($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.215, 0.61, 0.355, 1) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.215, 0.61, 0.355, 1) $delay + ms; /* easeOutQuint */
+}
+
+@mixin ease-in-out-cubic($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.645, 0.045, 0.355, 1) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.645, 0.045, 0.355, 1) $delay + ms; /* easeInOutCubic */
+}
+
+@mixin ease-out-expo($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.19, 1, 0.22, 1) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.19, 1, 0.22, 1) $delay + ms; /* easeOutQuint */
+}
+
+@mixin ease-out-back($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.175, 0.885, 0.32, 1.275) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.175, 0.885, 0.32, 1.275) $delay + ms; /* easeOutBack */
+}
+
+@mixin ease-in-out-back($ms, $delay: 0, $prop: all) {
+  -webkit-transition: $prop $ms + ms cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay + ms;
+  transition: $prop $ms + ms cubic-bezier(0.68, -0.55, 0.265, 1.55) $delay + ms; /* easeInOutBack */
+}
+
+@mixin ease-balloon($ms, $delay: 0, $prop: all) {
+  transition: $prop $ms + ms cubic-bezier(0.455, 0.16, 0.265, 1.415) $delay + ms; /* custom */
+}
+@mixin ease-bound($ms, $delay: 0, $prop: all) {
+  transition: $prop $ms + ms cubic-bezier(1, 0.005, 0.365, 1.37) $delay + ms; /* custom */
+}
+
+@mixin animations($name, $duration: 1s, $easing: ease-out-quint, $count: 1) {
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-timing-function: $easing;
+  animation-iteration-count: $count;
+
+  -webkit-animation-name: $name;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-timing-function: $easing;
+  -webkit-animation-iteration-count: $count;
+}
+
+@mixin transform($transforms) {
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+//transform origin
+@mixin transform-origin($origin) {
+  -webkit-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+@keyframes pop {
+  0% {
+    @include transform(translate(0%, 0));
+  }
+  20% {
+    @include transform(translate(0%, -7 + px));
+  }
+  50% {
+    @include transform(translate(0%, -7 + px));
+  }
+  80% {
+    @include transform(translate(0%, -7 + px));
+  }
+  100% {
+    @include transform(translate(0%, 0));
+  }
+}
+
+@keyframes pop2 {
+  0% {
+    @include transform(translate(-50%, -50%));
+  }
+  40% {
+    @include transform(translate(-50%, -84%));
+  }
+  60% {
+    @include transform(translate(-50%, -84%));
+  }
+  100% {
+    @include transform(translate(-50%, -50%));
+  }
+}
+
+@keyframes bounder {
+  0% {
+    transform: translate(0%, 0);
+  }
+  5% {
+    transform: translate(0%, 0);
+  }
+  10% {
+    transform: translate(0%, 0 + px);
+  }
+  14% {
+    transform: translate(0%, -10 + px);
+  }
+  15% {
+    transform: translate(0%, -12 + px);
+  }
+  16% {
+    transform: translate(0%, -10 + px);
+  }
+  20% {
+    transform: translate(0%, 0 + px) rotate(0deg);
+  }
+  24% {
+    transform: translate(0%, -10 + px);
+  }
+  25% {
+    transform: translate(0%, -12 + px);
+  }
+  26% {
+    transform: translate(0%, -10 + px);
+  }
+  30% {
+    transform: translate(0%, 0 + px) rotate(0deg);
+  }
+  55% {
+    transform: translate(0%, 0 + px);
+  }
+  75% {
+    transform: translate(0%, 0 + px);
+  }
+  100% {
+    transform: translate(0%, 0);
+  }
+}
+@keyframes question {
+  0% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(8deg);
+  }
+  30% {
+    transform: rotate(8deg);
+  }
+  70% {
+    transform: rotate(-8deg);
+  }
+  80% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes arrow-right {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(50%, 0);
+    opacity: 0;
+  }
+  50.001% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes arrow-right2 {
+  0% {
+    @include transform(translate(0, -50%));
+    opacity: 1;
+  }
+  50% {
+    @include transform(translate(50%, -50%));
+    opacity: 0;
+  }
+  50.001% {
+    @include transform(translate(-50%, -50%));
+    opacity: 0;
+  }
+  100% {
+    @include transform(translate(0, -50%));
+    opacity: 1;
+  }
+}
+
+@keyframes arrow-right3 {
+  0% {
+    transform: translate(-60%, -50%);
+  }
+  15% {
+    transform: translate(7%, -50%);
+  }
+  30% {
+    transform: translate(-30%, -50%);
+  }
+  65% {
+    transform: translate(-30%, -50%);
+  }
+  100% {
+    transform: translate(-60%, -50%);
+  }
+}
+
+@keyframes mask-appear {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes mask-appear2 {
+  0% {
+    clip-path: inset(100% 0% 0% 0%);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}

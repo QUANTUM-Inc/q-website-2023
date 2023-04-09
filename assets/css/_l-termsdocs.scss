@@ -1,0 +1,71 @@
+// Privacy Policy (terms, or other documents)
+.privacy {
+  padding-top: 95px;
+  background: $bggray;
+  @include mq_sp {
+    padding-top: percentage(math.div(140px, $spWidth));
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    @include mq_sp {
+      margin-bottom: percentage(math.div(40px, $spInner));
+    }
+  }
+
+  &__set {
+    margin-bottom: percentage(math.div(70px, $baseWidth));
+    @include mq_sp {
+      margin-bottom: percentage(math.div(50px, $spInner));
+    }
+    h3 {
+      @include noto;
+      line-height: 1.6;
+      font-size: 22px;
+      margin-bottom: percentage(math.div(50px, $baseWidth));
+      @include subpixel;
+      @include mq_sp {
+        @include spfontsize(18px);
+      }
+    }
+    h4 {
+      @include noto;
+      margin-top: percentage(math.div(35px, $innerWidth));
+      line-height: 1.6;
+      font-size: 16px;
+      @include subpixel;
+      @include mq_sp {
+        margin-top: percentage(math.div(30px, $spInner));
+        @include spfontsize(14px);
+      }
+    }
+  }
+
+  &__body,
+  li {
+    @include noto-light;
+    margin-top: percentage(math.div(5px, $innerWidth));
+    line-height: 1.6;
+    font-size: 16px;
+    @include mq_sp {
+      margin-top: percentage(math.div(10px, $spInner));
+      @include spfontsize(12px);
+    }
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: 36px;
+    @include mq_sp {
+      padding-left: percentage(math.div(20px, $spInner));
+    }
+  }
+  ul {
+    li {
+      list-style-type: disc;
+    }
+  }
+}

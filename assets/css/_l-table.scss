@@ -1,0 +1,34 @@
+.l-table {
+  display: table;
+}
+
+.l-table__group {
+  display: table-row-group;
+  @include mq_sp {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  &:last-child {
+    .l-table__head,
+    .l-table__body {
+      border-bottom: none;
+    }
+  }
+}
+.l-table__head,
+.l-table__body {
+  border-bottom: 1px solid #000;
+  display: table-cell;
+
+  vertical-align: top;
+  padding: 30px 0;
+  font-size: 16px;
+  @include noto-light;
+  line-height: 1.8;
+  @include mq_sp {
+    display: block;
+    @include spfontsize(12px);
+    padding: percentage(math.div(40px, $spWidth)) 0;
+  }
+}

@@ -1,0 +1,495 @@
+// メインビジュアル
+.l-mainvisual {
+  line-height: 0;
+  height: 100vh;
+  //max-height: 800px;
+  margin-bottom: 80px;
+  @include mq_sp {
+    max-height: none;
+    margin-bottom: percentage(math.div(90px, $spWidth));
+  }
+  img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+  }
+}
+
+// メインビジュアルがないタイプ
+.l-no-mv {
+  padding-top: 140px;
+  @include mq_sp {
+    padding-top: percentage(math.div(120px, $spWidth));
+  }
+}
+
+// ======= 画像 =======
+.l-image {
+  margin-top: 60px;
+  line-height: 0;
+}
+
+//画像1つ 通常 ----------
+.l-image1 {
+  &__wrap {
+    position: relative;
+    padding-top: percentage(math.div(390px, $innerWidth));
+    @include mq_sp {
+      padding-top: percentage(math.div(212px, $spWidth));
+    }
+  }
+  &.right {
+    text-align: right;
+  }
+  img {
+    will-change: transform;
+  }
+  img,
+  iframe {
+    width: percentage(math.div(690px, $innerWidth));
+    top: 0;
+    @include mq_sp {
+      width: 100%;
+    }
+  }
+  iframe {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+//画像1つ ワイドサイズ ----------
+.l-image1-wide {
+  width: 100%;
+  img {
+    width: 100%;
+    will-change: transform;
+  }
+}
+
+// 画像2カラム ----------
+.l-image-2column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 0;
+  flex-wrap: wrap;
+  margin-top: 45px;
+  @include mq_sp {
+    display: block;
+    margin-top: percentage(math.div(30px, $spInner));
+  }
+  .image1,
+  .image2 {
+    margin-top: percentage(math.div(15px, $innerWidth));
+    width: percentage(math.div(518px, $innerWidth));
+    opacity: 0;
+    transform: translate(0, 20px);
+    @include ease-out-cubic(600);
+    &.appear {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    @include mq_sp {
+      width: 100%;
+      margin-top: percentage(math.div(15px, $spInner));
+    }
+    img {
+      width: 100%;
+      will-change: transform;
+    }
+  }
+  .image2 {
+    @include ease-out-cubic(600, 100);
+  }
+}
+
+//画像2カラム 2:1----------
+.l-image__column2_1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 0;
+  @include mq_sp {
+    display: block;
+  }
+  .image1,
+  .image2 {
+    opacity: 0;
+    transform: translate(0, 20px);
+    @include ease-out-cubic(600);
+    &.appear {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+  .image1 {
+    width: percentage(math.div(696px, $innerWidth));
+    @include mq_sp {
+      width: 100%;
+    }
+  }
+  .image2 {
+    width: percentage(math.div(340px, $innerWidth));
+    @include ease-out-cubic(600, 100);
+    @include mq_sp {
+      width: 100%;
+    }
+  }
+
+  img {
+    width: 100%;
+    will-change: transform;
+  }
+}
+
+//画像3カラム----------
+.l-image-3column {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  line-height: 0;
+  @include mq_sp {
+    display: block;
+  }
+  .image1,
+  .image2,
+  .image0 {
+    display: block;
+    width: percentage(math.div(340px, $innerWidth));
+    margin-right: percentage(math.div(16px, $innerWidth));
+    transform: translate(0, 20px);
+    opacity: 0;
+    @include ease-out-cubic(600);
+    &.appear {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    @include mq_sp {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: percentage(math.div(30px, $spInner));
+    }
+  }
+  .image1 {
+    @include ease-out-cubic(600, 60);
+  }
+  .image2 {
+    @include ease-out-cubic(600, 120);
+    margin-right: 0;
+  }
+  a {
+    @include mq_pc {
+      &:hover {
+        //filter: saturate(170%) brightness(88%);
+        .image-area {
+          img {
+            @include ease-out-cubic(500);
+            transform: scale(1.06);
+          }
+        }
+      }
+    }
+  }
+  .image-area {
+    line-height: 0;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    //padding-top: 100%;
+    @include mq_sp {
+      padding-top: 0;
+    }
+  }
+  img {
+    width: 100%;
+    will-change: transform;
+    @include ease-out-cubic(1000);
+    @include mq_sp {
+      height: auto;
+      position: relative;
+    }
+  }
+}
+
+// Latest Journal 仕様
+.latestjournal {
+  .l-image-3column {
+    .image-area {
+      padding-top: 100%;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      object-position: center;
+      @include ease-out-cubic(1000);
+      @include mq_sp {
+        height: auto;
+        position: relative;
+      }
+    }
+  }
+}
+
+//ヨコイチの画像----------
+.l-fullimage {
+  line-height: 0;
+  width: 100%;
+  @include ease-out-cubic($appearTime, 120);
+  clip-path: inset(0% 0% 100% 0%);
+  img {
+    width: 100%;
+    will-change: transform;
+    @include ease-out-cubic($appearTime, 120);
+    transform: translate(0, -10%);
+  }
+
+  &.appear {
+    clip-path: inset(0% 0% 0% 0%);
+    img {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+// ======= テキスト =====================
+.l-text {
+  margin-top: 20px;
+  @include mq_sp {
+    margin-top: percentage(math.div(20px, $spInner));
+  }
+  > div {
+    line-height: 1.8;
+    font-size: 16px;
+    @include noto-light;
+    @include mq_sp {
+      @include spfontsize(14px);
+    }
+    p {
+      line-height: 1.8;
+      font-size: 16px;
+      @include noto-light;
+      @include mq_sp {
+        @include spfontsize(14px);
+      }
+    }
+    b {
+      @include subpixel;
+    }
+    a {
+      position: relative;
+      line-height: 1.8;
+      font-size: 16px;
+      @include noto-light;
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #000;
+        transform-origin: 0 0;
+        @include ease-out-quint($animationTime, 40);
+      }
+      &::before {
+        background: $liteGray;
+      }
+      @include mq_sp {
+        @include spfontsize(14px);
+      }
+      @include mq_pc {
+        &::after {
+          transform: scale(0, 0);
+        }
+        &:hover {
+          &::after {
+            transform: scale(1, 1);
+          }
+        }
+      }
+    }
+  }
+  // タグ
+  .type-tags {
+    display: flex;
+    flex-wrap: wrap;
+    @include mq_sp {
+      text-align: left;
+      justify-content: flex-start;
+    }
+    span,
+    a {
+      letter-spacing: 0.04rem;
+      position: relative;
+      @include noto-light;
+      font-size: 20px;
+      //white-space: nowrap;
+      padding-right: 12px;
+      margin-right: 12px;
+      @include mq_sp {
+        white-space: normal;
+        @include spfontsize(20px);
+        padding-right: percentage(math.div(10px, $spInner));
+        margin-right: percentage(math.div(10px, $spInner));
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        height: 70%;
+        width: 1px;
+        transform: translate(0, -50%);
+        background: #000;
+      }
+      &:last-child {
+        &::before {
+          display: none;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #000;
+        @include ease-out-quint($animationTime);
+        transform: scale(0, 1);
+      }
+      @include mq_pc {
+        &:hover {
+          &::after {
+            //transform: scale(1, 1);
+          }
+        }
+      }
+    }
+  }
+
+  //空
+  .type-void {
+    margin: 0;
+  }
+
+  // 本文
+  p {
+    @include noto-light;
+    line-height: 1.8;
+    font-size: 16px;
+    margin-top: 40px;
+    @include mq_sp {
+      @include spfontsize(14px);
+      margin-top: percentage(math.div(30px, $spInner));
+    }
+
+    small,
+    &.note {
+      display: block;
+      @include noto-light;
+      font-size: 12px;
+      @include mq_sp {
+        @include spfontsize(12px);
+      }
+    }
+  }
+  small {
+    display: block;
+    @include noto-light;
+    line-height: 1.8;
+    font-size: 12px;
+    margin-top: 40px;
+    @include mq_sp {
+      @include spfontsize(12px);
+      margin-top: percentage(math.div(40px, $spInner));
+    }
+  }
+}
+
+// テキスト2カラム ----------
+.l-text-2column {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 24px;
+  @include mq_sp {
+    display: block;
+    margin-top: percentage(math.div(16px, $spInner));
+  }
+  &_1 {
+    width: percentage(math.div(400px, $innerWidth));
+    @include ease-out-cubic(800);
+    clip-path: inset(0% 0% 100% 0%);
+    &.appear {
+      clip-path: inset(0% 0% 0% 0%);
+    }
+    @include mq_sp {
+      width: 100%;
+    }
+  }
+  &_2 {
+    margin-top: 24px;
+    width: percentage(math.div(600px, $innerWidth));
+    @include ease-out-cubic(800);
+    clip-path: inset(0% 0% 100% 0%);
+    &.appear {
+      clip-path: inset(0% 0% 0% 0%);
+    }
+    @include mq_sp {
+      width: 100%;
+      margin-top: percentage(math.div(0px, $spInner));
+    }
+  }
+}
+
+// タイトル ----------
+.l-title {
+  margin-top: 24px;
+  @include mq_sp {
+    margin-top: percentage(math.div(16px, $spInner));
+  }
+}
+
+// Latest Journal
+.latestjournal {
+  margin-top: 160px;
+  @include mq_sp {
+    margin-top: percentage(math.div(90px, $spInner));
+  }
+}
+
+.latest {
+  display: block;
+  p.date {
+    font-size: 20px;
+    margin-top: percent(math.div(30px, 340px));
+    @include noto-light;
+    line-height: 1.2;
+    @include mq_sp {
+      @include spfontsize(20px);
+      margin-top: percentage(math.div(30px, $spInner));
+    }
+  }
+  p.body {
+    font-size: 16px;
+    @include noto-light;
+    margin-top: percent(math.div(10px, 340px));
+    line-height: 1.6;
+    @include mq_sp {
+      @include spfontsize(14px);
+      margin-top: percentage(math.div(10px, $spInner));
+    }
+  }
+}
