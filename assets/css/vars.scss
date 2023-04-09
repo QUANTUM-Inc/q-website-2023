@@ -1,0 +1,31 @@
+@use "sass:math";
+
+$imagePath: "~@/assets/images/";
+$staticPath: "/images/";
+$animationTime: 320;
+$appearTime: 1000;
+
+$baseFontcolor: #000;
+
+$baseWidth: 1280px;
+$innerWidth: 1052px;
+$outerWidth: 1130px;
+$containerWidth: 1440px;
+$spWidth: 375px; //750px;
+$spInner: 285px; //750px;
+$spContents: 375px; //750px;
+
+//Color
+$primary: #444549;
+$accent: #384d66;
+$dark: #3e3e3e;
+$gray: #999999;
+$liteGray: #bbb;
+$bggray: #f1f1f1;
+
+$font-color: #000;
+
+//debug
+$bred: #ff0000 1px solid;
+$bblue: #0000ff 1px solid;
+$bgreen: #00ff00 1px solid;

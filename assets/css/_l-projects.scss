@@ -1,0 +1,178 @@
+.l-projects {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  @include mq_sp {
+    display: block;
+  }
+  &.primary-projects {
+    @include mq_sp {
+      width: 100%;
+    }
+    .text-area {
+      @include mq_sp {
+        width: percentage(math.div($spInner, $spWidth));
+        margin: 0 auto;
+      }
+    }
+  }
+  .l-project {
+    display: block;
+    width: percentage(math.div(519px, $innerWidth));
+    @include ease-out-cubic(800);
+    clip-path: inset(0% 0% 100% 0%);
+    &.appear {
+      clip-path: inset(0% 0% 0% 0%);
+    }
+    @include mq_sp {
+      width: 100%;
+      //margin-bottom: percentage(22px / $spInner);
+    }
+    &.type-primary {
+      width: 100%;
+      @include mq_sp {
+      }
+      .image-area {
+        //padding-top: percentage(657px / $innerWidth);
+        padding-top: percentage(math.div(9, 16));
+        position: relative;
+        line-height: 0;
+
+        img {
+          //position: relative;
+          //height: auto;
+          position: absolute;
+          width: 100%;
+          top: 0;
+          @include mq_sp {
+            //position: static;
+          }
+        }
+        @include mq_sp {
+          width: percentage(math.div($spInner, $spWidth));
+          //padding-top: 0;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+
+    @include lazyappear();
+    &.appear {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .image-area {
+      line-height: 0;
+      margin-bottom: 18px;
+      overflow: hidden;
+      position: relative;
+      //padding-top: percentage(323px / 519px);
+      padding-top: percentage(math.div(9, 16));
+      @include mq_sp {
+        //padding-top: 0;
+        margin-bottom: percentage(math.div(10px, $spInner));
+      }
+      img {
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        left: 0;
+        width: 100%;
+        //will-change: transform;
+        @include ease-out-cubic(500);
+        transform: scale(1, 1);
+        @include mq_sp {
+          //position: relative;
+        }
+      }
+    }
+
+    @include mq_pc {
+      @include ease-out-cubic(400);
+      &:hover {
+        ///filter: saturate(170%) brightness(88%);
+        /*.text-area {
+          transform: translate(0, -5px);
+        }*/
+        .image-area {
+          img {
+            @include ease-out-cubic(500);
+            transform: scale(1.06);
+          }
+        }
+      }
+    }
+  }
+  .text-area {
+    margin-bottom: percentage(math.div(45px, $innerWidth));
+    @include ease-out-cubic($animationTime);
+    .l-project__tags {
+      display: flex;
+      flex-wrap: wrap;
+      @include roboto-light;
+      font-size: 16px;
+      @include mq_sp {
+        @include spfontsize(8px);
+      }
+      span {
+        white-space: nowrap;
+        position: relative;
+        line-height: 1;
+        padding-right: 7px;
+        margin-right: 10px;
+        @include mq_sp {
+          padding-right: percentage(math.div(10px, $spInner));
+          //margin-right: percentage(4px / $spInner);
+        }
+        &.hasclient {
+          &::after {
+            display: block;
+          }
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 50%;
+          display: none;
+          height: 70%;
+          width: 1px;
+          transform: translate(0, -50%);
+          background: #000;
+        }
+        &:first-child {
+          /*&::after {
+            display: none;
+          }*/
+        }
+        &.partners {
+          //padding-left: 10px;
+          &::after {
+            display: none;
+          }
+          @include mq_sp {
+          }
+        }
+      }
+    }
+    .l-project__name {
+      margin-top: 10px;
+      @include roboto-light;
+      font-size: 25px;
+      @include mq_sp {
+        line-height: 1.3;
+        margin-top: percentage(math.div(5px, $spInner));
+        margin-bottom: percentage(math.div(22px, $spInner));
+        @include spfontsize(14px);
+      }
+      a {
+        font-weight: inherit;
+      }
+    }
+  }
+}

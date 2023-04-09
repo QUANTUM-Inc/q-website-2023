@@ -1,0 +1,255 @@
+.blog * {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  box-sizing: border-box;
+  color: $baseFontcolor;
+  font-family: "Roboto", "Noto Sans JP", serif;
+  font-kerning: normal;
+  font-feature-settings: "palt";
+  font-size: 16px;
+  font-weight: 300;
+  overflow-y: scroll;
+
+  @media (max-width: 500px) {
+    font-size: 18px;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 0.85rem;
+  line-height: 1.765em;
+  background: #fff;
+}
+
+#blog {
+  /*> .interface {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    @media (max-width: 700px) {
+      padding-top: 60px;
+    }
+  }*/
+}
+
+html.wf-active #blog,
+html.wf-inactive #blog {
+  > .interface {
+    transition: 0.5s;
+    opacity: 1;
+  }
+
+  > .spinner {
+    display: none;
+  }
+}
+
+main {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  /////min-height: calc(100vh - 80px - 200px);
+
+  @media (max-width: 700px) {
+    min-height: calc(100vh - 60px - 200px);
+  }
+}
+
+// Page Transition ======================
+//Enter
+.page-enter {
+  opacity: 0;
+  transform: translate(0, 30px);
+}
+.page-enter-active {
+  opacity: 0;
+  transform: translate(0px, 30px);
+}
+.page-enter-to {
+  opacity: 1;
+  transform: translate(0, 0);
+  @include ease-out-cubic(600, 100);
+}
+
+///leave
+.page-leave {
+  opacity: 1;
+  transform: translate(0, 0px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translate(0, -20px);
+  @include ease-out-cubic(600, 0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #000;
+}
+
+a {
+  color: $primary;
+  font-weight: 400;
+  position: relative;
+  text-decoration: none;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.lazy {
+  background-color: #555;
+  position: relative;
+
+  img {
+    backface-visibility: hidden;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s;
+    width: 100%;
+  }
+
+  [lazy="loading"] {
+    opacity: 0;
+  }
+
+  [lazy="loaded"] {
+    opacity: 1;
+  }
+
+  [lazy="loading"] + .spinner {
+    opacity: 1;
+  }
+
+  .spinner {
+    left: 50%;
+    margin: -20px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+  }
+}
+
+.infinite-loading-container {
+  min-height: calc(64px * 2 + 40px) !important;
+  padding: 64px;
+}
+
+.infinite-status-prompt {
+  padding: 0 !important;
+  position: relative;
+
+  span {
+    display: block;
+  }
+
+  svg {
+    display: block;
+    fill: rgba($primary, 0.45);
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin: auto;
+  }
+
+  div {
+    bottom: -26px;
+    color: rgba($primary, 0.65);
+    font-size: 14px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.spinner {
+  position: relative;
+  margin: auto;
+}
+
+.hidden {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.pc {
+  display: block !important;
+  @include mq_sp {
+    display: none !important;
+  }
+}
+.tab {
+  display: none !important;
+  @include mq_tab {
+    display: block !important;
+  }
+}
+.sp {
+  display: none !important;
+  @include mq_sp {
+    display: block !important;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.under-construction {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 44px;
+    @include mq_sp {
+      @include spfontsize(22px);
+    }
+  }
+}
+
+.btn-primary {
+  text-align: center;
+  outline: none;
+  display: block;
+  border-radius: 0;
+  font-size: 20px;
+  @include noto-light;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  width: 270px;
+  background: $bggray;
+  @include mq_sp {
+    width: 100%;
+  }
+  @include ease-out-quint($animationTime);
+  @include mq_pc {
+    &:hover {
+      color: #fff;
+      background: #000;
+    }
+  }
+  @include mq_sp {
+    @include spfontsize(20px);
+    padding: percentage(math.div(15px, $spInner));
+  }
+}

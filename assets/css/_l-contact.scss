@@ -1,0 +1,404 @@
+.contact-link {
+  @include mq_pc {
+    @include ease-out-quint($animationTime);
+    &:hover {
+      //opacity: 0.8;
+      filter: brightness(86%);
+    }
+  }
+  .l-section__inner {
+    display: block;
+    max-width: none;
+    padding: 76px 0 79px;
+    @include mq_sp {
+      padding: percentage(math.div(60px, $spWidth)) 0 percentage(math.div(65px, $spWidth));
+    }
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 0;
+    @include mq_sp {
+      line-height: 1;
+    }
+  }
+
+  &.white {
+    background: #fff;
+  }
+  &.gray {
+    background: $bggray;
+  }
+  &.mt {
+    margin-top: 160px;
+    @include mq_sp {
+      margin-top: percentage(math.div(80px, $spWidth));
+    }
+  }
+}
+
+.l-contact {
+  &__error {
+    color: #f00;
+  }
+  // 2カラム表示
+  &__2column {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    @include mq_sp {
+      display: block;
+      margin-bottom: percentage(math.div(40px, $spWidth));
+    }
+    &.type-left {
+      justify-content: flex-start;
+    }
+  }
+
+  // Group
+  &__group {
+    @include mq_sp {
+      margin-top: percentage(math.div(30px, $spWidth));
+    }
+  }
+
+  // ラベル名-----
+  &__itemname {
+    font-size: 20px;
+    line-height: 1.6;
+    @include noto-light;
+    margin-bottom: 30px;
+    @include mq_sp {
+      @include spfontsize(14px);
+      margin-bottom: percentage(math.div(15px, $spInner));
+    }
+    small {
+      font-size: 14px;
+      display: inline-block;
+      padding-left: 20px;
+      @include mq_sp {
+        padding-left: 0;
+        display: block;
+        margin-top: 5px;
+        @include spfontsize(12px);
+      }
+    }
+  }
+  label {
+    line-height: 1.4;
+    font-size: 20px;
+    @include noto-light;
+    @include mq_sp {
+      @include spfontsize(14px);
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    button {
+      margin-right: 20px;
+    }
+  }
+
+  // FormSet
+  &__set {
+    // Checkbox =====
+    &.type-checkbox {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      @include mq_sp {
+        margin-bottom: percentage(math.div(10px, $spInner));
+      }
+
+      input {
+        display: none;
+        margin-right: 5px;
+        @include mq_sp {
+          margin-right: percentage(math.div(15px, $spInner));
+        }
+      }
+      input[type="checkbox"]:checked + label::after {
+        opacity: 1;
+      }
+
+      label {
+        position: relative;
+        padding-left: 24px;
+        &::before {
+          content: "";
+          display: block;
+          background: #fff;
+          border: #000 1px solid;
+          box-sizing: content-box;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 15px;
+          padding-top: 15px;
+          height: 0;
+          line-height: 0;
+          font-size: 0;
+          transform: translate(0, -50%);
+        }
+        &::after {
+          position: absolute;
+          content: "";
+          top: 43%;
+          background: transparent;
+          box-sizing: content-box;
+          border-right: 1px solid #000;
+          border-bottom: 1px solid #000;
+          width: 5px;
+          padding-top: 12px;
+          left: 6px;
+          transform: translate(0, -50%) rotate(45deg);
+          @include ease-out-quint($animationTime);
+          opacity: 0;
+        }
+      }
+    }
+
+    // Radio =====
+    &.type-radio {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+
+      input {
+        display: none;
+        margin-right: 5px;
+        @include mq_sp {
+          margin-right: percentage(math.div(15px, $spInner));
+        }
+      }
+
+      input[type="radio"]:checked + label::after {
+        opacity: 1;
+      }
+
+      label {
+        position: relative;
+        padding-left: 24px;
+        &::before {
+          content: "";
+          display: block;
+          background: #fff;
+          border: #000 1px solid;
+          border-radius: 50%;
+          box-sizing: content-box;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 15px;
+          padding-top: 15px;
+          height: 0;
+          line-height: 0;
+          font-size: 0;
+          transform: translate(0, -50%);
+        }
+        &::after {
+          position: absolute;
+          content: "";
+          top: 50%;
+          background: #000;
+          border-radius: 50%;
+          box-sizing: content-box;
+          width: 7px;
+          padding-top: 7px;
+          left: 5px;
+          transform: translate(0, -50%);
+          @include ease-out-quint($animationTime);
+          opacity: 0;
+        }
+      }
+    }
+
+    // Text Box =====
+    &.type-text {
+      margin-bottom: 30px;
+      @include mq_sp {
+        margin-bottom: percentage(math.div(30px, $spInner));
+      }
+      .l-contact__itemname {
+        margin-bottom: 6px;
+        @include mq_sp {
+          margin-bottom: percentage(math.div(5px, $spInner));
+        }
+      }
+      input {
+        border: none;
+        border-bottom: 1px solid #000;
+        border-radius: 0;
+        width: 100%;
+        outline: none;
+        font-size: 20px;
+        line-height: 1.6;
+        @include noto-light;
+        @include mq_sp {
+          @include spfontsize(14px);
+        }
+        &.error {
+          border-bottom: 1px solid #f00;
+        }
+        &:read-only {
+          border-bottom: 0;
+        }
+      }
+    }
+    &.type-file {
+      margin-bottom: 35px;
+      .input-file-group {
+        display: flex;
+        align-items: center;
+
+        @include mq_sp {
+          display: block;
+        }
+        p {
+          font-size: 16px;
+          margin-left: 10px;
+
+          @include mq_sp {
+            margin-top: 5px;
+            margin-left: 0;
+            @include spfontsize(12px);
+          }
+        }
+      }
+      .input-file {
+        background-color: #f1f1f1;
+        display: block;
+        text-align: center;
+        height: 56px;
+        line-height: 56px;
+        width: 290px;
+        font-size: 20px;
+        color: #707070;
+        position: relative;
+        @include mq_sp {
+          width: 100%;
+          height: 46px;
+          line-height: 46px;
+          @include spfontsize(14px);
+        }
+        input[type="file"] {
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          bottom: 0;
+          display: block;
+          cursor: pointer;
+        }
+      }
+      .l-contact__itemname {
+        margin-bottom: 15px;
+        @include mq_sp {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // Send Button =====
+  .send-button {
+    width: 270px;
+    background: $bggray;
+    @include mq_sp {
+      width: 100%;
+    }
+    @include ease-out-quint($animationTime);
+    @include mq_pc {
+      &:hover {
+        color: #fff;
+        background: #000;
+      }
+    }
+  }
+}
+
+// Form general ------
+button {
+  outline: none;
+  display: block;
+  border-radius: 0;
+  ///border: #000 1px solid;
+  font-size: 20px;
+  @include noto-light;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+
+  @include mq_sp {
+    @include spfontsize(20px);
+    padding: percentage(math.div(15px, $spInner));
+  }
+}
+
+// Select box
+.select-wrap {
+  position: relative;
+  @include noto-light;
+  font-size: 16px;
+  @include mq_sp {
+    @include spfontsize(14px);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    width: 10px;
+    height: 5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%226.996%22%20height%3D%224%22%20viewBox%3D%220%200%206.996%204%22%3E%20%3Cpath%20id%3D%22Icon_ionic-ios-arrow-down%22%20data-name%3D%22Icon%20ionic-ios-arrow-down%22%20d%3D%22M9.687%2C14.041l2.645-2.647a.5.5%2C0%2C0%2C1%2C.706%2C0%2C.5.5%2C0%2C0%2C1%2C0%2C.708l-3%2C3a.5.5%2C0%2C0%2C1-.689.015L6.333%2C12.1a.5.5%2C0%2C0%2C1%2C.706-.708Z%22%20transform%3D%22translate(-6.188%20-11.246)%22%2F%3E%20%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include mq_sp {
+      height: 0;
+    }
+  }
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  margin: 0 auto;
+  text-align: center;
+  border: none;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  option {
+    text-align: center;
+  }
+}
+
+// Textarea
+textarea {
+  width: 100%;
+  font-size: 20px;
+  line-height: 1.5;
+  @include noto-light;
+  outline: none;
+  padding: 15px;
+  margin-bottom: 30px;
+  border: #000 1px solid;
+  @include mq_sp {
+    @include spfontsize(14px);
+    padding: percentage(math.div(15px, $spInner));
+    margin-bottom: percentage(math.div(30px, $spInner));
+  }
+  &.error {
+    border: #f00 1px solid;
+  }
+
+  &:read-only {
+    border: 0;
+    padding: 0;
+  }
+}
