@@ -80,9 +80,9 @@ Vue.mixin({
     },
 
 
-    /*getCategoryFromId(categoryId, store) {
-      //return store.getters.getCategoryFromId(categoryId);
-    },*/
+    // getCategoryNameFromId(categoryId, store) {
+    //   return store.getters['getCategoryFromId'](categoryId);
+    // },
 
     /**
      * カテゴリーリストからカテゴリー名の連結文字列を取得

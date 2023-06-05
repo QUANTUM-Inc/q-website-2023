@@ -3,8 +3,7 @@
     <section class='l-section l-mainvisual' v-if='useMainvisual'>
       <picture>
         <source media="(max-width: 768px)" :srcset="project.acf.main_visual_sp">
-<!--        <img :src='project.acf.main_visual.url' alt=''>-->
-        <img :src='project.acf.main_visual.sizes["1536x1536"]' alt=''>
+        <img :src='project.acf.main_visual.sizes["2048x2048"]' alt=''>
       </picture>
     </section>
 
@@ -19,8 +18,8 @@
     <section class='l-section'>
       <div class='l-section__inner'>
         <div class='l-text l-text-2column'>
-          <div class='l-text-2column_1 type-tags js-lazyclass'>
-            <span :class='{hasclient: project.acf.clients_partners}' v-html='categoryName(project.categories)'></span>
+          <div class='l-text-2column_1 type-tags js-lazyclass project-categories'>
+            <lang-link :to="{name: 'projects', params: {lang, categoryId}}" :class='{hasclient: project.acf.clients_partners}' v-html='getCategoryFromId(categoryId).name' v-for="categoryId in project.categories" :key="categoryId"></lang-link>
             <span v-if='project.acf.clients_partners'>clients/partners</span>
           </div>
           <div class='l-text-2column_2 js-lazyclass'>
@@ -295,7 +294,6 @@ export default {
   },
 
   mounted() {
-
     this.$nextTick(() => {
       gsap.delayedCall(0.2, () => {
         Init.setup(this.$store);
@@ -322,7 +320,7 @@ export default {
   },
 
   mixins: {
-    getCategoriesName: Function
+    getCategoriesName: Function,
   },
 
   methods: {
@@ -385,6 +383,10 @@ export default {
       this.destroySubscribe();
       this.$router.push(to);
 
+    },
+
+    getCategoryFromId(categoryId) {
+      return this.$store.getters['getCategoryFromId'](categoryId)
     }
   }
 };
@@ -396,6 +398,13 @@ export default {
   @include mq_sp {
     margin-top: percentage(math.div(80px, $spWidth));
   }
+}
+.project-categories {
+ a {
+  &::before {
+    display: none;
+  }
+ }  
 }
 
 </style>

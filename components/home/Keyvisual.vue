@@ -2,8 +2,15 @@
   <section id='keyvisual' class='keyvisual l-section' ref='kv'>
     <div class='l-section__background' ref='bg'>
 <!--      <video src='/video/q_showreel.mp4' ref='bgimage' autoplay playsinline muted loop></video>-->
-      <div class='vimeowrap'><iframe src="https://player.vimeo.com/video/639500940?h=1f6d8e521e&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&background=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-
+      <div class='vimeowrap'>
+        <div class="vimeoinner-pc">
+          <iframe src="https://player.vimeo.com/video/639500940?h=1f6d8e521e&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&background=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="vimeoinner-sp">
+          <iframe src="https://player.vimeo.com/video/817530958?h=eedf18c6cd&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
     </div>
     <div class='l-section__inner'>
       <div class='space2'></div>
@@ -134,9 +141,20 @@ export default {
       //padding:56.25% 0 0 0;
       height: 100%;
       position:relative;
+      .vimeoinner-sp {
+        display: none;
+      }
       @include mq_sp {
         height: 100%;
         padding: 0;
+        .vimeoinner-pc {
+          display: none;
+        }
+        .vimeoinner-sp {
+          width: 100%;
+          height: 100%;
+          display: block !important;
+        }
       }
     }
     iframe {
@@ -157,11 +175,13 @@ export default {
         width: 177.78vh !important;
       }
       @include mq_sp {
-        height: 100%;
-        min-height: 600px;
-        width: 500% !important;
+        width: auto !important;
+        min-width: 100% !important;
+        height: auto !important;
+        min-height: 100% !important;
+        aspect-ratio: 0.5625;
 
-          object-fit: cover !important;
+        object-fit: cover !important;
       }
     }
   }

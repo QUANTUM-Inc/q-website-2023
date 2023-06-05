@@ -109,6 +109,7 @@ export default {
         Init.setup(this.$store);
       });
     });
+    // console.log('params?', this.$route.params)
   },
   async asyncData({ app, store, params, payload }) {
     if (!store.state.products) {

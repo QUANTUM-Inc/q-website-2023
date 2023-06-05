@@ -93,20 +93,20 @@
             サービス開発を行なうプロジェクトの中心的な役割を担います。<br />
             <span class="show-detail"><nuxt-link to="/careers/detail?occupation=pm">応募の詳細を見る→</nuxt-link></span>
           </p>
-          <h3>studio operation</h3>
+          <!-- <h3>studio operation</h3>
           <p class='l-section__body' v-if='!isEnglish'>
             財務、経理、営業管理、オフィスIT管理、総務、人事労務など幅広いバックオフィス業務を行い、quantumのメンバーが安心して自身のパフォーマンスを最大化できるように支える役割を担います。<br /><br />
             財務
             <span class="show-detail"><nuxt-link to="/careers/detail?occupation=finance">応募の詳細を見る→</nuxt-link></span>
-          </p>
+          </p> -->
           <h3>internship for students</h3>
           <p class='l-section__body' v-if='!isEnglish'>
             自分の得意分野を生かしてquantumでそのスキルを磨きませんか？<br /><br />
             グラフィックデザインのアシスタント
             <span class="show-detail"><nuxt-link to="/careers/detail?occupation=intern_graphic">応募の詳細を見る→</nuxt-link></span>
           </p>
-          <br /><br />
-          <h2>currently closed position</h2>
+          <!-- <br /><br /> -->
+          <!-- <h2>currently closed position</h2>
           <div class="closed-position">
             <h3>art director</h3>
             <p class='l-section__body' v-if='!isEnglish'>
@@ -134,7 +134,7 @@
             <p class='l-section__body' v-if='!isEnglish'>
               機械学習・画像認識のエンジニア　ほかの職種で募集することがあります。
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

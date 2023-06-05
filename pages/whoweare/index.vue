@@ -114,6 +114,10 @@
             </div>
           </div>
         </div>
+        <div class="office-image">
+          <img src='/images/who/img_bottom.jpg' />
+          <p>©Soichiro Suizu</p>
+        </div>
       </div>
     </section>
 
@@ -177,8 +181,8 @@
           <div class='l-table__group'>
             <div class='l-table__body head' v-if='!isEnglish'>顧問</div>
             <div class='l-table__body head' v-if='isEnglish'>Advisor</div>
-            <div class='l-table__body' v-if='!isEnglish'>高松充</div>
-            <div class='l-table__body' v-if='isEnglish'>Mitsuru Takamatsu</div>
+            <div class='l-table__body' v-if='!isEnglish'>清水浩</div>
+            <div class='l-table__body' v-if='isEnglish'>Yutaka Shimizu</div>
           </div>
           <div class='l-table__group'>
             <div class='l-table__body head' v-if='!isEnglish'>所在地</div>
@@ -526,6 +530,16 @@ export default {
   }
 }
 
+.office-image {
+  margin-top: 70px;;
+  img {
+    width: 100%;
+  }
+  p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
 // Corporate
 .corporate {
   padding: 150px 0 70px;
