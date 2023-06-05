@@ -109,7 +109,7 @@ export default {
         Init.setup(this.$store);
       });
     });
-    // console.log('params?', this.$route.params)
+    this.filterCategory(this.categoryId)
   },
   async asyncData({ app, store, params, payload }) {
     if (!store.state.products) {
@@ -137,7 +137,8 @@ export default {
 
   data() {
     return {
-      currentSelected: 'all'
+      currentSelected: 'all',
+      categoryId: this.$route.params.categoryId
     }
   },
 
@@ -183,8 +184,6 @@ export default {
 
       this.currentSelected = select.options[index].label;
       this.currentSelectedId = select.options[index].value;
-      //console.log(this.currentSelected)
-      //console.log(this.currentSelectedId)
       let secondProj = this.$refs.secondProject;
       let firstProj = this.$refs.firstProject;
 
