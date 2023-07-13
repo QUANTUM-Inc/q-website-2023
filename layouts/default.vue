@@ -10,6 +10,7 @@
       </main>
       <TheFooter />
     </div>
+    <AcceptCookie />
   </div>
 </template>
 
@@ -17,12 +18,14 @@
 import TheHeader from '../components/TheHeader';
 import TheNavi from '../components/TheNavi';
 import TheFooter from '../components/TheFooter';
+import AcceptCookie from '../components/AcceptCookie';
 
 export default {
   components: {
     TheHeader,
     TheNavi,
-    TheFooter
+    TheFooter,
+    AcceptCookie
   }
 };
 </script>

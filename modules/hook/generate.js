@@ -148,6 +148,17 @@ module.exports = function () {
       keywords: this.keywordsEn
     },
 
+    '/collective': {
+      title: 'quantum | collective',
+      description: 'quantumは博報堂グループのスタートアップスタジオです。パートナーとの共同創業を中心に、新規事業創出に特化したventure buildersとして、創業以来数多くの新規事業を生み出しています。',
+      keywords: this.keywords
+    },
+    '/en/collective': {
+      title: 'quantum | collective',
+      description: 'quantum is a start-up studio within Hakuhodo Inc. group. As venture builders specializing in new business creation, we have created many new businesses since our establishment, mainly through co-founding with our partners.',
+      keywords: this.keywordsEn
+    },
+
     '/careers/about': {
       title: 'quantum | careers',
       description: 'quantumは博報堂グループのスタートアップスタジオです。パートナーとの共同創業を中心に、新規事業創出に特化したventure buildersとして、創業以来数多くの新規事業を生み出しています。',

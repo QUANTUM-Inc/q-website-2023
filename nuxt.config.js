@@ -215,6 +215,7 @@ export default {
         '/en/whoweare',
         '/en/whatwedo',
         '/en/careers',
+        '/en/collective',
         '/en/projects',
         '/en/privacy',
         '/en/qletter/complete',

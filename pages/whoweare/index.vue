@@ -531,13 +531,19 @@ export default {
 }
 
 .office-image {
-  margin-top: 70px;;
+  margin-top: 70px;
+  
   img {
     width: 100%;
   }
   p {
     font-size: 16px;
     margin-top: 10px;
+    @include mq_sp {
+      font-size: 12px;
+      margin: 0 auto 8%;
+      width: 80%;
+    }
   }
 }
 // Corporate

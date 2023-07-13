@@ -8,7 +8,7 @@
         </div>
         <div class='tag-seletc select-wrap sp'>
           <select v-on:change='changed'>
-            <option v-for='category in categories' :value='category.id'>{{category.name}}</option>
+            <option v-for='category in categories' :value='category.id' :selected="category.id === categoryId">{{category.name}}</option>
           </select>
           <div class='label'>{{this.currentSelected}}</div>
         </div>
@@ -18,13 +18,7 @@
     <!-- first -->
     <section class='l-section' v-if='firstProject'>
       <div class='l-section__inner l-projects primary-projects' ref='firstProject'>
-        <lang-link :to="{
-          name: 'projects-project',
-          params: {
-            lang: lang,
-            project: firstProject.slug
-          }
-        }" class='project l-project type-primary js-lazyclass ' @click.native="linkToExternal(firstProject.acf.external_link)" :event="{ click: firstProject.acf.external_link }">
+        <div class='project l-project type-primary js-lazyclass' @click="linkTo(lang, firstProject.slug, firstProject.acf.external_link)">
           <div class='image-area'>
             <picture>
               <source media="(max-width: 768px)" :srcset="firstProject.acf.main_visual.sizes.medium_large">
@@ -32,7 +26,7 @@
               <img :src='firstProject.acf.main_visual.sizes.large' alt=''>
             </picture>
           </div>
-        </lang-link>
+        </div>
         <div class='text-area'>
           <div class='l-project__tags'>
             <span :class='{hasclient: firstProject.acf.clients_partners}' v-html='categoryName(firstProject.categories)'></span>
@@ -48,7 +42,7 @@
                 lang: lang,
                 project: firstProject.slug
               }
-            }" class='project type-primary js-lazyclass ' v-else>{{firstProject.title.rendered}}</lang-link>
+            }" class='project type-primary js-lazyclass' v-else>{{firstProject.title.rendered}}</lang-link>
             
         </p>
         </div>
@@ -109,7 +103,12 @@ export default {
         Init.setup(this.$store);
       });
     });
-    this.filterCategory(this.categoryId)
+    if (this.categoryId) {
+      this.filterCategory(this.categoryId)
+      this.currentSelectedId = this.categoryId
+      const category = this.$store.getters['getCategoryFromId'](this.categoryId)
+      this.currentSelected = category.name
+    }
   },
   async asyncData({ app, store, params, payload }) {
     if (!store.state.products) {
@@ -235,6 +234,21 @@ export default {
         return 'lang-'
       }
       return ''
+    },
+
+    linkTo(lang, slug, externalLink) {
+      console.log('linkto', externalLink)
+      if (externalLink) {
+        this.linkToExternal(externalLink)
+      } else {
+        this.$router.push({
+          name: 'projects-project',
+          params: {
+            lang: lang,
+            project: slug
+          }
+        })
+      }
     },
 
     linkToExternal(link) {

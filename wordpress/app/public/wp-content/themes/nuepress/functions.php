@@ -60,7 +60,7 @@ add_action('customize_register', 'remove_customize_theme_options', 50);
 // Remove comments from admin
 function my_remove_admin_menus()
 {
-  remove_menu_page( 'edit.php?post_type=page' );
+//   remove_menu_page( 'edit.php?post_type=page' );
   remove_menu_page('edit-comments.php');
 }
 add_action('admin_menu', 'my_remove_admin_menus');
