@@ -165,7 +165,7 @@ export const getters = {
     } else if (type === 'careers') {
       return `${process.env.WORDPRESS_API_URL}/wp/v2/pages?slug=careers`
     } else if (type === 'career_detail') {
-      return `${process.env.WORDPRESS_API_URL}/wp/v2/pages/?slug=${slug}`
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/pages/${id}`
     }
 
     return ''

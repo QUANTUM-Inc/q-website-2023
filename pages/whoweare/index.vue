@@ -95,9 +95,9 @@
             <div class='people__text'>
               <p class='people__name' v-if='!isEnglish'>門田 慎太郎</p>
               <p class='people__name_en'>Shintaro Monden</p>
-              <p class='people__position' v-if='!isEnglish'>quantum常務執行役員</p>
-              <p class='people__position' v-if='isEnglish'>Managing Executive Officer</p>
-              <p class='people__body' v-if='!isEnglish'>国内デザインファーム及び外資系PCメーカーにて、一点モノの家具から世界で数万台を売り上げるラップトップPCまで幅広い分野の製品デザインを担当したのち、quantumに参画。quantumのデザイン部門を統括し、プロダクト、グラフィック、UI/UXデザインなどの境域から幅広い分野の新規事業開発を牽引する。デザインリサーチ、コンセプト開発、実証実験、量産設計支援まで一連の製品開発を一気通貫に行うことを強みとしている。手掛けたプロダクトは、iF Design、RedDot design、D&AD、Cannes Lions、グッドデザイン賞など、数多くのアワードを受賞しているほか、ドイツ・ミュンヘンのPinakothek der Moderneのパーマネントコレクションにも選定されるなど、国内外から高い評価を集めている。</p>
+              <p class='people__position' v-if='!isEnglish'>CDO(Chief Design Officer)</p>
+              <p class='people__position' v-if='isEnglish'>CDO(Chief Design Officer)</p>
+              <p class='people__body' v-if='!isEnglish'>国内デザインファーム及び外資系PCメーカーにて、一点モノの家具から世界で数万台を売り上げるラップトップPCまで幅広い分野の製品デザインを担当したのち、quantumに参画。quantumのデザイン部門を統括し、プロダクト、グラフィック、UI/UXデザインなどの境域から幅広い分野の新規事業開発を牽引する。デザインリサーチ、コンセプト開発、実証実験、量産設計支援まで一連の製品開発を一気通貫に行うことを強みとしている。手掛けたプロダクトは、iF Design Gold、Cannes Lions Gold、RedDot design、Dezeen Awards project of the yearなど、数多くのアワードを受賞しているほか、ドイツのPinakothek der Moderne、デンマークのDesign Museum Danmarkのパーマネントコレクションにも選定されるなど、国内外から高い評価を集めている。</p>
               <p class='people__body' v-if='isEnglish'>After working for a Japanese design firm and a foreign-affiliated PC manufacturer, he designed a wide range of products from one-of-a-kind furniture to laptops that sold tens of thousands of units worldwide before joining quantum. He oversees quantum's design department and leads new business development in a wide range of fields, including product, graphic, and UI/UX design. His strength lies in his ability to provide integrated product development services, including design research, concept development, demonstration testing, and mass production design support. His products have won numerous awards, including iF Design, RedDot design, D&AD, Cannes Lions, and Good Design Award, and have been selected for the permanent collection of Pinakothek der Moderne in Munich, Germany, receiving high acclaims both domestically and internationally.</p>
             </div>
           </div>

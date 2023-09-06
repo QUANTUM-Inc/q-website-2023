@@ -85,41 +85,48 @@
       <div class='l-section__inner js-lazyclass occupation'>
         <div class='contents__textarea'>
           <h2>募集している職種</h2>
-          <h2 class="head-sub"><b>full time positions(正社員/契約社員)</b></h2>
-          <div v-for="oc in careers.open.fulltime">
-            <h3>{{ oc.title }}</h3>
-            <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
-            <span class="show-detail" v-if="oc.url"><nuxt-link :to="oc.url">応募の詳細を見る→</nuxt-link></span>
-          </div>
-          <template v-if="careers.open.internship.length > 0">
-            <br /><h2 class="head-sub"><b>internship for students</b></h2>
-            <div v-for="oc in careers.open.internship">
+          <template v-if="careers.open.fulltime.length > 0 || careers.open.internship.length > 0">
+            <h2 class="head-sub"><b>full time positions(正社員/契約社員)</b></h2>
+            <div v-for="oc in careers.open.fulltime">
               <h3>{{ oc.title }}</h3>
               <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
-              <span class="show-detail" v-if="oc.url"><nuxt-link :to="oc.url">応募の詳細を見る→</nuxt-link></span>
+              <span class="show-detail" v-if="oc.url"><a :href="oc.url">応募の詳細を見る→</a></span>
             </div>
-          </template>
-          <br /><br />
-          <div class="closed-position">
-            <h2>currently closed positions</h2>
-            <template v-if="careers.closed.fulltime.length > 0">
-              <h2 class="head-sub"><b>full time positions(正社員/契約社員)</b></h2>
-              <div v-for="oc in careers.closed.fulltime">
+            <template v-if="careers.open.internship.length > 0">
+              <br /><h2 class="head-sub"><b>internship for students</b></h2>
+              <div v-for="oc in careers.open.internship">
                 <h3>{{ oc.title }}</h3>
                 <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
-              </div><br />
+                <span class="show-detail" v-if="oc.url"><a :href="oc.url">応募の詳細を見る→</a></span>
+              </div>
             </template>
-            <h2 class="head-sub"><b>internship for students</b></h2>
-            <div v-if="careers.closed.internship.length == 0">
-              <p class='l-section__body' v-if='!isEnglish'>
-                自分の得意分野を生かしてquantumでそのスキルを磨きませんか？<br />
-              </p>
+          </template>
+          <br />
+          <h2 class="head-sub"><b>quantum collective</b></h2>
+          <p class="l-section__body">quantumが推進する新規事業開発に対して、プロジェクトベースで<br />参画して頂くプロフェッショナルネットワークです。パートナー企業との共同事業や新規事業開発の支援、0→1でのベンチャークリエーション、スタートアップへのハンズオン投資のメンタリング、社内起業家プログラムのメンターなどに、ご自身の専門性を生かして参画して頂きます。個人事業主の方はもちろん、副業としてのご参加も可能です。<br /> <span class="show-detail"><nuxt-link to="/collective">応募の詳細を見る→</nuxt-link></span></p>
+          <br /><br />
+          <template v-if="careers.closed.fulltime.length > 0 || careers.closed.internship.length > 0">
+            <div class="closed-position">
+              <h2>currently closed positions</h2>
+              <template v-if="careers.closed.fulltime.length > 0">
+                <h2 class="head-sub"><b>full time positions(正社員/契約社員)</b></h2>
+                <div v-for="oc in careers.closed.fulltime">
+                  <h3>{{ oc.title }}</h3>
+                  <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
+                </div><br />
+              </template>
+              <h2 class="head-sub"><b>internship for students</b></h2>
+              <div v-if="careers.closed.internship.length == 0">
+                <p class='l-section__body' v-if='!isEnglish'>
+                  自分の得意分野を生かしてquantumでそのスキルを磨きませんか？<br />
+                </p>
+              </div>
+              <div v-for="oc in careers.closed.internship" v-else>
+                <h3>{{ oc.title }}</h3>
+                <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
+              </div>
             </div>
-            <div v-for="oc in careers.closed.internship" v-else>
-              <h3>{{ oc.title }}</h3>
-              <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
-            </div>
-          </div>
+          </template>
         </div>
       </div>
     </section>
@@ -391,6 +398,7 @@ export default {
         }
         .l-section__body {
           margin-top: 25px;
+          white-space: pre-wrap;
           @include mq_sp {
             margin-top: 20px;
           }
