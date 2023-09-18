@@ -29,7 +29,7 @@
         </div>
         <div class='text-area'>
           <div class='l-project__tags'>
-            <span :class='{hasclient: firstProject.acf.clients_partners}' v-html='categoryName(firstProject.categories)'></span>
+            <span @click="filterCategory(categoryId)" :class='{hasclient: firstProject.acf.clients_partners}' v-html='getCategoryFromId(categoryId).name' v-for="categoryId in firstProject.categories" :key="categoryId"></span>
             <span v-if='firstProject.acf.clients_partners'>partners/clients</span>
           </div>
           <p class='l-project__name'>
@@ -66,7 +66,7 @@
           </lang-link>
           <div class='text-area'>
             <div class='l-project__tags'>
-              <span :class='{hasclient: project.acf.clients_partners}' v-html='categoryName(project.categories)'></span>
+              <span @click="filterCategory(categoryId)" :class='{hasclient: project.acf.clients_partners}' v-html='getCategoryFromId(categoryId).name' v-for="categoryId in project.categories" :key="categoryId"></span>
               <span v-if='project.acf.clients_partners' class='partners'>partners/clients</span>
             </div>
             <p class='l-project__name'><lang-link :to="{
@@ -204,6 +204,10 @@ export default {
       })
     },
     filterCategory(categoryId) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
       let firstProj = this.$refs.firstProject;
       gsap.to(firstProj, {
         opacity: 0,
@@ -221,7 +225,6 @@ export default {
           })
         }
       })
-
     },
 
     categoryName(categories) {
@@ -257,7 +260,11 @@ export default {
         return false
       }
       return true
-    }
+    },
+
+    getCategoryFromId(categoryId) {
+      return this.$store.getters['getCategoryFromId'](categoryId)
+    },
 
   }
 };
@@ -362,6 +369,13 @@ export default {
   transform: translate(0, 20px);
   @include ease-out-cubic(600, 0);
 }
-
+.l-project__tags {
+  padding-top: 0;
+  margin-top: -6px;
+}
+.l-project__tags span {
+  padding-top: 6px;
+  cursor: pointer;
+}
 
 </style>
