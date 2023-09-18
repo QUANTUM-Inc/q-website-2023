@@ -58,6 +58,7 @@ export default {
 
 <style lang='scss' scoped>
 #quantum-logo {
+  transition: all 0.3s ease;
   fill: #000;
   /////fill: #fff;
 }
@@ -67,7 +68,7 @@ export default {
   }
   @include mq_sp {
     #quantum-logo {
-      fill: #000;
+      fill: #fff;
     }
   }
 }

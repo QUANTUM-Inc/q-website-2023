@@ -3,7 +3,11 @@
   <section class='l-section'>
     <div class='l-section__inner js-lazyclass'>
       <div class='l-image l-image1' :class='{"right": isRight}'>
-        <img :src='src' alt=''>
+        <picture v-if="srcsp">
+          <source media="(max-width: 768px)" :srcset="srcsp">
+          <img :src='src' alt=''>
+        </picture>
+        <img :src='src' alt='' v-else>
       </div>
     </div>
   </section>
@@ -14,6 +18,10 @@ export default {
   name: 'Image1',
   props: {
     src: {
+      type: String,
+      default: ''
+    },
+    srcsp: {
       type: String,
       default: ''
     },

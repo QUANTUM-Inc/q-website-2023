@@ -1,6 +1,6 @@
 <template>
   <div class="project" :class='{"l-no-mv": !useMainvisual}'>
-    <section class='l-section l-mainvisual' v-if='useMainvisual'>
+    <section class='l-section l-mainvisual' :class='{"header-color__white":project.acf.with_header_white}' v-if='useMainvisual'>
       <picture>
         <source media="(max-width: 768px)" :srcset="project.acf.main_visual_sp">
         <img :src='project.acf.main_visual.sizes["2048x2048"]' alt=''>
@@ -45,32 +45,53 @@
     <template v-for='layout in project.acf.layouts'>
       <!-- l-image1:画像のみ1カラム（通常サイズ）■□ -->
       <template v-if='has(layout.layout_type, "l-image1:")'>
-        <Image1 :src='getImagePath(layout.image1)' :is-right='layout.is_right'></Image1>
+        <Image1 :src='getImagePath(layout.image1)' :srcsp="getImagePath(layout.image1_sp)" :is-right='layout.is_right'></Image1>
       </template>
 
       <!-- l-image1:画像のみ1カラム（ワイドサイズ）■ -->
       <template v-if='has(layout.layout_type, "l-image1-wide")'>
-        <Image1Wide :src='getImagePath(layout.image1)'></Image1Wide>
+        <Image1Wide :src='getImagePath(layout.image1)' :srcsp="getImagePath(layout.image1_sp)"></Image1Wide>
       </template>
 
       <!-- l-fullimage:画像ヨコイチ■ -->
       <template v-if='has(layout.layout_type, "l-fullimage")'>
-        <FullImage :src='getImagePath(layout.image1)'></FullImage>
+        <FullImage :src='getImagePath(layout.image1)' :srcsp="getImagePath(layout.image1_sp)"></FullImage>
       </template>
 
       <!-- l-image-2column:画像2カラム ■■ -->
       <template v-if='has(layout.layout_type, "l-image-2column")'>
-        <Image2Column :src1='getImagePath(layout.image1)' :src2='getImagePath(layout.image2)'></Image2Column>
+        <Image2Column 
+          :src1='getImagePath(layout.image1)'
+          :src1sp='getImagePath(layout.image1_sp)' 
+          :src2='getImagePath(layout.image2)'
+          :src2sp='getImagePath(layout.image2_sp)'
+        ></Image2Column>
       </template>
 
       <!-- l-image-3column:画像3カラム ■■■ -->
       <template v-if='has(layout.layout_type, "l-image-3column")'>
-        <Image3Column :src1='getImagePath(layout.image1)' :src2='getImagePath(layout.image2)' :src3='getImagePath(layout.image3)'></Image3Column>
+        <Image3Column 
+          :src1='getImagePath(layout.image1)'
+          :src1sp='getImagePath(layout.image1_sp)'
+          :src2='getImagePath(layout.image2)'
+          :src2sp='getImagePath(layout.image2_sp)'
+          :src3='getImagePath(layout.image3)'
+          :src3sp='getImagePath(layout.image3_sp)'
+        ></Image3Column>
       </template>
 
       <!-- l-image-4column:画像2カラム（2行・4つ） -->
       <template v-if='has(layout.layout_type, "l-image-4column")'>
-        <Image4Column :src1='getImagePath(layout.image1)' :src2='getImagePath(layout.image2)' :src3='getImagePath(layout.image3)' :src4='getImagePath(layout.image4)'></Image4Column>
+        <Image4Column 
+          :src1='getImagePath(layout.image1)'
+          :src1sp='getImagePath(layout.image1_sp)'
+          :src2='getImagePath(layout.image2)'
+          :src2sp='getImagePath(layout.image2_sp)'
+          :src3='getImagePath(layout.image3)'
+          :src3sp='getImagePath(layout.image3_sp)'
+          :src4='getImagePath(layout.image4)'
+          :src4sp='getImagePath(layout.image4_sp)'
+        ></Image4Column>
       </template>
 
       <!-- l-embed:YouTube等 embed -->
@@ -299,7 +320,7 @@ export default {
         Init.setup(this.$store);
       });
     })
-    console.log(this.project.acf.main_visual.sizes)
+    console.log('project acf',this.project.acf)
     this.unsubscribe = this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'swapProjectLang') {
         if (this.project && this.project.translations) {
@@ -313,10 +334,17 @@ export default {
         }
       }
     })
+    
+    window.addEventListener('scroll', this.setScrollEvents)
+    if (this.project.acf.with_header_white) {
+      document.getElementById('js-header-inner').classList.add('white')
+    }
   },
 
   beforeDestroy() {
     this.destroySubscribe();
+    window.removeEventListener("scroll", this.setScrollEvents, false)
+    document.getElementById('js-header-inner').classList.remove('white')
   },
 
   mixins: {
@@ -359,9 +387,6 @@ export default {
     },
     changeLang(lang, id) {
       let to;
-      /*console.log("this.$route.name::::: " + this.$route.name)
-      console.log(this.$route)
-      console.log(lang)*/
 
       if (lang !== this.$store.state.defaultLang) {
         to = {
@@ -387,6 +412,27 @@ export default {
 
     getCategoryFromId(categoryId) {
       return this.$store.getters['getCategoryFromId'](categoryId)
+    },
+
+    setScrollEvents() {
+      if (!this.project.acf.with_header_white) {
+        return
+      }
+      const elems = document.getElementsByClassName("header-color__white");
+      let isHeaderWhite = false
+      for (let i = 0; i < elems.length; i++) {
+        const pos = elems.item(i).getBoundingClientRect().top
+        const height = elems.item(i).getBoundingClientRect().height
+        if (pos + height > 0) {
+          isHeaderWhite = true
+          break
+        }
+      }
+      if (isHeaderWhite) {
+        document.getElementById('js-header-inner').classList.add('white')
+      } else {
+        document.getElementById('js-header-inner').classList.remove('white')
+      }
     }
   }
 };

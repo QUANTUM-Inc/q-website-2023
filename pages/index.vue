@@ -9,7 +9,7 @@
       </div>
     </section>
 
-    <section class='l-section featured-work'>
+    <section class='l-section featured-work header-color__white'>
       <div class='l-section__inner js-lazyclass'>
         <h2>featured work</h2>
       </div>
@@ -30,6 +30,7 @@
         outline='異なる明かりの特徴をもつ<br class="sp">5つの照明プロダクト'
         outlineEn='Five lighting products <br class="sp">with different light characteristics'
         type="external"
+        class="header-color__white"
       ></home-product>
 
       <home-product
@@ -45,6 +46,7 @@
         zindex='5'
         outline='アクティブな車いす生活者のための、<br class="sp">日常を旅するクルマイス'
         outlineEn='A wheelchair to travel through daily life for active wheelchair users.'
+        class="header-color__white"
       ></home-product>
 
       <home-product
@@ -75,6 +77,7 @@
         zindex='3'
         outline='ストーリーから花を選ぶ、<br>ユニセックスな花束の<br class="sp">D2Cブランド'
         outlineEn='A unisex D2C flower bouquet brand that allows you to choose a bouquet from a story.'
+        class="header-color__white"
       ></home-product>
 
       <home-product
@@ -186,11 +189,15 @@ export default {
         if (!redirected) {
           location.href = '/index.php' + query + 'redirect=1';
         }
-
       }
     });
+
+    window.addEventListener('scroll', this.setScrollEvents)
   },
 
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.setScrollEvents, false)
+  },
 
   data() {
     return {
@@ -214,6 +221,26 @@ export default {
   methods: {
     moreArticles($state) {
 
+    },
+
+    setScrollEvents() {
+      const elems = document.getElementsByClassName("header-color__white");
+      let isHeaderWhite = false
+      for (let i = 0; i < elems.length; i++) {
+        const pos = elems.item(i).getBoundingClientRect().top
+        const height = elems.item(i).getBoundingClientRect().height
+        // console.log(height)
+        
+        if (pos < 0 && pos + height > 0) {
+          isHeaderWhite = true
+          break
+        }
+      }
+      if (isHeaderWhite) {
+        document.getElementById('js-header-inner').classList.add('white')
+      } else {
+        document.getElementById('js-header-inner').classList.remove('white')
+      }
     }
   }
 };

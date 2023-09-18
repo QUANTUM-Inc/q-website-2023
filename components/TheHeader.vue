@@ -1,6 +1,6 @@
 <template>
   <header class='header' :class='{"open": naviOpened, "scrolled": scrolled, "up": isUp}' ref='header'>
-    <div class='header__inner'>
+    <div class='header__inner' id="js-header-inner">
       <h1 @click='homeScrollTop()' :class='{"home": isHome}'>
         <Logo color='black'></Logo>
       </h1>
@@ -290,6 +290,24 @@ export default {
         &::before,
         &::after {
           background: #000;
+        }
+      }
+    }
+  }
+}
+
+.white {
+  .header {
+    &__navibutton {
+      &::before, &::after, i {
+        background-color: #fff !important;
+      }
+    }
+    &__langs {
+      a {
+        color: #fff !important;
+        &::after {
+          background-color: #fff !important;
         }
       }
     }
