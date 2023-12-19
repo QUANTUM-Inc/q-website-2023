@@ -20,7 +20,19 @@
       <div class='l-section__inner l-projects primary-projects' ref='firstProject'>
         <div class='project l-project type-primary js-lazyclass' @click="linkTo(lang, firstProject.slug, firstProject.acf.external_link)">
           <div class='image-area'>
-            <picture>
+            <template v-if="firstProject.acf.thumbnail_video && firstProject.acf.thumbnail_video.match(/.mp4/)">
+              <video loop muted autoplay playsinline>
+                <source :src="firstProject.acf.thumbnail_video" type="video/mp4">
+              </video>
+            </template>
+            <template v-else-if="firstProject.acf.thumbnail">
+              <picture v-if="firstProject.acf.thumbnail_sp">
+                <source media="(max-width: 768px)" :srcset="firstProject.acf.thumbnail_sp">
+                <img :src='firstProject.acf.thumbnail' alt=''>
+              </picture>
+              <img :src="firstProject.acf.thumbnail" v-else>
+            </template>
+            <picture v-else>
               <source media="(max-width: 768px)" :srcset="firstProject.acf.main_visual.sizes.medium_large">
               <!-- <img :src='firstProject.acf.main_visual.url' alt=''> -->
               <img :src='firstProject.acf.main_visual.sizes.large' alt=''>
@@ -61,7 +73,19 @@
             }
           }" class='project' v-bind:key='project.id'>
             <div class='image-area'>
-              <img :src='project.acf.main_visual.sizes.medium_large' alt='' v-if='project.acf.main_visual'>
+              <template v-if="project.acf.thumbnail_video_id">
+                <div class="vimeo-embed">
+                  <iframe :src="`https://player.vimeo.com/video/${project.acf.thumbnail_video_id}?autoplay=1&loop=1&background=1`" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events: none;"></iframe> 
+                </div>
+              </template>
+              <template v-else-if="project.acf.thumbnail">
+                <picture v-if="project.acf.thumbnail_sp">
+                  <source media="(max-width: 768px)" :srcset="project.acf.thumbnail_sp">
+                  <img :src='project.acf.thumbnail' alt=''>
+                </picture>
+                <img :src="project.acf.thumbnail" v-else>
+              </template>
+              <img :src='project.acf.main_visual.sizes.medium_large' alt='' v-else-if='project.acf.main_visual'>
             </div>
           </lang-link>
           <div class='text-area'>
@@ -109,6 +133,7 @@ export default {
       const category = this.$store.getters['getCategoryFromId'](this.categoryId)
       this.currentSelected = category.name
     }
+    console.log('projects', this.currentProjects)
   },
   async asyncData({ app, store, params, payload }) {
     if (!store.state.products) {

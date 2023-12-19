@@ -40,8 +40,37 @@
       padding-top: percentage(math.div(212px, $spWidth));
     }
   }
+  &__center {
+    display: flex;
+    justify-content: center;
+  }
   &.right {
     text-align: right;
+  }
+  &.center {
+    text-align: center;
+  }
+  &.custom-size_half {
+    img {
+      width: 50%;
+      @include mq_sp {
+        width: 100%;
+      }
+    }
+  }
+  &.custom-size_one_third {
+    img {
+      width: 33.3333%;
+      @include mq_sp {
+        width: 100%;
+      }
+    }
+  }
+  &.custom-size_original {
+    img {
+      width: auto;
+      max-width: 100%;
+    }
   }
   img {
     will-change: transform;
@@ -81,7 +110,8 @@
   margin-top: 45px;
   @include mq_sp {
     display: block;
-    margin-top: percentage(math.div(30px, $spInner));
+    // margin-top: percentage(math.div(30px, $spInner));
+    margin-top: percentage(math.div(15px, $innerWidth));
   }
   .image1,
   .image2 {
@@ -105,6 +135,46 @@
   }
   .image2 {
     @include ease-out-cubic(600, 100);
+  }
+}
+
+.l-section-image-2column + .l-section-image-2column {
+  .l-image-2column {
+    margin-top: 0;
+  }
+}
+
+.l-image-with-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  @include mq_sp {
+    display: block;
+  }
+  .image5 {
+    width: 50%;
+    @include mq_sp {
+      width: 100%;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .text {
+    width: 50%;
+    white-space: pre-line;
+    padding-left: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    @include mq_sp {
+      width: 100%;
+      padding-left: 0;
+      margin-top: percentage(math.div(16px, $spInner));
+      @include spfontsize(14px);
+    }
   }
 }
 

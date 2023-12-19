@@ -45,7 +45,13 @@
     <template v-for='layout in project.acf.layouts'>
       <!-- l-image1:画像のみ1カラム（通常サイズ）■□ -->
       <template v-if='has(layout.layout_type, "l-image1:")'>
-        <Image1 :src='getImagePath(layout.image1)' :srcsp="getImagePath(layout.image1_sp)" :is-right='layout.is_right'></Image1>
+        <Image1 
+          :src='getImagePath(layout.image1)' 
+          :srcsp="getImagePath(layout.image1_sp)" 
+          :is-right='layout.is_right'
+          :is-image-center="!layout.is_right && layout.is_image_center"
+          :custom-size='layout.custom_size'>
+        </Image1>
       </template>
 
       <!-- l-image1:画像のみ1カラム（ワイドサイズ）■ -->
@@ -96,7 +102,7 @@
 
       <!-- l-embed:YouTube等 embed -->
       <template v-if='has(layout.layout_type, "l-embed")'>
-        <Embed :embed='layout.embed'></Embed>
+        <Embed :embed='layout.embed' :is-center='layout.embed_center'></Embed>
       </template>
 
       <!-- l-text-2column:テキストのみ1カラム □■ -->
@@ -108,6 +114,17 @@
       <template v-if='has(layout.layout_type, "l-title")'>
         <Title :text='layout.title' :center='layout.align_center'></Title>
       </template>
+
+
+      <!-- l-image-with-image:画像+テキスト（2カラム） ■■ -->
+      <template v-if='has(layout.layout_type, "l-image-with-text")'>
+        <ImageWithText
+          :src1='getImagePath(layout.image5)'
+          :src1sp='getImagePath(layout.image5_sp)' 
+          :text='getImagePath(layout.text2)'
+        ></ImageWithText>
+      </template>
+
     </template>
 
     <!-- Latest Journal -->
@@ -144,6 +161,7 @@ import FullImage from '../../components/layout/FullImage';
 import Image2Column from '../../components/layout/Image2Column';
 import Image3Column from '../../components/layout/Image3Column';
 import Image4Column from '../../components/layout/Image4Column';
+import ImageWithText from '../../components/layout/ImageWithText';
 import Embed from '../../components/layout/Embed';
 import Title from '../../components/layout/Title';
 import Text1 from '../../components/layout/Text1';
@@ -242,6 +260,7 @@ export default {
     Image2Column,
     Image3Column,
     Image4Column,
+    ImageWithText,
     Embed,
     Title,
     Text1,

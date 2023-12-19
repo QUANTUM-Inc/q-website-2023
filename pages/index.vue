@@ -7,15 +7,35 @@
         <p class='l-section__lead' v-if='!isEnglish'>quantumは、発想から実装まで、事業開発の全てを活動領域とし、<br class='pc'>新しいプロダクトやサービスを創り出すスタートアップスタジオです。</p>
         <p class='l-section__lead' v-if='isEnglish'>quantum is a startup studio that creates new products and services in all areas of business development, from conception to implementation.</p>
       </div>
+      
     </section>
-
     <section class='l-section featured-work header-color__white'>
       <div class='l-section__inner js-lazyclass'>
         <h2>featured work</h2>
       </div>
     </section>
-
     <div class='project-wrap'>
+
+      <template v-for="(w, i) in featuredWorks">
+        <home-product
+          :color="w.fw_text_color == 'black' ? 'black' : 'white-nomix'"
+          :src='w.fw_image'
+          :srcsp='w.fw_image_sp'
+          :product-name='w.fw_title'
+          :product-name-en='w.fw_title_en'
+          :tags='w.fw_category'
+          :link='w.fw_link'
+          :link-en='w.fw_link_en'
+          :zindex='featuredWorks.length - i'
+          :outline='w.fw_description'
+          :outlineEn='w.fw_description_en'
+          :outlineSp='w.fw_description_sp'
+          :outlineEnSp='w.fw_description_en_sp'
+          :type="w.fw_link_external ? 'external' : null"
+          :class="w.fw_header_white ? 'header-color__white' : null"
+        ></home-product>
+      </template>
+<!--       
       <home-product
         color='white-nomix'
         to='https://5lights.quantum.ne.jp'
@@ -108,7 +128,7 @@
         zindex='1'
         outline='タレントを必要とする人と<br class="sp">多彩な才能を<br class="pc">スマホ・PCで<br class="sp">結ぶマッチングサービス'
         outlineEn='A matching service that helps people looking for various talents, connect with them via smartphone and computer.'
-      ></home-product>
+      ></home-product> -->
     </div>
 
     <Journal :journals='this.journals'></Journal>
@@ -154,9 +174,13 @@ export default {
       }
       return false;
     });
+    let featuredWorks = await app.$axios.get(store.getters.apiPath({
+      type: 'featured_work'
+    }))
     return {
       journals: journalsdata,//rss.data,
-      newslist: news.data
+      newslist: news.data,
+      featuredWorks: featuredWorks.data[0].acf.featured_work
     };
 
   },

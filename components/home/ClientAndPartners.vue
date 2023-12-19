@@ -29,6 +29,7 @@
         <img src='~/assets/images/home/clients/stratasys.png' alt='stratasys'>
         <img src='~/assets/images/home/clients/tokyo-gas.png' alt='TOKYO GAS'>
         <img src='~/assets/images/home/clients/teatol.png' alt='テアトル アカデミー'>
+        <img src='~/assets/images/home/clients/basf.png' alt='BASF'>
       </div>
     </div>
 
