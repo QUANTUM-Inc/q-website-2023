@@ -17,11 +17,11 @@
         <p class='product__name' v-html='productNameEn' v-if='isEnglish'></p>
         <p class='product__tags'>{{tags}}</p>
         <template v-if='!isEnglish'>
-          <p class='product__body pc' v-html='outline'></p>
+          <p class='product__body pc pre-line' v-html='outline'></p>
           <p class='product__body sp pre-line' v-html='outlineSp ? outlineSp : outline'></p>
         </template>
         <template v-else>
-          <p class='product__body pc' v-html='outlineEn'></p>
+          <p class='product__body pc pre-line' v-html='outlineEn'></p>
           <p class='product__body sp pre-line' v-html='outlineEnSp ? outlineEnSp : outlineEn'></p>
         </template>
       </div>

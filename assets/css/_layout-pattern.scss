@@ -98,6 +98,9 @@
     width: 100%;
     will-change: transform;
   }
+  @include mq_sp {
+    margin-top: percentage(math.div(30px, $spInner));
+  }
 }
 
 // 画像2カラム ----------
@@ -111,7 +114,7 @@
   @include mq_sp {
     display: block;
     // margin-top: percentage(math.div(30px, $spInner));
-    margin-top: percentage(math.div(15px, $innerWidth));
+    // margin-top: percentage(math.div(15px, $innerWidth));
   }
   .image1,
   .image2 {
@@ -126,7 +129,8 @@
     }
     @include mq_sp {
       width: 100%;
-      margin-top: percentage(math.div(15px, $spInner));
+      // margin-top: percentage(math.div(15px, $spInner));
+      margin-bottom: percentage(math.div(30px, $spInner));
     }
     img {
       width: 100%;
@@ -225,6 +229,7 @@
   line-height: 0;
   @include mq_sp {
     display: block;
+    margin-top: percentage(math.div(30px, $spInner));
   }
   .image1,
   .image2,
