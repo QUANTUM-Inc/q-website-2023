@@ -33,6 +33,9 @@
 
 //画像1つ 通常 ----------
 .l-image1 {
+  @include mq_sp {
+    margin-top: percentage(math.div(30px, $spInner));
+  }
   &__wrap {
     position: relative;
     padding-top: percentage(math.div(390px, $innerWidth));
