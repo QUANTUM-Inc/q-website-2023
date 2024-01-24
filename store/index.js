@@ -162,6 +162,12 @@ export const getters = {
       return `${process.env.WORDPRESS_API_URL}/wp/v2/factsheets?&per_page=2${_lang}`
     } else if (type === 'newscategory') {
       return `${process.env.WORDPRESS_API_URL}/wp/v2/news_category?per_page=100`
+    } else if (type === 'careers') {
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/pages?slug=careers`
+    } else if (type === 'career_detail') {
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/pages/${id}`
+    } else if (type === 'featured_work') {
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/pages?slug=featured-work`
     }
 
     return ''

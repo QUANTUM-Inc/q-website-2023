@@ -16,8 +16,14 @@
         <p class='product__name' v-html='productName' v-if='!isEnglish'></p>
         <p class='product__name' v-html='productNameEn' v-if='isEnglish'></p>
         <p class='product__tags'>{{tags}}</p>
-        <p class='product__body' v-html='outline' v-if='!isEnglish'></p>
-        <p class='product__body' v-html='outlineEn' v-if='isEnglish'></p>
+        <template v-if='!isEnglish'>
+          <p class='product__body pc pre-line' v-html='outline'></p>
+          <p class='product__body sp pre-line' v-html='outlineSp ? outlineSp : outline'></p>
+        </template>
+        <template v-else>
+          <p class='product__body pc pre-line' v-html='outlineEn'></p>
+          <p class='product__body sp pre-line' v-html='outlineEnSp ? outlineEnSp : outlineEn'></p>
+        </template>
       </div>
       <div class='product__linkarea' ref='linkarea'>
         <a @click="linkto()" target="_blank" v-if="type == 'external'">go to site→</a>
@@ -35,9 +41,6 @@ export default {
     color: {
       type: String,
       default: 'white'
-    },
-    to: {
-      type: String
     },
     src: {
       type: String
@@ -66,6 +69,12 @@ export default {
       type: String
     },
     outlineEn: {
+      type: String
+    },
+    outlineSp: {
+      type: String
+    },
+    outlineEnSp: {
       type: String
     },
     featured: {

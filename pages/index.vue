@@ -7,15 +7,35 @@
         <p class='l-section__lead' v-if='!isEnglish'>quantumは、発想から実装まで、事業開発の全てを活動領域とし、<br class='pc'>新しいプロダクトやサービスを創り出すスタートアップスタジオです。</p>
         <p class='l-section__lead' v-if='isEnglish'>quantum is a startup studio that creates new products and services in all areas of business development, from conception to implementation.</p>
       </div>
+      
     </section>
-
-    <section class='l-section featured-work'>
+    <section class='l-section featured-work header-color__white'>
       <div class='l-section__inner js-lazyclass'>
         <h2>featured work</h2>
       </div>
     </section>
-
     <div class='project-wrap'>
+
+      <template v-for="(w, i) in featuredWorks">
+        <home-product
+          :color="w.fw_text_color == 'black' ? 'black' : 'white-nomix'"
+          :src='w.fw_image'
+          :srcsp='w.fw_image_sp'
+          :product-name='w.fw_title'
+          :product-name-en='w.fw_title_en'
+          :tags='w.fw_category'
+          :link='w.fw_link'
+          :link-en='w.fw_link_en'
+          :zindex='featuredWorks.length - i'
+          :outline='w.fw_description'
+          :outlineEn='w.fw_description_en'
+          :outlineSp='w.fw_description_sp'
+          :outlineEnSp='w.fw_description_en_sp'
+          :type="w.fw_link_external ? 'external' : null"
+          :class="w.fw_header_white ? 'header-color__white' : null"
+        ></home-product>
+      </template>
+<!--       
       <home-product
         color='white-nomix'
         to='https://5lights.quantum.ne.jp'
@@ -30,6 +50,7 @@
         outline='異なる明かりの特徴をもつ<br class="sp">5つの照明プロダクト'
         outlineEn='Five lighting products <br class="sp">with different light characteristics'
         type="external"
+        class="header-color__white"
       ></home-product>
 
       <home-product
@@ -45,6 +66,7 @@
         zindex='5'
         outline='アクティブな車いす生活者のための、<br class="sp">日常を旅するクルマイス'
         outlineEn='A wheelchair to travel through daily life for active wheelchair users.'
+        class="header-color__white"
       ></home-product>
 
       <home-product
@@ -75,6 +97,7 @@
         zindex='3'
         outline='ストーリーから花を選ぶ、<br>ユニセックスな花束の<br class="sp">D2Cブランド'
         outlineEn='A unisex D2C flower bouquet brand that allows you to choose a bouquet from a story.'
+        class="header-color__white"
       ></home-product>
 
       <home-product
@@ -105,7 +128,7 @@
         zindex='1'
         outline='タレントを必要とする人と<br class="sp">多彩な才能を<br class="pc">スマホ・PCで<br class="sp">結ぶマッチングサービス'
         outlineEn='A matching service that helps people looking for various talents, connect with them via smartphone and computer.'
-      ></home-product>
+      ></home-product> -->
     </div>
 
     <Journal :journals='this.journals'></Journal>
@@ -151,9 +174,13 @@ export default {
       }
       return false;
     });
+    let featuredWorks = await app.$axios.get(store.getters.apiPath({
+      type: 'featured_work'
+    }))
     return {
       journals: journalsdata,//rss.data,
-      newslist: news.data
+      newslist: news.data,
+      featuredWorks: featuredWorks.data[0].acf.featured_work
     };
 
   },
@@ -186,11 +213,15 @@ export default {
         if (!redirected) {
           location.href = '/index.php' + query + 'redirect=1';
         }
-
       }
     });
+
+    window.addEventListener('scroll', this.setScrollEvents)
   },
 
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.setScrollEvents, false)
+  },
 
   data() {
     return {
@@ -214,6 +245,26 @@ export default {
   methods: {
     moreArticles($state) {
 
+    },
+
+    setScrollEvents() {
+      const elems = document.getElementsByClassName("header-color__white");
+      let isHeaderWhite = false
+      for (let i = 0; i < elems.length; i++) {
+        const pos = elems.item(i).getBoundingClientRect().top
+        const height = elems.item(i).getBoundingClientRect().height
+        // console.log(height)
+        
+        if (pos < 0 && pos + height > 0) {
+          isHeaderWhite = true
+          break
+        }
+      }
+      if (isHeaderWhite) {
+        document.getElementById('js-header-inner').classList.add('white')
+      } else {
+        document.getElementById('js-header-inner').classList.remove('white')
+      }
     }
   }
 };

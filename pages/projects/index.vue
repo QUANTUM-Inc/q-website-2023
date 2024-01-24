@@ -8,7 +8,7 @@
         </div>
         <div class='tag-seletc select-wrap sp'>
           <select v-on:change='changed'>
-            <option v-for='category in categories' :value='category.id'>{{category.name}}</option>
+            <option v-for='category in categories' :value='category.id' :selected="category.id === categoryId">{{category.name}}</option>
           </select>
           <div class='label'>{{this.currentSelected}}</div>
         </div>
@@ -18,24 +18,30 @@
     <!-- first -->
     <section class='l-section' v-if='firstProject'>
       <div class='l-section__inner l-projects primary-projects' ref='firstProject'>
-        <lang-link :to="{
-          name: 'projects-project',
-          params: {
-            lang: lang,
-            project: firstProject.slug
-          }
-        }" class='project l-project type-primary js-lazyclass ' @click.native="linkToExternal(firstProject.acf.external_link)" :event="{ click: firstProject.acf.external_link }">
+        <div class='project l-project type-primary js-lazyclass' @click="linkTo(lang, firstProject.slug, firstProject.acf.external_link)">
           <div class='image-area'>
-            <picture>
+            <template v-if="firstProject.acf.thumbnail_video && firstProject.acf.thumbnail_video.match(/.mp4/)">
+              <video loop muted autoplay playsinline>
+                <source :src="firstProject.acf.thumbnail_video" type="video/mp4">
+              </video>
+            </template>
+            <template v-else-if="firstProject.acf.thumbnail">
+              <picture v-if="firstProject.acf.thumbnail_sp">
+                <source media="(max-width: 768px)" :srcset="firstProject.acf.thumbnail_sp">
+                <img :src='firstProject.acf.thumbnail' alt=''>
+              </picture>
+              <img :src="firstProject.acf.thumbnail" v-else>
+            </template>
+            <picture v-else>
               <source media="(max-width: 768px)" :srcset="firstProject.acf.main_visual.sizes.medium_large">
               <!-- <img :src='firstProject.acf.main_visual.url' alt=''> -->
               <img :src='firstProject.acf.main_visual.sizes.large' alt=''>
             </picture>
           </div>
-        </lang-link>
+        </div>
         <div class='text-area'>
           <div class='l-project__tags'>
-            <span :class='{hasclient: firstProject.acf.clients_partners}' v-html='categoryName(firstProject.categories)'></span>
+            <span @click="filterCategory(categoryId)" :class='{hasclient: firstProject.acf.clients_partners}' v-html='getCategoryFromId(categoryId).name' v-for="categoryId in firstProject.categories" :key="categoryId"></span>
             <span v-if='firstProject.acf.clients_partners'>partners/clients</span>
           </div>
           <p class='l-project__name'>
@@ -48,7 +54,7 @@
                 lang: lang,
                 project: firstProject.slug
               }
-            }" class='project type-primary js-lazyclass ' v-else>{{firstProject.title.rendered}}</lang-link>
+            }" class='project type-primary js-lazyclass' v-else>{{firstProject.title.rendered}}</lang-link>
             
         </p>
         </div>
@@ -67,12 +73,24 @@
             }
           }" class='project' v-bind:key='project.id'>
             <div class='image-area'>
-              <img :src='project.acf.main_visual.sizes.medium_large' alt='' v-if='project.acf.main_visual'>
+              <template v-if="project.acf.thumbnail_video_id">
+                <div class="vimeo-embed">
+                  <iframe :src="`https://player.vimeo.com/video/${project.acf.thumbnail_video_id}?autoplay=1&loop=1&background=1`" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events: none;"></iframe> 
+                </div>
+              </template>
+              <template v-else-if="project.acf.thumbnail">
+                <picture v-if="project.acf.thumbnail_sp">
+                  <source media="(max-width: 768px)" :srcset="project.acf.thumbnail_sp">
+                  <img :src='project.acf.thumbnail' alt=''>
+                </picture>
+                <img :src="project.acf.thumbnail" v-else>
+              </template>
+              <img :src='project.acf.main_visual.sizes.medium_large' alt='' v-else-if='project.acf.main_visual'>
             </div>
           </lang-link>
           <div class='text-area'>
             <div class='l-project__tags'>
-              <span :class='{hasclient: project.acf.clients_partners}' v-html='categoryName(project.categories)'></span>
+              <span @click="filterCategory(categoryId)" :class='{hasclient: project.acf.clients_partners}' v-html='getCategoryFromId(categoryId).name' v-for="categoryId in project.categories" :key="categoryId"></span>
               <span v-if='project.acf.clients_partners' class='partners'>partners/clients</span>
             </div>
             <p class='l-project__name'><lang-link :to="{
@@ -109,6 +127,13 @@ export default {
         Init.setup(this.$store);
       });
     });
+    if (this.categoryId) {
+      this.filterCategory(this.categoryId)
+      this.currentSelectedId = this.categoryId
+      const category = this.$store.getters['getCategoryFromId'](this.categoryId)
+      this.currentSelected = category.name
+    }
+    console.log('projects', this.currentProjects)
   },
   async asyncData({ app, store, params, payload }) {
     if (!store.state.products) {
@@ -136,7 +161,8 @@ export default {
 
   data() {
     return {
-      currentSelected: 'all'
+      currentSelected: 'all',
+      categoryId: this.$route.params.categoryId
     }
   },
 
@@ -182,8 +208,6 @@ export default {
 
       this.currentSelected = select.options[index].label;
       this.currentSelectedId = select.options[index].value;
-      //console.log(this.currentSelected)
-      //console.log(this.currentSelectedId)
       let secondProj = this.$refs.secondProject;
       let firstProj = this.$refs.firstProject;
 
@@ -205,6 +229,10 @@ export default {
       })
     },
     filterCategory(categoryId) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
       let firstProj = this.$refs.firstProject;
       gsap.to(firstProj, {
         opacity: 0,
@@ -222,7 +250,6 @@ export default {
           })
         }
       })
-
     },
 
     categoryName(categories) {
@@ -237,13 +264,32 @@ export default {
       return ''
     },
 
+    linkTo(lang, slug, externalLink) {
+      console.log('linkto', externalLink)
+      if (externalLink) {
+        this.linkToExternal(externalLink)
+      } else {
+        this.$router.push({
+          name: 'projects-project',
+          params: {
+            lang: lang,
+            project: slug
+          }
+        })
+      }
+    },
+
     linkToExternal(link) {
       if (link) {
         window.open(link, '_blank')
         return false
       }
       return true
-    }
+    },
+
+    getCategoryFromId(categoryId) {
+      return this.$store.getters['getCategoryFromId'](categoryId)
+    },
 
   }
 };
@@ -348,6 +394,13 @@ export default {
   transform: translate(0, 20px);
   @include ease-out-cubic(600, 0);
 }
-
+.l-project__tags {
+  padding-top: 0;
+  margin-top: -6px;
+}
+.l-project__tags span {
+  padding-top: 6px;
+  cursor: pointer;
+}
 
 </style>

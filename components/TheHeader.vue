@@ -1,6 +1,6 @@
 <template>
   <header class='header' :class='{"open": naviOpened, "scrolled": scrolled, "up": isUp}' ref='header'>
-    <div class='header__inner'>
+    <div class='header__inner' id="js-header-inner">
       <h1 @click='homeScrollTop()' :class='{"home": isHome}'>
         <Logo color='black'></Logo>
       </h1>
@@ -9,7 +9,7 @@
           <a href='#' v-on:click.prevent='changeLang("ja")' :class='{active: !isEnglish}'>jp</a>
           <a href='#' v-on:click.prevent='changeLang("en")' :class='{active: isEnglish}'>en</a>
         </div>
-        <div class='header__navibutton' @click='toggleNavi()'></div>
+        <div class='header__navibutton' @click='toggleNavi()'><i></i></div>
       </div>
     </div>
   </header>
@@ -210,7 +210,7 @@ export default {
   &__navibutton {
     width: 40px;
     height: 0;
-    padding-top: 10px;
+    padding-top: 30px;
     position: relative;
     cursor: pointer;
     pointer-events: all;
@@ -220,11 +220,12 @@ export default {
       padding-top: percentage(math.div(13px, 105px));
     }
     &::after,
-    &::before {
+    &::before,
+    i {
       content: '';
       position: absolute;
       width: 100%;
-      height: 1px;
+      height: 2px;
       /////background: #FFF;
       background: #000;
       top: 50%;
@@ -233,10 +234,16 @@ export default {
       transform: translate(0, -500%);
       @include ease-out-quint($animationTime);
       @include mq_sp {
-        transform: translate(0, -400%);
+        transform: translate(0, -300%);
       }
     }
-    &::before {
+    i {
+      transform: translate(0, -50%);
+      @include mq_sp {
+        transform: translate(0, 0%);
+      }
+    }
+    &::after {
       transform: translate(0, 400%);
       @include mq_sp {
         transform: translate(0, 300%);
@@ -253,6 +260,9 @@ export default {
       }
       &::before {
         transform: translate(0, -50%) rotate(-45deg);
+      }
+      i {
+        opacity: 0;
       }
     }
   }
@@ -280,6 +290,24 @@ export default {
         &::before,
         &::after {
           background: #000;
+        }
+      }
+    }
+  }
+}
+
+.white {
+  .header {
+    &__navibutton {
+      &::before, &::after, i {
+        background-color: #fff !important;
+      }
+    }
+    &__langs {
+      a {
+        color: #fff !important;
+        &::after {
+          background-color: #fff !important;
         }
       }
     }

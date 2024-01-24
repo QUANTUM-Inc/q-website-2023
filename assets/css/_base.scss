@@ -253,3 +253,19 @@ a {
     padding: percentage(math.div(15px, $spInner));
   }
 }
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.pre-line {
+  white-space: pre-line;
+}

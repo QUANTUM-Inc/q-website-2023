@@ -28,11 +28,11 @@
           <sns-icon service='soundcloud' color='white'></sns-icon>
         </div>
         <div class='l-footer__links'>
-          <lang-link :to="{name: 'qletter', params: {lang}}"><span>q letter</span></lang-link>
-          <lang-link :to="{name: 'privacy', params: {lang}}"><span>privacy policy</span></lang-link>
+          <a href="https://www.ask.quantum.ne.jp/" target="_blank" ref="noopener noreferrer"><span>business site</span></a>
+          <lang-link :to="{name: 'careers', params: {lang}}"><span>careers</span></lang-link>
           <lang-link :to="{name: 'release', params: {lang}}" class='links-release'><span>press release</span></lang-link>
-          <lang-link :to="{name: 'factsheet', params: {lang}}" class='links-factsheet'><span>fact sheet</span></lang-link>
-          <lang-link :to="{name: 'careers', params: {lang}}" class='links-careers'><span>careers</span></lang-link>
+          <lang-link :to="{name: 'privacy', params: {lang}}"><span>privacy policy</span></lang-link>
+          <lang-link :to="{name: 'qletter', params: {lang}}" class='links-qletter'><span>q letter</span></lang-link>
           <span class='sp copy'>&copy; {{year}} quantum</span>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default {
       position: relative;
       border-right: #fff 1px solid;
       line-height: 1;
-      &.links-careers {
+      &.links-qletter {
         border-right: none !important;
       }
       &.links-release {

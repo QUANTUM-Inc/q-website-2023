@@ -93,7 +93,7 @@ if (!empty($hasLatest)) {
                 <!-- 画像1つ 通常 -->
                 <section class='l-section'>
                     <div class='l-section__inner js-lazyclass'>
-                        <div class='l-image l-image1 <?= $layout['is_right'] ? "right" : "" ?>'>
+                        <div class='l-image l-image1 <?= $layout['is_right'] ? "right" : "" ?> <?= $layout['is_image_center'] ? "center" : "" ?> <?= $layout['custom_size'] ? "custom-size_".$layout['custom_size'] : "" ?>'>
                             <img src='<?= $layout['image1']; ?>' alt=''>
                         </div>
                     </div>
@@ -167,6 +167,25 @@ if (!empty($hasLatest)) {
                                         <img src="<?= $layout['image3']; ?>" alt=''>
                                     <?php } ?>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php } ?>
+
+
+            <?php if (strpos($layout['layout_type'], "l-image-with-text") !== false) { ?>
+                <!-- 画像3カラム -->
+                <section class='l-section related-links'>
+                    <div class='l-section__inner'>
+                        <div class='l-image-with-text'>
+                            <div class='image5 js-lazyclass'>
+                                <?php if($layout['image5'] != false) { ?>
+                                    <img src="<?= $layout['image5']; ?>" alt=''>
+                                <?php } ?>
+                            </div>
+                            <div class='text'>
+                                <div><?= $layout['text2']; ?></div>
                             </div>
                         </div>
                     </div>

@@ -22,6 +22,7 @@
     width: percentage(math.div(519px, $innerWidth));
     @include ease-out-cubic(800);
     clip-path: inset(0% 0% 100% 0%);
+    cursor: pointer;
     &.appear {
       clip-path: inset(0% 0% 0% 0%);
     }
@@ -39,7 +40,8 @@
         position: relative;
         line-height: 0;
 
-        img {
+        img,
+        video {
           //position: relative;
           //height: auto;
           position: absolute;
@@ -75,7 +77,9 @@
         //padding-top: 0;
         margin-bottom: percentage(math.div(10px, $spInner));
       }
-      img {
+      img,
+      video,
+      .vimeo-embed {
         object-fit: cover;
         object-position: center;
         position: absolute;

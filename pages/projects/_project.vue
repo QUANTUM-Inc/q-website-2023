@@ -1,10 +1,9 @@
 <template>
   <div class="project" :class='{"l-no-mv": !useMainvisual}'>
-    <section class='l-section l-mainvisual' v-if='useMainvisual'>
+    <section class='l-section l-mainvisual' :class='{"header-color__white":project.acf.with_header_white}' v-if='useMainvisual'>
       <picture>
         <source media="(max-width: 768px)" :srcset="project.acf.main_visual_sp">
-<!--        <img :src='project.acf.main_visual.url' alt=''>-->
-        <img :src='project.acf.main_visual.sizes["1536x1536"]' alt=''>
+        <img :src='project.acf.main_visual.sizes["2048x2048"]' alt=''>
       </picture>
     </section>
 
@@ -19,8 +18,8 @@
     <section class='l-section'>
       <div class='l-section__inner'>
         <div class='l-text l-text-2column'>
-          <div class='l-text-2column_1 type-tags js-lazyclass'>
-            <span :class='{hasclient: project.acf.clients_partners}' v-html='categoryName(project.categories)'></span>
+          <div class='l-text-2column_1 type-tags js-lazyclass project-categories'>
+            <lang-link :to="{name: 'projects', params: {lang, categoryId}}" :class='{hasclient: project.acf.clients_partners}' v-html='getCategoryFromId(categoryId).name' v-for="categoryId in project.categories" :key="categoryId"></lang-link>
             <span v-if='project.acf.clients_partners'>clients/partners</span>
           </div>
           <div class='l-text-2column_2 js-lazyclass'>
@@ -46,37 +45,64 @@
     <template v-for='layout in project.acf.layouts'>
       <!-- l-image1:画像のみ1カラム（通常サイズ）■□ -->
       <template v-if='has(layout.layout_type, "l-image1:")'>
-        <Image1 :src='getImagePath(layout.image1)' :is-right='layout.is_right'></Image1>
+        <Image1 
+          :src='getImagePath(layout.image1)' 
+          :srcsp="getImagePath(layout.image1_sp)" 
+          :is-right='layout.is_right'
+          :is-image-center="!layout.is_right && layout.is_image_center"
+          :custom-size='layout.custom_size'>
+        </Image1>
       </template>
 
       <!-- l-image1:画像のみ1カラム（ワイドサイズ）■ -->
       <template v-if='has(layout.layout_type, "l-image1-wide")'>
-        <Image1Wide :src='getImagePath(layout.image1)'></Image1Wide>
+        <Image1Wide :src='getImagePath(layout.image1)' :srcsp="getImagePath(layout.image1_sp)"></Image1Wide>
       </template>
 
       <!-- l-fullimage:画像ヨコイチ■ -->
       <template v-if='has(layout.layout_type, "l-fullimage")'>
-        <FullImage :src='getImagePath(layout.image1)'></FullImage>
+        <FullImage :src='getImagePath(layout.image1)' :srcsp="getImagePath(layout.image1_sp)"></FullImage>
       </template>
 
       <!-- l-image-2column:画像2カラム ■■ -->
       <template v-if='has(layout.layout_type, "l-image-2column")'>
-        <Image2Column :src1='getImagePath(layout.image1)' :src2='getImagePath(layout.image2)'></Image2Column>
+        <Image2Column 
+          :src1='getImagePath(layout.image1)'
+          :src1sp='getImagePath(layout.image1_sp)' 
+          :src2='getImagePath(layout.image2)'
+          :src2sp='getImagePath(layout.image2_sp)'
+        ></Image2Column>
       </template>
 
       <!-- l-image-3column:画像3カラム ■■■ -->
       <template v-if='has(layout.layout_type, "l-image-3column")'>
-        <Image3Column :src1='getImagePath(layout.image1)' :src2='getImagePath(layout.image2)' :src3='getImagePath(layout.image3)'></Image3Column>
+        <Image3Column 
+          :src1='getImagePath(layout.image1)'
+          :src1sp='getImagePath(layout.image1_sp)'
+          :src2='getImagePath(layout.image2)'
+          :src2sp='getImagePath(layout.image2_sp)'
+          :src3='getImagePath(layout.image3)'
+          :src3sp='getImagePath(layout.image3_sp)'
+        ></Image3Column>
       </template>
 
       <!-- l-image-4column:画像2カラム（2行・4つ） -->
       <template v-if='has(layout.layout_type, "l-image-4column")'>
-        <Image4Column :src1='getImagePath(layout.image1)' :src2='getImagePath(layout.image2)' :src3='getImagePath(layout.image3)' :src4='getImagePath(layout.image4)'></Image4Column>
+        <Image4Column 
+          :src1='getImagePath(layout.image1)'
+          :src1sp='getImagePath(layout.image1_sp)'
+          :src2='getImagePath(layout.image2)'
+          :src2sp='getImagePath(layout.image2_sp)'
+          :src3='getImagePath(layout.image3)'
+          :src3sp='getImagePath(layout.image3_sp)'
+          :src4='getImagePath(layout.image4)'
+          :src4sp='getImagePath(layout.image4_sp)'
+        ></Image4Column>
       </template>
 
       <!-- l-embed:YouTube等 embed -->
       <template v-if='has(layout.layout_type, "l-embed")'>
-        <Embed :embed='layout.embed'></Embed>
+        <Embed :embed='layout.embed' :is-center='layout.embed_center'></Embed>
       </template>
 
       <!-- l-text-2column:テキストのみ1カラム □■ -->
@@ -88,6 +114,17 @@
       <template v-if='has(layout.layout_type, "l-title")'>
         <Title :text='layout.title' :center='layout.align_center'></Title>
       </template>
+
+
+      <!-- l-image-with-image:画像+テキスト（2カラム） ■■ -->
+      <template v-if='has(layout.layout_type, "l-image-with-text")'>
+        <ImageWithText
+          :src1='getImagePath(layout.image5)'
+          :src1sp='getImagePath(layout.image5_sp)' 
+          :text='getImagePath(layout.text2)'
+        ></ImageWithText>
+      </template>
+
     </template>
 
     <!-- Latest Journal -->
@@ -124,6 +161,7 @@ import FullImage from '../../components/layout/FullImage';
 import Image2Column from '../../components/layout/Image2Column';
 import Image3Column from '../../components/layout/Image3Column';
 import Image4Column from '../../components/layout/Image4Column';
+import ImageWithText from '../../components/layout/ImageWithText';
 import Embed from '../../components/layout/Embed';
 import Title from '../../components/layout/Title';
 import Text1 from '../../components/layout/Text1';
@@ -222,6 +260,7 @@ export default {
     Image2Column,
     Image3Column,
     Image4Column,
+    ImageWithText,
     Embed,
     Title,
     Text1,
@@ -295,13 +334,12 @@ export default {
   },
 
   mounted() {
-
     this.$nextTick(() => {
       gsap.delayedCall(0.2, () => {
         Init.setup(this.$store);
       });
     })
-    console.log(this.project.acf.main_visual.sizes)
+    console.log('project acf',this.project.acf)
     this.unsubscribe = this.$store.subscribe((mutation, state) => {
       if (mutation.type === 'swapProjectLang') {
         if (this.project && this.project.translations) {
@@ -315,14 +353,21 @@ export default {
         }
       }
     })
+    
+    window.addEventListener('scroll', this.setScrollEvents)
+    if (this.project.acf.with_header_white) {
+      document.getElementById('js-header-inner').classList.add('white')
+    }
   },
 
   beforeDestroy() {
     this.destroySubscribe();
+    window.removeEventListener("scroll", this.setScrollEvents, false)
+    document.getElementById('js-header-inner').classList.remove('white')
   },
 
   mixins: {
-    getCategoriesName: Function
+    getCategoriesName: Function,
   },
 
   methods: {
@@ -361,9 +406,6 @@ export default {
     },
     changeLang(lang, id) {
       let to;
-      /*console.log("this.$route.name::::: " + this.$route.name)
-      console.log(this.$route)
-      console.log(lang)*/
 
       if (lang !== this.$store.state.defaultLang) {
         to = {
@@ -385,6 +427,31 @@ export default {
       this.destroySubscribe();
       this.$router.push(to);
 
+    },
+
+    getCategoryFromId(categoryId) {
+      return this.$store.getters['getCategoryFromId'](categoryId)
+    },
+
+    setScrollEvents() {
+      if (!this.project.acf.with_header_white) {
+        return
+      }
+      const elems = document.getElementsByClassName("header-color__white");
+      let isHeaderWhite = false
+      for (let i = 0; i < elems.length; i++) {
+        const pos = elems.item(i).getBoundingClientRect().top
+        const height = elems.item(i).getBoundingClientRect().height
+        if (pos + height > 0) {
+          isHeaderWhite = true
+          break
+        }
+      }
+      if (isHeaderWhite) {
+        document.getElementById('js-header-inner').classList.add('white')
+      } else {
+        document.getElementById('js-header-inner').classList.remove('white')
+      }
     }
   }
 };
@@ -396,6 +463,13 @@ export default {
   @include mq_sp {
     margin-top: percentage(math.div(80px, $spWidth));
   }
+}
+.project-categories {
+ a {
+  &::before {
+    display: none;
+  }
+ }  
 }
 
 </style>

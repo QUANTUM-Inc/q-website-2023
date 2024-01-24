@@ -12,7 +12,12 @@
       size=''
     >
       <template v-slot:titleLink>
+        <div class="flex">
         <nuxt-link class="title-link" to="#occupation">view career opportunities now <span>→</span></nuxt-link>
+      </div>
+      <div class="flex">
+        <nuxt-link class="title-link" to="/collective">quantum collective <span>→</span></nuxt-link>
+      </div>
       </template>
     </main-visual>
 
@@ -80,61 +85,48 @@
       <div class='l-section__inner js-lazyclass occupation'>
         <div class='contents__textarea'>
           <h2>募集している職種</h2>
-          <h3>venture architect</h3>
-          <p class='l-section__body' v-if='!isEnglish'>
-            プロジェクト全体のリーダーとして、0→1の新規事業インキュベーションの旗振り役を担います。<br />
-            ユーザーのインサイトに基づき、リーンスタートアップやアジャイル開発の技法を駆使しながら、<br />
-            アイディエーション・ビジョン構築・ビジネスモデル検討・事業計画策定に取り組み、<br />事業のローンチ・グロースに向けプロジェクトを推進します。<br />
-            <span class="show-detail"><nuxt-link to="/careers/detail?occupation=va">応募の詳細を見る→</nuxt-link></span>
-          </p>
-          <h3>product manager</h3>
-          <p class='l-section__body' v-if='!isEnglish'>生活者のイシューやニーズの分析から始まり、事業ビジョンを策定、アイデア開発を行った上で、<br />
-            ソリューションのコンセプトメークと各PoCの計画と実行、プロダクトの要件に対して責任を持って<br />
-            サービス開発を行なうプロジェクトの中心的な役割を担います。<br />
-            <span class="show-detail"><nuxt-link to="/careers/detail?occupation=pm">応募の詳細を見る→</nuxt-link></span>
-          </p>
-          <h3>studio operation</h3>
-          <p class='l-section__body' v-if='!isEnglish'>
-            財務、経理、営業管理、オフィスIT管理、総務、人事労務など幅広いバックオフィス業務を行い、quantumのメンバーが安心して自身のパフォーマンスを最大化できるように支える役割を担います。<br /><br />
-            財務
-            <span class="show-detail"><nuxt-link to="/careers/detail?occupation=finance">応募の詳細を見る→</nuxt-link></span>
-          </p>
-          <h3>internship for students</h3>
-          <p class='l-section__body' v-if='!isEnglish'>
-            自分の得意分野を生かしてquantumでそのスキルを磨きませんか？<br /><br />
-            グラフィックデザインのアシスタント
-            <span class="show-detail"><nuxt-link to="/careers/detail?occupation=intern_graphic">応募の詳細を見る→</nuxt-link></span>
-          </p>
+          <template v-if="careers.open.fulltime.length > 0 || careers.open.internship.length > 0">
+            <h2 class="head-sub"><b>full time positions(正社員/契約社員)</b></h2>
+            <div v-for="oc in careers.open.fulltime">
+              <h3>{{ oc.title }}</h3>
+              <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
+              <span class="show-detail" v-if="oc.url"><a :href="oc.url">応募の詳細を見る→</a></span>
+            </div>
+            <template v-if="careers.open.internship.length > 0">
+              <br /><h2 class="head-sub"><b>internship for students</b></h2>
+              <div v-for="oc in careers.open.internship">
+                <h3>{{ oc.title }}</h3>
+                <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
+                <span class="show-detail" v-if="oc.url"><a :href="oc.url">応募の詳細を見る→</a></span>
+              </div>
+            </template>
+          </template>
+          <br />
+          <h2 class="head-sub"><b>quantum collective</b></h2>
+          <p class="l-section__body">quantumが推進する新規事業開発に対して、プロジェクトベースで<br />参画して頂くプロフェッショナルネットワークです。パートナー企業との共同事業や新規事業開発の支援、0→1でのベンチャークリエーション、スタートアップへのハンズオン投資のメンタリング、社内起業家プログラムのメンターなどに、ご自身の専門性を生かして参画して頂きます。個人事業主の方はもちろん、副業としてのご参加も可能です。<br /> <span class="show-detail"><nuxt-link to="/collective">応募の詳細を見る→</nuxt-link></span></p>
           <br /><br />
-          <h2>currently closed position</h2>
-          <div class="closed-position">
-            <h3>art director</h3>
-            <p class='l-section__body' v-if='!isEnglish'>
-              プロジェクトの上流からビジネス開発のデザインに関わります。<br />
-              プロジェクト全体のデザインに筋が通っているかの仮説検証やチームでの議論を重ね、<br />
-              デザインに関わる工程に責任をもってプロダクトやサービス開発を行います。
-            </p>
-            <h3>parallel work ・ outsourcing</h3>
-            <p class='l-section__body' v-if='!isEnglish'>
-              quantumでは個人専門家(フリーランス)や業務委託という形で<br />
-              プロジェクトに関わっていただくことができます。<br />
-              プロジェクトの領域や必要プロセスに応じて募集をします。<br />
-              また、事前にご登録いただきますと、求人を出してマッチしている時には、<br />quantumよりご連絡を差し上げる事が可能です。
-            </p>
-            <h3>EIR(Entrepreneur in Residence)</h3>
-            <p class='l-section__body' v-if='!isEnglish'>
-              quantumではパートナー企業とのジョイントベンチャー設立や自社発の事業など、<br />
-              あらゆる方法で、連続的にスタートアップの創出に取り組んでいます。<br />
-              起業の意志がある、また、新規事業の立ち上げにオーナーシップを持って<br />
-              関わりたいと考える起業家候補の方を随時募集しています。<br />
-              ご登録いただいた方のご意向とプロジェクト／事業のマッチングを行い、<br />
-              ローンチに向けた開発プロセスから、運営、成長まで、一貫してリードしていただきます。
-            </p>
-            <h3 class="link-head">internship for students</h3>
-            <p class='l-section__body' v-if='!isEnglish'>
-              機械学習・画像認識のエンジニア　ほかの職種で募集することがあります。
-            </p>
-          </div>
+          <template v-if="careers.closed.fulltime.length > 0 || careers.closed.internship.length > 0">
+            <div class="closed-position">
+              <h2>currently closed positions</h2>
+              <template v-if="careers.closed.fulltime.length > 0">
+                <h2 class="head-sub"><b>full time positions(正社員/契約社員)</b></h2>
+                <div v-for="oc in careers.closed.fulltime">
+                  <h3>{{ oc.title }}</h3>
+                  <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
+                </div><br />
+              </template>
+              <h2 class="head-sub"><b>internship for students</b></h2>
+              <div v-if="careers.closed.internship.length == 0">
+                <p class='l-section__body' v-if='!isEnglish'>
+                  自分の得意分野を生かしてquantumでそのスキルを磨きませんか？<br />
+                </p>
+              </div>
+              <div v-for="oc in careers.closed.internship" v-else>
+                <h3>{{ oc.title }}</h3>
+                <p class='l-section__body' v-if='!isEnglish' v-html="oc.overview"></p>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </section>
@@ -176,6 +168,63 @@ export default {
     ContactLink,
     Logo
   },
+
+  async asyncData({ app, store, params }) {
+    let {data} = await app.$axios.get(store.getters.apiPath({
+      type: 'careers',
+      lang: store.state.lang
+    }));
+    
+    const careers = {
+      open: {
+        fulltime: [],
+        internship: [],
+      },
+      closed: {
+        fulltime: [],
+        internship: [],
+      }
+    }
+    if (data.length > 0) {
+      const fields = data[0].acf
+      for (let i = 1; i < 6; i++) {
+        const fulltimeClosed = fields['fulltime_occupation_disabled_'+i]
+        const fulltimeTitle = fields['fulltime_occupation_'+i]
+        if (!fulltimeClosed && fulltimeTitle) {
+          careers.open.fulltime.push({
+            title: fulltimeTitle,
+            overview: fields['fulltime_occupation_overview_'+i],
+            url: fields['fulltime_occupation_url_'+i],
+          })
+        } else if (fulltimeTitle) {
+          careers.closed.fulltime.push({
+            title: fields['fulltime_occupation_'+i],
+            overview: fields['fulltime_occupation_overview_'+i],
+            url: fields['fulltime_occupation_url_'+i],
+          })
+        }
+        const internClosed = fields['internship_occupation_disabled_'+i]
+        const internTitle = fields['internship_occupation_'+i]
+        if (!internClosed && internTitle) {
+          careers.open.internship.push({
+            title: fields['internship_occupation_'+i],
+            overview: fields['internship_occupation_overview_'+i],
+            url: fields['internship_occupation_url_'+i],
+          })
+        } else if (internTitle) {
+          careers.closed.internship.push({
+            title: fields['internship_occupation_'+i],
+            overview: fields['internship_occupation_overview_'+i],
+            url: fields['internship_occupation_url_'+i],
+          })
+        }
+      }
+    }
+
+    return {
+      careers
+    };
+  },
   head() {
     return {
       title: `${this.$store.state.meta.name}careers`,
@@ -191,7 +240,6 @@ export default {
       gsap.delayedCall(0.1, () => {
         Init.setup(this.$store)
       })
-
     })
   },
   methods: {
@@ -328,6 +376,10 @@ export default {
           @include mq_sp {
             @include spfontsize(24px);
           }
+          &.head-sub {
+            font-size: 32px;
+            margin-top: 30px;
+          }
         }
         h3 {
           font-weight: 500;
@@ -342,42 +394,45 @@ export default {
         }
         .closed-position {
           opacity: 0.5;
+          margin-top: 40px;
         }
         .l-section__body {
           margin-top: 25px;
-          .show-detail {
-            display: flex;
-            a {
-              display: block;
-              color: #999999;
-              font-size: 16px;
-              position: relative;
-              &::after {
-                position: absolute;
-                display: block;
-                content: '';
-                line-height: 0;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 1px;
-                background: #999999;
-                @include ease-out-cubic($animationTime);
-                transform-origin: 0 0;
-                transform: scale(0, 0);
-              }
-              &:hover {
-                &::after {
-                  transform: scale(1, 1);
-                }
-              }
-              @include mq_sp {
-                @include spfontsize(14px);
-              }
-            }
-          }
+          white-space: pre-wrap;
           @include mq_sp {
             margin-top: 20px;
+          }
+        }
+        .show-detail {
+          display: flex;
+          margin-top: 5px;
+          a {
+            display: block;
+            color: #999999;
+            font-size: 16px;
+            position: relative;
+            &::after {
+              position: absolute;
+              display: block;
+              content: '';
+              line-height: 0;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 1px;
+              background: #999999;
+              @include ease-out-cubic($animationTime);
+              transform-origin: 0 0;
+              transform: scale(0, 0);
+            }
+            &:hover {
+              &::after {
+                transform: scale(1, 1);
+              }
+            }
+            @include mq_sp {
+              @include spfontsize(14px);
+            }
           }
         }
       }
