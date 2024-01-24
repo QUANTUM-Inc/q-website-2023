@@ -116,8 +116,7 @@
   margin-top: 45px;
   @include mq_sp {
     display: block;
-    // margin-top: percentage(math.div(30px, $spInner));
-    // margin-top: percentage(math.div(15px, $innerWidth));
+    margin-top: percentage(math.div(30px, $spInner));
   }
   .image1,
   .image2 {
