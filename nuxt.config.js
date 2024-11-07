@@ -154,7 +154,14 @@ export default {
       { filename: `.env_${process.env.NODE_ENV}` }
     ],
     '@/modules/hook/generate',
+    '@nuxtjs/tailwindcss'
   ],
+
+  tailwindcss: {
+    exposeConfig: true,
+    viewer: true,
+    // and more...
+  },
 
   axios: {},
 

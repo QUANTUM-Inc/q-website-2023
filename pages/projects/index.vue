@@ -62,7 +62,7 @@
     </section>
 
     <!-- -->
-    <section class='l-section secondary-projects'>
+    <section class='l-section secondary-projects mb-[120px]'>
       <div class='l-section__inner l-projects' ref='secondProject'>
         <div class="l-project appear" v-for='project in currentProjects'>
           <lang-link :to="{

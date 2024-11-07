@@ -37,6 +37,7 @@ export const state = () => ({
   newsList: null,
   newsCategories: null,
   journals: null,
+  selectedTopicsCategory: 0, // 現在フィルタリングされているカテゴリーID 1 = all
 });
 
 
@@ -70,6 +71,11 @@ export const getters = {
   // Newsカテゴリー情報を取得
   getNewsCategoryFromId: (state) => (id) => {
     return state.newsCategories.find(category => category.id === id)
+  },
+
+  // Topicsカテゴリー情報を取得
+  getTopicsCategoryFromId: (state) => (id) => {
+    return state.topicsCategories.find(category => category.id === id)
   },
 
   getEnglishCategory: (state) => (jaCategoryId) => {
@@ -130,12 +136,13 @@ export const getters = {
   },
 
   // API
-  apiPath: (state) => ({type, size, id, slug, lang, preview, nonce}) => {
+  apiPath: (state) => ({type, size, id, slug, lang, preview, nonce, page, categoryId}) => {
     let _lang = lang ? '&lang=' + lang : '';
     let _id;
     let _prev = preview ? '&preview=1' : '';
     let _nonce = nonce ? '&preview_nonce=' + nonce : '';
     let _prev_id;
+    let _page = page ? `&page=${page}` : '';
     if (type === 'project') {
       // ID による検索
       _id = id;
@@ -168,6 +175,17 @@ export const getters = {
       return `${process.env.WORDPRESS_API_URL}/wp/v2/pages/${id}`
     } else if (type === 'featured_work') {
       return `${process.env.WORDPRESS_API_URL}/wp/v2/pages?slug=featured-work`
+    } else if (type === 'topics') {
+      let _size = size || 10000
+      let _categoryId = categoryId ? `&topics_category=${categoryId}` : ''
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/topics?orderby=date&per_page=${_size}${_page}${_categoryId}`
+    } else if (type === 'topic') {
+      _id = id;
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/topics/${_id}`
+    } else if (type === 'topicscategory') {
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/topics_category?per_page=100`
+    } else if (type === 'member') {
+      return `${process.env.WORDPRESS_API_URL}/wp/v2/member?per_page=100`
     }
 
     return ''
@@ -222,6 +240,12 @@ export const mutations = {
   },
   setNewsCategory(state, data) {
     state.newsCategories = data;
+  },
+  setTopicsCategory(state, data) {
+    state.topicsCategories = data;
+  },
+  setSelectedTopicsCategory(state, data) {
+    state.selectedTopicsCategory = data.selectedId
   },
   setJournals(state, data) {
     state.journals = data;

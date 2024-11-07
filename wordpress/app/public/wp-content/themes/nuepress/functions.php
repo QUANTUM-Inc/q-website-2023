@@ -204,9 +204,19 @@ function get_outline($id)
     }
 }
 
-add_filter("rest_topics_query", function ($args, $query) {
-    $args["order"] = "desc";
-    $args["orderby"] = "meta_value";
-    $args["meta_key"] = "date";
+add_filter("rest_topics_query", function ($args, $request) {
+    $order_by = $request->get_param( 'orderby' );
+    if ( isset( $order_by ) && 'date' === $order_by ) {
+        $args['meta_key'] = $order_by;
+        $args['orderby']  = 'meta_value'; // user 'meta_value_num' for numerical fields
+    }
+    return $args;
+  }, 10, 2);
+
+
+add_filter("rest_member_query", function ($args, $request) {
+    $args["order"] = "asc";
+    $args["orderby"] = "meta_value_num";
+    $args["meta_key"] = "member_order";
     return $args;
   }, 10, 2);

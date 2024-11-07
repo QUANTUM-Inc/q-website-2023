@@ -1,7 +1,7 @@
 <template>
   <section class='l-section privacy'>
     <div class='l-section__inner js-lazyclass'>
-      <h2>privacy policy / cookie policy</h2>
+      <h2>policies</h2>
       <h3 class="subtitle">privacy policy</h3>
       <div class='privacy__set'>
         <h3 v-if='!isEnglish'>個人情報取扱いに関する基本方針</h3>
@@ -285,9 +285,52 @@ To take advantage of this functionality, please download and install this add-on
 
 <a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" ref="noopener noreferrer">Google Analytics opt-out add-on</a></li>
         </ol>
-        <br /><br />
-        <p class='privacy__body' v-if='!isEnglish'>以上</p>
       </div>
+
+      <h2>パートナーシップ構築宣言</h2>
+      <div class='privacy__set'>
+        <p class='privacy__body' v-if='!isEnglish'>当社は、サプライチェーンの取引先の皆様や価値創造を図る事業者の皆様との連携・共存共栄を進めることで、新たなパートナーシップを構築するため、以下の項目に重点的に取り組むことを宣言します。</p>
+        <p class='privacy__body' v-if='isEnglish'>当社は、サプライチェーンの取引先の皆様や価値創造を図る事業者の皆様との連携・共存共栄を進めることで、新たなパートナーシップを構築するため、以下の項目に重点的に取り組むことを宣言します。</p>
+      </div>
+      <div class='privacy__set'>
+        <h3 v-if='!isEnglish'>１． サプライチェーン全体の共存共栄と規模・系列等を超えた新たな連携</h3>
+        <h3 v-if='isEnglish'>１． サプライチェーン全体の共存共栄と規模・系列等を超えた新たな連携</h3>
+
+        <p class='privacy__body' v-if='!isEnglish'>直接の取引先を通じてその先の取引先に働きかける（「Tier N」から「Tier N+1」へ）ことにより、サプライチェーン全体での付加価値向上に取り組むとともに、既存の取引関係や企業規模等を超えた連携により、取引先との共存共栄の構築を目指します。その際、災害時等の事業継続や働き方改革の観点から、取引先のテレワーク導入やBCP（事業継続計画）策定の助言等の支援も進めます。</p>
+        <p class='privacy__body' v-if='isEnglish'>直接の取引先を通じてその先の取引先に働きかける（「Tier N」から「Tier N+1」へ）ことにより、サプライチェーン全体での付加価値向上に取り組むとともに、既存の取引関係や企業規模等を超えた連携により、取引先との共存共栄の構築を目指します。その際、災害時等の事業継続や働き方改革の観点から、取引先のテレワーク導入やBCP（事業継続計画）策定の助言等の支援も進めます。</p>
+      </div>
+
+      <div class='privacy__set'>
+        <h3 v-if='!isEnglish'>２． 「振興基準」の遵守</h3>
+        <h3 v-if='isEnglish'>２． 「振興基準」の遵守</h3>
+
+        <p class='privacy__body' v-if='!isEnglish'>
+          親事業者と下請事業者との望ましい取引慣行（下請中小企業振興法に基づく「振興基準」）を遵守し、取引先とのパートナーシップ構築の妨げとなる取引慣行や商慣行の是正に積極的に取り組みます。<br><br>
+          ①価格決定方法<br>
+          　不合理な原価低減要請を行いません。取引対価の決定に当たっては、下請事業者から協議の申入れがあった場合には協議に応じ、労務費上昇分の影響を考慮するなど、十分に協議します。取引対価の決定を含め契約に当たっては、契約条件の書面等による明示・交付を行います。<br><br>
+          ②手形などの支払条件<br>
+          　下請代金は可能な限り現金で支払います。手形で支払う場合には、割引料等を下請事業者の負 担とせず、また、支払サイトを60日以内とするよう努めます。<br><br>
+          ③知的財産・ノウハウ<br>
+          　取引上で取得した取引先の知的財産権やノウハウ等に関して、取引先に損失を与えることの無いよう、十分に配慮します。取引上の立場を利用したノウハウの開示や知的財産権の無償譲渡等は求めません。<br><br>
+          ④働き方改革等に伴うしわ寄せ<br>
+          　取引先も働き方改革に対応できるよう、下請事業者に対して、短納期発注や急な仕様変更などは行わないよう努めます。やむを得ず、短納期や急な仕様変更などを行う場合には、適切なコスト負担などについて取引先と協議を行い、理解と合意を得るようにいたします。災害時等においては、下請事業者に取引上一方的な負担を押し付けないように、また、事業再開時等には、できる限り取引関係の継続等に配慮します。
+        </p>
+        <p class='privacy__body' v-if='isEnglish'></p>
+      </div>
+
+      <div class='privacy__set'>
+        <h3 v-if='!isEnglish'>３．その他（任意記載）</h3>
+        <h3 v-if='isEnglish'>３．その他（任意記載）</h3>
+
+        <p class='privacy__body' v-if='!isEnglish'>働き方についての法令を順守するとともに長時間労働を削減し、健康でクリエイティビティあふれる労働環境の整備に努めます。当社社員のみならず、発注先、媒体社や協力機関など協働して業務に携わる人にも配慮ます。</p>
+        <p class='privacy__body' v-if='isEnglish'>働き方についての法令を順守するとともに長時間労働を削減し、健康でクリエイティビティあふれる労働環境の整備に努めます。当社社員のみならず、発注先、媒体社や協力機関など協働して業務に携わる人にも配慮ます。</p>
+      </div>
+
+      <div class='privacy__set'>
+        <p class='privacy__body text-right' v-if='!isEnglish'>2024年 7月 25日<br>株式会社quantum    代表取締役社長　及部　智仁</p>
+        <p class='privacy__body text-right' v-if='isEnglish'>2024年 7月 25日<br>株式会社quantum    代表取締役社長　及部　智仁</p>
+      </div>
+
     </div>
     <contact-link></contact-link>
   </section>

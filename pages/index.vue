@@ -3,15 +3,69 @@
     <keyvisual></keyvisual>
     <section class='l-section about'>
       <div class='l-section__inner js-lazyclass'>
-        <h2>we are quantum, we are a startup studio.</h2>
-        <p class='l-section__lead' v-if='!isEnglish'>quantumは、発想から実装まで、事業開発の全てを活動領域とし、<br class='pc'>新しいプロダクトやサービスを創り出すスタートアップスタジオです。</p>
+        <h2>we are venture builders for creating <br class="pc">new businesses to change the world.</h2>
+        <p class='l-section__lead' v-if='!isEnglish'>quantumは、クリエイティビティを軸にしたインキュベーション力で、<br class='pc'>新規事業開発、ベンチャークリエーション、ハンズオン投資によるグロース支援を<br class='pc'>行うスタートアップスタジオです。</p>
         <p class='l-section__lead' v-if='isEnglish'>quantum is a startup studio that creates new products and services in all areas of business development, from conception to implementation.</p>
       </div>
       
     </section>
-    <section class='l-section featured-work header-color__white'>
+    <section class='l-section our-strength header-color__white'>
       <div class='l-section__inner js-lazyclass'>
-        <h2>featured work</h2>
+        <h2>our strength</h2>
+        <div class="flex items-start mt-7 pt-2">
+          <div class="w-[63%]">
+            <p class="text-[26px] leading-[42px]">ハードとソフトウェアを融合できる卓越した<br>クリエイティビティを軸にインキュベーションに<br>必要な機能を360°ワンストップで提供</p>
+            <p class="text-[16px] leading-[30px] mt-7">quantumはスタートアップスタジオとして、<br>プロダクト開発から実証実験、量産設計、エクイティ出資、グロース支援まで<br>インキュベーションに必要なあらゆる機能をワンストップで提供しています。<br><br>独自のスタジオモデルとして、①新規事業支援のIncubation business、<br>②ベンチャークリエーションとグロース支援を行うquantum ventures、<br>③デザイン＆エンジニアリングのMEDUMの3つの事業セグメントを<br>重ね合わせて、世界を変えるインパクトのある新規事業の創造に挑戦しています。</p>
+          </div>
+          <div class="w-[37%]">
+            <img src="~/assets/images/home/strength/our_strength.png">
+          </div>
+        </div>
+        <div class="flex justify-between mt-[240px]">
+          <h3 class="text-[27px]">incubation business</h3>
+          <div class="w-[52%]">
+            <p class="text-[20px] leading-[30px]">
+              2016年の創業以来、venture buildersとして100社を超える企業とインキュベーションを実践。<br><br>quantumはものづくりを追求するプロダクトファーストを行動指針の一つとして掲げ、多様なメンバーから構成されるフルスタックなスタジオで、発想から実装、そしてグロースまでハンズオンで支援をしています。<br><br>R&Dや社内起業プログラムからのカーブアウト創出だけでなく、出資を含めた共同創業など様々な方法で、新事業の創造に挑戦しています。
+            </p>
+            <div class="flex justify-between items-center px-10 py-8 border border-[#6C6C6C] border-solid mt-8">
+              <img src="~/assets/images/home/strength/incubation.svg" class="relative top-[-2px]">
+              <p class="text-xs leading-5 ps-10">全ての挑戦者に向けて、スタートアップスタジオとして培ってきたインキュベーションのノウハウをAIテクノロジーで届け、事業化を加速させる LEAN MODEL を提供しています。</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mt-[160px]">
+          <h3>venture creation & growth</h3>
+          <div class="w-[52%]">
+            <img src="~/assets/images/home/strength/q_ventures.svg">
+            <p class="text-[20px] leading-[30px] mt-6">
+              起業家とディープイシューに取り組むベンチャークリエーション＆グロース投資のユニット、quantum venturesを運営しています。<br><br>社会課題を解決する大学発のディープテックや企業に眠る技術を軸にしたベンチャークリエーションだけでなく、起業家とともに事業成長を目指したグロース投資を実践しています。<br><span class="text-sm">※quantumの投資子会社のSpotlightからの出資先を含む</span>
+            </p>
+            <ul class="flex flex-wrap items-center mt-7 pe-5">
+              <li class="me-4 my-4"><img src="~/assets/images/home/strength/logo_wota.svg"></li>
+              <li class="mx-4 my-4"><img src="~/assets/images/home/strength/logo_dgtakano.svg"></li>
+              <li class="mx-4 my-4"><img src="~/assets/images/home/strength/logo_xen.svg"></li>
+              <li class="me-4 my-4"><img src="~/assets/images/home/strength/logo_tbm.svg"></li>
+              <li class="ms-6 my-4"><img src="~/assets/images/home/strength/logo_mirai.svg"></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex justify-between mt-[160px]">
+          <h3>design & engineering</h3>
+          <div class="w-[52%]">
+            <a href="https://medum.jp" target="_blank" ref="noreferrer noopener" class="flex items-end">
+              <img src="~/assets/images/home/strength/logo_medum.svg">
+              <img src="~/assets/images/home/strength/icn_link.svg" class="ms-3">
+            </a>
+            <p class="text-[20px] leading-[30px] mt-6">quantumのハードとソフトウェアを融合できる卓越したクリエイティビティをグローバルで展開するためにインハウスのデザインスタジオとしてMEDUMを組成。<br><br> quantumのものづくりの中心であるMEDUMは「人とモノゴト（人工物）の間に最適な関係性を作るデザイン」を追求しています。</p>
+            <ul class="flex mt-6 -mx-1">
+              <li class="w-1/4 px-1"><img src="~/assets/images/home/strength/medum_img1.png"></li>
+              <li class="w-1/4 px-1"><img src="~/assets/images/home/strength/medum_img2.png"></li>
+              <li class="w-1/4 px-1"><img src="~/assets/images/home/strength/medum_img3.png"></li>
+              <li class="w-1/4 px-1"><img src="~/assets/images/home/strength/medum_img4.png"></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
     <div class='project-wrap'>
@@ -132,6 +186,15 @@
     </div>
 
     <Journal :journals='this.journals'></Journal>
+    <section class='l-section topics'>
+      <div class='l-section__inner js-lazyclass'>
+        <h2 class='type-center'>topics</h2>
+        <TopicsList :topics="this.topics" :in-top-page="true" class="mt-[90px]"></TopicsList>
+        <div class="text-center">
+          <nuxt-link to='/topics' class='l-section__textlink load-more'>and more</nuxt-link>
+        </div>
+      </div>
+    </section>
     <ClientAndPartners></ClientAndPartners>
     <news :news-list='this.newslist'></news>
     <contact-link></contact-link>
@@ -147,6 +210,7 @@ import HomeProduct from '../components/home/HomeProduct';
 import Journal from '../components/home/Journals';
 import ClientAndPartners from '../components/home/ClientAndPartners';
 import News from '../components/home/News';
+import TopicsList from '../components/topics/List';
 import ContactLink from '../components/partial/ContactLink';
 import _filter from 'lodash/filter';
 import _each from 'lodash/each';
@@ -157,29 +221,40 @@ import Spinner1 from '~/components/Spinner1.vue';
 
 export default {
   async asyncData({ app, store, params }) {
-    let news = await app.$axios.get(store.getters.apiPath({
+    const news = await app.$axios.get(store.getters.apiPath({
       type: 'news',
       size: 4
     }));
     // note
-    let rss = await app.$axios.get(store.getters.apiPath({
+    const rss = await app.$axios.get(store.getters.apiPath({
       type: 'note'
     }));
-    let journals = await app.$axios.get(store.getters.apiPath({
+    const journals = await app.$axios.get(store.getters.apiPath({
       type: 'journal'
     }))
-    let journalsdata = _filter(journals.data, (journal) => {
+    const journalsdata = _filter(journals.data, (journal) => {
       if (journal.acf.view_in_home) {
         return true;
       }
       return false;
     });
-    let featuredWorks = await app.$axios.get(store.getters.apiPath({
+    const featuredWorks = await app.$axios.get(store.getters.apiPath({
       type: 'featured_work'
     }))
+    const topics = await app.$axios.get(store.getters.apiPath({
+      type: 'topics',
+      size: 3
+    }));
+    if (!store.state.topicsCategories) {
+      const topicsCategories = await app.$axios.get(store.getters.apiPath({
+        type: 'topicscategory'
+      }));
+      store.commit('setTopicsCategory', topicsCategories.data);
+    }
     return {
       journals: journalsdata,//rss.data,
       newslist: news.data,
+      topics: topics.data,
       featuredWorks: featuredWorks.data[0].acf.featured_work
     };
 
@@ -193,6 +268,7 @@ export default {
     Journal,
     ClientAndPartners,
     News,
+    TopicsList,
     ContactLink,
     //InfiniteLoading,
     Smile,
@@ -277,22 +353,26 @@ export default {
     z-index: 7;
     margin-top: 100vh;
     //padding: 150px 0;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     background: #FFF;
-    .l-section__inner {
-
-    }
     h2 {
+      font-size: 53px;
       @include mq_sp {
         @include spfontsize(36px);
+      }
+      @include mq_tab {
+        font-size: 50px;
       }
     }
     .l-section__lead {
       margin-top: 45px;
       @include mq_sp {
         margin-top: percentage(math.div(70px, $spInner));
+      }
+      @include mq_tab {
+        margin-top: 30px;
       }
     }
 
@@ -301,27 +381,30 @@ export default {
     }
   }
 
-  .featured-work {
+  .our-strength {
+    padding: 200px 0;
+    color: #fff;
     background: #000;
     position: relative;
-    height: 528px;
     z-index: 7;
-    h2 {
-      top: 50%;
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
+    h2, h3 {
       color: #fff;
       letter-spacing: 0.04rem;
+    }
+    h2 {
+      font-size: 44px;
+    }
+    h3 {
+      font-size: 27px;
     }
   }
 
   .project-wrap {
     overflow: hidden;
-
-
   }
 
+  .topics {
+    padding: 100px 0;
+  }
 }
 </style>

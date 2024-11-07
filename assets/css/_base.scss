@@ -269,3 +269,65 @@ a {
 .pre-line {
   white-space: pre-line;
 }
+.topics--detail {
+  .topic {
+    &__content {
+      margin-top: 50px;
+      h2 {
+        font-size: 28px;
+        margin: 12px 0;
+        @include mq_tab {
+          font-size: 28px;
+        }
+        @include mq_sp {
+          font-size: 20px;
+        }
+      }
+      h3 {
+        font-size: 24px;
+        margin: 12px 0;
+
+        @include mq_tab {
+          font-size: 24px;
+        }
+        @include mq_sp {
+          font-size: 18px;
+        }
+      }
+      h4,
+      h5,
+      h6 {
+        font-size: 20px;
+        margin: 12px 0;
+
+        @include mq_tab {
+          font-size: 20px;
+        }
+        @include mq_sp {
+          font-size: 17px;
+        }
+      }
+      p {
+        min-height: 30px;
+        font-size: 16px;
+        line-height: 30px;
+        @include mq_tab {
+          font-size: 16px;
+        }
+        @include mq_sp {
+          font-size: 15px;
+        }
+      }
+      a {
+        text-decoration: underline;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      h2,
+      h3 {
+        clip-path: inset(0% 0% 0% 0%);
+      }
+    }
+  }
+}

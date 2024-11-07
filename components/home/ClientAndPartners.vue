@@ -30,6 +30,11 @@
         <img src='~/assets/images/home/clients/tokyo-gas.png' alt='TOKYO GAS'>
         <img src='~/assets/images/home/clients/teatol.png' alt='テアトル アカデミー'>
         <img src='~/assets/images/home/clients/basf.png' alt='BASF'>
+        <img src='~/assets/images/home/clients/asahi.png' alt='asahi'>
+        <img src='~/assets/images/home/clients/mhc.png' alt='mhc'>
+        <img src='~/assets/images/home/clients/magnarecta.png' alt='MagnaRecta'>
+        <img src='~/assets/images/home/clients/mazda.png' alt='mazda'>
+        <img src='~/assets/images/home/clients/tusim.png' alt='tusim'>
       </div>
     </div>
 
