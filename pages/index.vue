@@ -1,15 +1,15 @@
 <template>
   <div class="home">
     <keyvisual></keyvisual>
-    <section class='l-section about'>
+    <section class='l-section about' :class="{'is-black': ourStrengthSectionShown}">
       <div class='l-section__inner js-lazyclass'>
         <h2>we are venture builders for creating <br class="pc">new businesses to change the world.</h2>
-        <p class='l-section__lead' v-if='!isEnglish'>quantumは、クリエイティビティを軸にしたインキュベーション力で、<br class='pc'>新規事業開発、ベンチャークリエーション、ハンズオン投資によるグロース支援を<br class='pc'>行うスタートアップスタジオです。</p>
+        <p class='l-section__lead' v-if='!isEnglish' ref="aboutText">quantumは、クリエイティビティを軸にしたインキュベーション力で、<br class='pc'>新規事業開発、ベンチャークリエーション、ハンズオン投資によるグロース支援を<br class='pc'>行うスタートアップスタジオです。</p>
         <p class='l-section__lead' v-if='isEnglish'>quantum is a startup studio that creates new products and services in all areas of business development, from conception to implementation.</p>
       </div>
       
     </section>
-    <section class='l-section our-strength header-color__white'>
+    <section class='l-section our-strength header-color__white' :class="{'is-black': ourStrengthSectionShown}" style="border-bottom: 1px solid red;">
       <div class='l-section__inner js-lazyclass'>
         <h2>our strength</h2>
         <div class="md:flex items-start mt-7 pt-2">
@@ -17,7 +17,7 @@
             <p class="l-section__lead text-[26px] leading-[42px]">ハードとソフトウェアを融合できる卓越した<br class='pc'>クリエイティビティを軸にインキュベーションに<br class='pc'>必要な機能を360°ワンストップで提供</p>
             <p class="l-section__text text-[16px] leading-[30px] mt-7">quantumはスタートアップスタジオとして、<br class='pc'>プロダクト開発から実証実験、量産設計、エクイティ出資、グロース支援まで<br class='pc'>インキュベーションに必要なあらゆる機能をワンストップで提供しています。<br><br>独自のスタジオモデルとして、①新規事業支援のIncubation business、<br>②ベンチャークリエーションとグロース支援を行うquantum ventures、<br>③デザイン＆エンジニアリングのMEDUMの3つの事業セグメントを<br>重ね合わせて、世界を変えるインパクトのある新規事業の創造に挑戦しています。</p>
           </div>
-          <div class="w-full md:w-[37%] mt-[30px] md:mt-0">
+          <div class="w-full md:w-[37%] mt-[30px] md:mt-0 img-strength">
             <img src="~/assets/images/home/strength/our_strength.png">
           </div>
         </div>
@@ -308,7 +308,8 @@ export default {
     return {
       infiniteLoadingPage: 1,
       journals: [],
-      newslist: []
+      newslist: [],
+      ourStrengthSectionShown: false
     };
   },
 
@@ -346,6 +347,13 @@ export default {
       } else {
         document.getElementById('js-header-inner').classList.remove('white')
       }
+
+      const aboutTextRect = this.$refs.aboutText.getBoundingClientRect()
+      if (aboutTextRect.top + aboutTextRect.height < 0) {
+        this.ourStrengthSectionShown = true
+      } else {
+        this.ourStrengthSectionShown = false
+      }
     }
   }
 };
@@ -361,7 +369,11 @@ export default {
     height: 100vh;
     display: flex;
     align-items: center;
-    background: #FFF;
+    background-color: #FFF;
+    transition: background-color 0.5s ease;
+    &.is-black {
+      background-color: #000;
+    }
     h2 {
       font-size: 53px;
       @include mq_sp {
@@ -387,13 +399,18 @@ export default {
   }
 
   .our-strength {
-    padding: 200px 0;
-    color: #fff;
-    background: #000;
+    padding: 150px 0 200px 0;
+    color: #000;
+    background-color: #fff;
+    transition: background-color 0.5s ease;
     position: relative;
     z-index: 7;
+    .img-strength {
+      filter: invert(100%);
+      transition: filter 0.5s ease;
+    }
     h2, h3 {
-      color: #fff;
+      color: #000;
       letter-spacing: 0.04rem;
     }
     h2 {
@@ -401,6 +418,17 @@ export default {
     }
     h3 {
       font-size: 27px;
+    }
+    &.is-black {
+      color: #fff;
+      background-color: #000;
+      h2, h3 {
+        color: #fff;
+      }
+      .img-strength {
+        filter: initial;
+      }
+      
     }
   }
 
