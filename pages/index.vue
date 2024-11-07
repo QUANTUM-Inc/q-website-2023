@@ -12,24 +12,24 @@
     <section class='l-section our-strength header-color__white' :class="{'is-black': ourStrengthSectionShown}" style="border-bottom: 1px solid red;">
       <div class='l-section__inner js-lazyclass'>
         <h2>our strength</h2>
-        <div class="md:flex items-start mt-7 pt-2">
-          <div class="w-full md:w-[63%]">
+        <div class="lg:flex items-start mt-7 pt-2">
+          <div class="w-full lg:w-[63%]">
             <p class="l-section__lead text-[26px] leading-[42px]">ハードとソフトウェアを融合できる卓越した<br class='pc'>クリエイティビティを軸にインキュベーションに<br class='pc'>必要な機能を360°ワンストップで提供</p>
             <p class="l-section__text text-[16px] leading-[30px] mt-7">quantumはスタートアップスタジオとして、<br class='pc'>プロダクト開発から実証実験、量産設計、エクイティ出資、グロース支援まで<br class='pc'>インキュベーションに必要なあらゆる機能をワンストップで提供しています。<br><br>独自のスタジオモデルとして、①新規事業支援のIncubation business、<br>②ベンチャークリエーションとグロース支援を行うquantum ventures、<br>③デザイン＆エンジニアリングのMEDUMの3つの事業セグメントを<br>重ね合わせて、世界を変えるインパクトのある新規事業の創造に挑戦しています。</p>
           </div>
-          <div class="w-full md:w-[37%] mt-[30px] md:mt-0 img-strength">
-            <img src="~/assets/images/home/strength/our_strength.png">
+          <div class="w-full lg:w-[37%] mt-[30px] lg:mt-0 img-strength flex justify-center">
+            <img src="~/assets/images/home/strength/our_strength.png" class="w-full md:w-[70%] lg:w-full">
           </div>
         </div>
       </div>
       <div class='l-section__inner js-lazyclass'>
-        <div class="md:flex justify-between mt-[90px] md:mt-[240px]">
+        <div class="lg:flex justify-between mt-[90px] lg:mt-[240px]">
           <h3 class="text-[27px]">incubation business</h3>
-          <div class="w-full md:w-[52%] mt-[20px] md:mt-0">
+          <div class="w-full lg:w-[52%] mt-[20px] lg:mt-0">
             <p class="l-section__text text-[16px] md:text-[20px] leading-[30px]">
               2016年の創業以来、venture buildersとして100社を超える企業とインキュベーションを実践。<br><br>quantumはものづくりを追求するプロダクトファーストを行動指針の一つとして掲げ、多様なメンバーから構成されるフルスタックなスタジオで、発想から実装、そしてグロースまでハンズオンで支援をしています。<br><br>R&Dや社内起業プログラムからのカーブアウト創出だけでなく、出資を含めた共同創業など様々な方法で、新事業の創造に挑戦しています。
             </p>
-            <div class="md:flex justify-between items-center px-8 md:px-10 py-6 md:py-8 border border-[#6C6C6C] border-solid mt-8">
+            <div class="md:flex justify-between items-center px-8 lg:px-10 py-6 lg:py-8 border border-[#6C6C6C] border-solid mt-8">
               <img src="~/assets/images/home/strength/incubation.svg" class="relative top-[-2px]">
               <p class="l-section__text text-xs leading-5 md:ps-10 mt-[20px] md:mt-0">全ての挑戦者に向けて、スタートアップスタジオとして培ってきたインキュベーションのノウハウをAIテクノロジーで届け、事業化を加速させる LEAN MODEL を提供しています。</p>
             </div>
@@ -37,29 +37,29 @@
         </div>
       </div>
       <div class='l-section__inner js-lazyclass'>
-        <div class="md:flex justify-between mt-[90px] md:mt-[160px]">
+        <div class="lg:flex justify-between mt-[90px] lg:mt-[160px]">
           <h3>venture creation & growth</h3>
-          <div class="w-full md:w-[52%] mt-[30px] md:mt-0">
-            <img src="~/assets/images/home/strength/q_ventures.svg" class="w-[50%] md:w-auto">
+          <div class="w-full lg:w-[52%] mt-[30px] lg:mt-0">
+            <img src="~/assets/images/home/strength/q_ventures.svg" class="w-[50%] md:w-[30%] lg:w-auto">
             <p class="l-section__text text-[16px] md:text-[18px] leading-[30px] mt-6">
               起業家とディープイシューに取り組むベンチャークリエーション＆グロース投資のユニット、quantum venturesを運営しています。<br><br>社会課題を解決する大学発のディープテックや企業に眠る技術を軸にしたベンチャークリエーションだけでなく、起業家とともに事業成長を目指したグロース投資を実践しています。<br><span class="text-sm">※quantumの投資子会社のSpotlightからの出資先を含む</span>
             </p>
-            <ul class="flex flex-wrap items-center mt-4 md:mt-7 md:pe-5">
+            <ul class="flex flex-wrap items-center mt-4 md:mt-7 lg:pe-5">
               <li class="md:me-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_wota.svg"></li>
               <li class="ms-[14px] md:mx-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_dgtakano.svg"></li>
               <li class="md:mx-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_xen.svg"></li>
-              <li class="ms-[14px] md:me-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_tbm.svg"></li>
-              <li class="md:ms-6 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_mirai.svg"></li>
+              <li class="ms-[14px] md:me-4 lg:ms-0 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_tbm.svg"></li>
+              <li class="lg:ms-6 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_mirai.svg"></li>
             </ul>
           </div>
         </div>
       </div>
       <div class='l-section__inner js-lazyclass'>
-        <div class="md:flex justify-between mt-[90px] md:mt-[160px]">
+        <div class="lg:flex justify-between mt-[90px] lg:mt-[160px]">
           <h3>design & engineering</h3>
-          <div class="w-full md:w-[52%] mt-[30px] md:mt-0">
+          <div class="w-full lg:w-[52%] mt-[30px] lg:mt-0">
             <a href="https://medum.jp" target="_blank" ref="noreferrer noopener" class="flex items-end">
-              <img src="~/assets/images/home/strength/logo_medum.svg" class="w-[40%] md:w-auto">
+              <img src="~/assets/images/home/strength/logo_medum.svg" class="w-[40%] md:w-[25%] lg:w-auto">
               <img src="~/assets/images/home/strength/icn_link.svg" class="ms-3">
             </a>
             <p class="l-section__text text-[16px] md:text-[18px] leading-[30px] mt-6">quantumのハードとソフトウェアを融合できる卓越したクリエイティビティをグローバルで展開するためにインハウスのデザインスタジオとしてMEDUMを組成。<br><br> quantumのものづくりの中心であるMEDUMは「人とモノゴト（人工物）の間に最適な関係性を作るデザイン」を追求しています。</p>
@@ -74,7 +74,6 @@
       </div>
     </section>
     <div class='project-wrap'>
-
       <template v-for="(w, i) in featuredWorks">
         <home-product
           :color="w.fw_text_color == 'black' ? 'black' : 'white-nomix'"
@@ -377,11 +376,11 @@ export default {
     h2 {
       font-size: 53px;
       @include mq_sp {
-        @include spfontsize(36px);
+        @include spfontsize(30px);
       }
-      @include mq_tab {
-        font-size: 50px;
-      }
+      // @include mq_tab {
+      //   font-size: 50px;
+      // }
     }
     .l-section__lead {
       margin-top: 45px;
@@ -399,7 +398,7 @@ export default {
   }
 
   .our-strength {
-    padding: 150px 0 200px 0;
+    padding: 170px 0 200px 0;
     color: #000;
     background-color: #fff;
     transition: background-color 0.5s ease;
@@ -412,9 +411,6 @@ export default {
     h2, h3 {
       color: #000;
       letter-spacing: 0.04rem;
-    }
-    h2 {
-      font-size: 44px;
     }
     h3 {
       font-size: 27px;
