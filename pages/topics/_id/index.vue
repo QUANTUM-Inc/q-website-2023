@@ -9,11 +9,11 @@
         </div>
       </section>
       <section class='l-section'>
-        <div class='l-section__inner'>
+        <div class='l-section__inner js-lazyclass'>
           <div v-if="topic.acf.main_visual" class="mt-[30px] md:mt-[55px]">
             <img :src="topic.acf.main_visual" class="w-full">
           </div>
-          <div class="topic__content js-lazyclass" v-html="topic.content.rendered"></div>
+          <div class="topic__content" v-html="topic.content.rendered"></div>
           <div class="topic__share mt-[80px] md:mt-[120px]">
             <ul class="flex items-center">
               <li><a href="#"><img src="~/assets/images/topics/icn_facebook.svg"></a></li>

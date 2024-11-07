@@ -3,10 +3,10 @@
     <div class='topics-wrap'>
       <div class='topic' v-for='topic in topics'>
         <div class='topic__image'>
-          <a :href='`/topics/${topic.id}`'>
+          <nuxt-link :to='`/topics/${topic.id}`'>
             <img src="~/assets/images/common/empty.png" v-if="!topic.acf.thumbnail">
             <img :src="topic.acf.thumbnail" v-else>
-          </a>
+          </nuxt-link>
         </div>
         <div class='topic__category mt-3' v-if="topic.topics_category">
           <span v-for="(catId, i) in topic.topics_category">
