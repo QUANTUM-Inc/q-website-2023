@@ -23,13 +23,13 @@
           </div>
           <div class="topic__pagination mt-[45px] md:mt-[55px]">
             <div class="flex justify-start">
-              <nuxt-link to="#" class="text-[14px] md:text-[16px]">← prev</nuxt-link>
+              <nuxt-link :to="`/topics/${prevId}`" class="text-[14px] md:text-[16px]" v-if="prevId > 0">← prev</nuxt-link>
             </div>
             <div class="flex justify-center">
               <nuxt-link to="/topics" class="text-[15px] md:text-[19px]">一覧へ戻る</nuxt-link>
             </div>
             <div class="flex justify-end">
-              <nuxt-link to="#" class="text-[14px] md:text-[16px]">next →</nuxt-link>
+              <nuxt-link :to="`/topics/${nextId}`" class="text-[14px] md:text-[16px]" v-if="nextId > 0">next →</nuxt-link>
             </div>
           </div>
         </div>
@@ -66,7 +66,6 @@ export default {
   },
 
   async asyncData({ app, store, params }) {
-    console.log('params', params)
     const { data } = await app.$axios.get(store.getters.apiPath({
       type: 'topic',
       id: params.id
@@ -84,9 +83,18 @@ export default {
     } else {
       categories = store.state.topicsCategories
     }
+
+    const topics = await app.$axios.get(store.getters.apiPath({
+      type: 'topics',
+      size: 100,
+    }))
+
+    const topicIds = topics.data.map(t => t.id)
+
     return {
       topic: data,
-      categories
+      categories,
+      topicIds
     }
   },
   computed: {
@@ -99,6 +107,20 @@ export default {
         names.push(c.name)
       }
       return names.join(' / ')
+    },
+    prevId() {
+      const index = this.topicIds.indexOf(Number(this.$route.params.id))
+      if (index > 0) {
+        return this.topicIds[index - 1]
+      }
+      return 0
+    },
+    nextId() {
+      const index = this.topicIds.indexOf(Number(this.$route.params.id))
+      if (index >= 0 && index + 1 < this.topicIds.length) {
+        return this.topicIds[index + 1]
+      }
+      return 0
     }
   },
   methods: {

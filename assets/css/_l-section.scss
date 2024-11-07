@@ -44,6 +44,7 @@
         clip-path: inset(0% 0% 0% 0%);
       }
       .l-section__lead,
+      .l-section__text,
       .l-section__body {
         clip-path: inset(0% 0% 0% 0%);
       }
@@ -63,6 +64,10 @@
     @include mq_sp {
       @include spfontsize(18px);
     }
+  }
+  &__text {
+    @include ease-out-cubic(800, 100);
+    clip-path: inset(0% 0% 100% 0%);
   }
   &__body {
     font-size: 20px;

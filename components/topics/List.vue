@@ -16,7 +16,7 @@
         <div class='topic__title mt-[5px]'>
           <a :href='`/topics/${topic.id}`'>{{topic.title.rendered}}</a>
         </div>
-        <div class='topic__date mt-[4px]'>{{topic.acf.date}}</div>
+        <div class='topic__date md:mt-[4px]'>{{topic.acf.date}}</div>
       </div>
     </div>
   </div>
@@ -64,6 +64,8 @@ export default {
 .topics-list {
   @include mq_sp {
     padding: percentage(math.div(70px, $spWidth)) 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
   h2 {
     line-height: 1.2;
@@ -77,6 +79,9 @@ export default {
     flex-wrap: wrap;
     margin: 0 -8px;
     @include lazyappear();
+    @include mq_sp {
+      margin: 0 -1px;
+    }
   }
 
   &.appear {
@@ -92,8 +97,18 @@ export default {
     margin-bottom: 55px;
     text-align: left;
 
+    @include mq_sp {
+      width: 50%;
+      padding: 0 1px;
+      margin-bottom: 25px;
+    }
+
     &__category {
       @include noto-light;
+      @include mq_sp {
+        font-size: 11px;
+        line-height: 16px;
+      }
     }
     
     &__image {
@@ -117,6 +132,10 @@ export default {
       overflow: hidden;
       a {
         @include noto-light;
+      }
+      @include mq_sp {
+        font-size: 13px;
+        line-height: 20px;
       }
     }
     &__date {

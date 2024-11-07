@@ -18,12 +18,14 @@
       </section>
       <section class='l-section' ref='topics'>
         <div class='l-section__inner js-lazyclass'>
-          <div class="topics--list-wrap mt-[40px]" ref="topicsWrap">
-            <TopicsList :topics="filteredTopics" ref="topicsList"></TopicsList>
-          </div>
-          <div ref="topicsEnd"></div>
-          <div class="text-center" v-if="!isLastPage">
-            <a class='l-section__textlink load-more' @click="loadMore">and more</a>
+          <div class=" pb-[60px] md:pb-0">
+            <div class="topics--list-wrap md:mt-[40px]" ref="topicsWrap">
+              <TopicsList :topics="filteredTopics" ref="topicsList"></TopicsList>
+            </div>
+            <div ref="topicsEnd"></div>
+            <div class="text-center" v-if="!isLastPage">
+              <a class='l-section__textlink load-more' @click="loadMore">and more</a>
+            </div>
           </div>
         </div>
       </section>
@@ -76,7 +78,7 @@ export default {
 
   async asyncData({ app, store, params }) {
     const page = 1
-    const perPage = 6
+    const perPage = 12
     const topics = await app.$axios.get(store.getters.apiPath({
       type: 'topics',
       size: perPage,
@@ -312,7 +314,6 @@ export default {
   }
 
   @include mq_sp {
-    padding-top: percentage(math.div(54px, $spWidth));
     padding-bottom: percentage(math.div(0px, $spWidth));
   }
 }
