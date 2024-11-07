@@ -91,7 +91,9 @@ export default {
     }
   },
   mounted() {
-    this.setup()
+    setTimeout(() => {
+      this.setup()
+    }, 100)
   },
   methods: {
     linkto() {
