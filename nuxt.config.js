@@ -228,7 +228,7 @@ export default {
         '/en/qletter/complete',
         '/en/qletter/unsubscribe',
         '/en/contact/complete',
-
+        '/en/topics',
       ])
     }
     /*async routes() {

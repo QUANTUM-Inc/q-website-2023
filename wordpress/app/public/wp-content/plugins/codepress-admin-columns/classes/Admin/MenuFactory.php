@@ -2,33 +2,79 @@
 
 namespace AC\Admin;
 
+use AC\Admin\Menu\Item;
+use AC\Asset\Location;
 use AC\Deprecated\Hooks;
+use AC\Type\Url\Site;
+use AC\Type\Url\UtmTags;
 
-class MenuFactory implements MenuFactoryInterface {
+class MenuFactory implements MenuFactoryInterface
+{
 
-	/**
-	 * @var string
-	 */
-	protected $url;
+    protected $url;
 
-	public function __construct( $url ) {
-		$this->url = $url;
-	}
+    protected $location;
 
-	public function create( $current ) {
-		$menu = new Menu( $this->url, $current );
+    public function __construct(string $url, Location\Absolute $location)
+    {
+        $this->url = $url;
+        $this->location = $location;
+    }
 
-		$menu->add_item( Main\Columns::NAME, __( 'Columns', 'codepress-admin-columns' ) )
-		     ->add_item( Main\Settings::NAME, __( 'Settings', 'codepress-admin-columns' ) )
-		     ->add_item( Main\Addons::NAME, __( 'Add-ons', 'codepress-admin-columns' ) );
+    protected function create_menu_link(string $slug): string
+    {
+        return add_query_arg(
+            [
+                RequestHandlerInterface::PARAM_PAGE => Admin::NAME,
+                RequestHandlerInterface::PARAM_TAB  => $slug,
+            ],
+            $this->url
+        );
+    }
 
-		$hooks = new Hooks();
+    public function create(string $current): Menu
+    {
+        $menu = new Menu();
 
-		if ( $hooks->get_count() > 0 ) {
-			$menu->add_item( Main\Help::NAME, sprintf( '%s %s', __( 'Help', 'codepress-admin-columns' ), '<span class="ac-badge">' . $hooks->get_count() . '</span>' ) );
-		}
+        $items = [
+            Page\Columns::NAME => __('Columns', 'codepress-admin-columns'),
+            Page\Settings::NAME => __('Settings', 'codepress-admin-columns'),
+            Page\Addons::NAME => __('Add-ons', 'codepress-admin-columns'),
+        ];
 
-		return $menu;
-	}
+        $hooks = new Hooks();
+
+        if ($hooks->get_count() > 0) {
+            $items[Page\Help::NAME] = sprintf(
+                '%s %s',
+                __('Help', 'codepress-admin-columns'),
+                '<span class="ac-badge">' . $hooks->get_count() . '</span>'
+            );
+        }
+
+        foreach ($items as $slug => $label) {
+            $menu->add_item(
+                new Item(
+                    $slug,
+                    $this->create_menu_link($slug),
+                    $label,
+                    sprintf('-%s %s', $slug, $current === $slug ? '-active' : '')
+                )
+            );
+        }
+
+        $url = (new UtmTags(new Site(Site::PAGE_ABOUT_PRO), 'upgrade'))->get_url();
+        $image = sprintf(
+            '<img alt="%s" src="%s">',
+            'Admin Columns Pro',
+            $this->location->with_suffix('/assets/images/external.svg')->get_url()
+        );
+
+        $menu->add_item(new Item('pro', $url, sprintf('%s %s', 'Admin Columns Pro', $image), '-pro', '_blank'));
+
+        do_action('ac/admin/page/menu', $menu);
+
+        return $menu;
+    }
 
 }

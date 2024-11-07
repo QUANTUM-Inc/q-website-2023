@@ -2,74 +2,48 @@
 
 namespace AC\Admin;
 
-use AC\Integration;
+use AC\IntegrationRepository;
 use AC\Integrations;
-use AC\PluginInformation;
 use AC\Promo;
 use AC\PromoCollection;
 use AC\View;
 
-class Banner {
+class Banner
+{
 
-	/**
-	 * @var Integrations
-	 */
-	private $integrations;
+    private $integrations;
 
-	public function __construct() {
-		$this->integrations = new Integrations();
-	}
+    public function __construct()
+    {
+        $this->integrations = new IntegrationRepository();
+    }
 
-	/**
-	 * @return Promo|null
-	 */
-	private function get_active_promotion() {
-		$promos = new PromoCollection();
+    private function get_active_promotion(): ?Promo
+    {
+        return (new PromoCollection())->find_active();
+    }
 
-		return $promos->find_active();
-	}
+    private function get_missing_integrations(): Integrations
+    {
+        return $this->integrations->find_all_by_active_plugins();
+    }
 
-	/**
-	 * @return int
-	 */
-	private function get_discount_percentage() {
-		return 10;
-	}
+    public function render(): string
+    {
+        $banner = new View([
+            'promo'        => $this->get_active_promotion(),
+            'integrations' => $this->get_missing_integrations()->all(),
+            'discount'     => 10,
+        ]);
 
-	/**
-	 * @return Integration[]
-	 */
-	private function get_missing_integrations() {
-		$missing = [];
+        $banner->set_template('admin/side-banner');
 
-		foreach ( $this->integrations->all() as $integration ) {
-			$integration_plugin = new PluginInformation( $integration->get_basename() );
+        return $banner->render();
+    }
 
-			if ( $integration->is_plugin_active() && ! $integration_plugin->is_active() ) {
-				$missing[] = $integration;
-			}
-		}
-
-		return $missing;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function render() {
-		$banner = new View( [
-			'promo'        => $this->get_active_promotion(),
-			'integrations' => $this->get_missing_integrations(),
-			'discount'     => $this->get_discount_percentage(),
-		] );
-
-		$banner->set_template( 'admin/side-banner' );
-
-		return $banner->render();
-	}
-
-	public function __toString() {
-		return $this->render();
-	}
+    public function __toString()
+    {
+        return $this->render();
+    }
 
 }

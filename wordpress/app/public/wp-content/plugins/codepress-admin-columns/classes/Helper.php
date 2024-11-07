@@ -3,6 +3,7 @@
 namespace AC;
 
 use AC;
+use InvalidArgumentException;
 
 /**
  * Class AC\Helper
@@ -11,6 +12,7 @@ use AC;
  * @property Helper\Date     date
  * @property Helper\Image    image
  * @property Helper\Post     post
+ * @property Helper\Menu     menu
  * @property Helper\Strings  string
  * @property Helper\Taxonomy taxonomy
  * @property Helper\User     user
@@ -20,28 +22,28 @@ use AC;
  * @property Helper\Network  network
  * @property Helper\File     file
  */
-final class Helper {
+final class Helper
+{
 
-	public function __get( $helper ) {
+    public function __get(string $helper)
+    {
+        switch ($helper) {
+            // Hotfix
+            case 'string' :
+                return new AC\Helper\Strings();
 
-		switch ( $helper ) {
+            case 'array' :
+                return new AC\Helper\Arrays();
 
-			// Hotfix
-			case 'string' :
-				return new AC\Helper\Strings;
+            default :
+                $class = 'AC\Helper\\' . ucfirst($helper);
 
-			case 'array' :
-				return new AC\Helper\Arrays;
+                if (class_exists($class)) {
+                    return new $class();
+                }
+        }
 
-			default :
-				$class = 'AC\Helper\\' . ucfirst( $helper );
-
-				if ( class_exists( $class ) ) {
-					return new $class;
-				}
-		}
-
-		return false;
-	}
+        throw new InvalidArgumentException('Invalid helper.');
+    }
 
 }

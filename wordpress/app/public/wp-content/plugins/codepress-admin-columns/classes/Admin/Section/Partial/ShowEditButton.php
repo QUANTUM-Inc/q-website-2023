@@ -2,43 +2,42 @@
 
 namespace AC\Admin\Section\Partial;
 
-use AC\Form\Element\Checkbox;
+use AC\Form\Element\Toggle;
 use AC\Renderable;
-use AC\Settings\General;
-use AC\Settings\Option\EditButton;
+use AC\Settings\General\EditButton;
+use AC\View;
 
-class ShowEditButton implements Renderable {
+class ShowEditButton implements Renderable
+{
 
-	const OPTION_NAME = 'show_edit_button';
+    private $option;
 
-	/**
-	 * @var EditButton
-	 */
-	private $option;
+    public function __construct(EditButton $option)
+    {
+        $this->option = $option;
+    }
 
-	public function __construct() {
-		$this->option = new EditButton();
-	}
+    private function get_label(): string
+    {
+        return sprintf(
+            __("Show %s button on table screen.", 'codepress-admin-columns'),
+            sprintf('"%s"', __('Edit columns', 'codepress-admin-columns'))
+        );
+    }
 
-	private function get_label() {
-		return sprintf( '%s %s',
-			sprintf( __( "Show %s button on table screen.", 'codepress-admin-columns' ), sprintf( '"%s"', __( 'Edit columns', 'codepress-admin-columns' ) ) ),
-			sprintf( __( "Default is %s.", 'codepress-admin-columns' ), '<code>' . __( 'on', 'codepress-admin-columns' ) . '</code>' )
-		);
-	}
+    public function render(): string
+    {
+        $toggle = new Toggle(
+            $this->option->get_name(),
+            $this->get_label(),
+            $this->option->is_enabled()
+        );
+        $toggle->set_value('1');
+        $toggle->set_attribute('data-ajax-setting', $this->option->get_name());
 
-	/**
-	 * @return string
-	 */
-	public function render() {
-		$name = sprintf( '%s[%s]', General::NAME, $this->option->get_name() );
+        $view = new View(['setting' => $toggle->render()]);
 
-		$checkbox = new Checkbox( $name );
-
-		$checkbox->set_options( [ '1' => $this->get_label() ] )
-		         ->set_value( $this->option->is_enabled() ? 1 : 0 );
-
-		return $checkbox->render();
-	}
+        return $view->set_template('admin/settings/setting-row')->render();
+    }
 
 }

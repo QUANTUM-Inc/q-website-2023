@@ -180,7 +180,17 @@ module.exports = function () {
       description: 'quantum is a start-up studio within Hakuhodo Inc. group. As venture builders specializing in new business creation, we have created many new businesses since our establishment, mainly through co-founding with our partners.',
       keywords: this.keywordsEn
     },
-
+    
+    '/topics': {
+      title: 'quantum | topics',
+      description: 'quantumがパートナー企業、スタートアップ、大学などとの共同開発によって、また自社事業として立ち上げた新規事業プロジェクト',
+      keywords: this.keywords
+    },
+    '/en/topics': {
+      title: 'quantum | topics',
+      description: 'New business projects launched by quantum in collaboration with partners, startups, universities, and also as in-house projects.',
+      keywords: this.keywordsEn
+    },
 
   }
   this.nuxt.hook('generate:page', async (page) => {

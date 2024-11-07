@@ -7,20 +7,23 @@ use AC\Capabilities;
 use AC\Message\Notice\Dismissible;
 use AC\Preferences;
 use AC\Promo;
-use AC\Registrable;
+use AC\Registerable;
 use AC\Screen;
 
 final class Promotion
-	implements Registrable {
+	implements Registerable {
 
-	/** @var Promo */
+	/**
+	 * @var Promo
+	 */
 	private $promo;
 
 	public function __construct( Promo $promo ) {
 		$this->promo = $promo;
 	}
 
-	public function register() {
+	public function register(): void
+    {
 		add_action( 'ac/screen', [ $this, 'display' ] );
 
 		$this->get_ajax_handler()->register();
@@ -71,7 +74,7 @@ final class Promotion
 		}
 
 		$message = sprintf( __( 'Get %s now', 'codepress-admin-columns' ), '<strong>Admin Columns Pro</strong>' );
-		$message = sprintf( '%s! <a target="_blank" href="%s">%s</a>', $this->promo->get_title(), $this->promo->get_url(), $message );
+		$message = sprintf( '%s! <a target="_blank" href="%s">%s</a>', $this->promo->get_title(), $this->promo->get_url()->get_url(), $message );
 
 		$notice = new Dismissible( $message, $this->get_ajax_handler() );
 		$notice->register();

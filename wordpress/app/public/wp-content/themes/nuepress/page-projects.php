@@ -30,6 +30,7 @@ $news_list = get_posts(array(
 	'meta_key' => 'date',
 ));
 ?>
+
     <main id="news" class="fea">
         <section class="p-section" id="background">
             <video src="/assets/video/sp_news.mp4" preload="metadata" muted="muted" autoplay playsinline loop data-video="/assets/video/news.mp4" data-video-sp="/assets/video/sp_news.mp4"></video>

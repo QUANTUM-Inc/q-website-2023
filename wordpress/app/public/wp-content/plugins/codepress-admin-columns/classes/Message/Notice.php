@@ -2,13 +2,16 @@
 
 namespace AC\Message;
 
+use AC\Asset\Style;
+use AC\Container;
 use AC\Message;
-use AC\Registrable;
+use AC\Registerable;
 use AC\View;
 
-class Notice extends Message implements Registrable {
+class Notice extends Message implements Registerable {
 
-	public function render() {
+	public function render(): string
+    {
 		$data = [
 			'message' => $this->message,
 			'type'    => $this->type,
@@ -21,7 +24,8 @@ class Notice extends Message implements Registrable {
 		return $view->render();
 	}
 
-	public function register() {
+	public function register(): void
+    {
 		if ( apply_filters( 'ac/suppress_site_wide_notices', false ) ) {
 			return;
 		}
@@ -31,11 +35,9 @@ class Notice extends Message implements Registrable {
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
-	/**
-	 * Enqueue scripts & styles
-	 */
 	public function enqueue_scripts() {
-		wp_enqueue_style( 'ac-message', AC()->get_url() . 'assets/css/notice.css', [], AC()->get_version() );
+		$style = new Style( 'ac-message', Container::get_location()->with_suffix( 'assets/css/notice.css' ) );
+		$style->enqueue();
 	}
 
 }

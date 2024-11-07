@@ -15,7 +15,7 @@ class User {
 	public function get_user_field( $field, $user_id ) {
 		$user = get_user_by( 'id', $user_id );
 
-		return isset( $user->{$field} ) ? $user->{$field} : false;
+		return $user->{$field} ?? false;
 	}
 
 	/**
@@ -28,7 +28,7 @@ class User {
 			return get_userdata( $user );
 		}
 
-		return $user && $user instanceof WP_User
+		return $user instanceof WP_User
 			? $user
 			: false;
 	}
@@ -88,9 +88,7 @@ class User {
 			case 'roles' :
 				return ac_helper()->string->enumeration_list( $this->get_roles_names( $user->roles ), 'and' );
 			default :
-				return isset( $user->{$format} )
-					? $user->{$format}
-					: $user->display_name;
+				return $user->{$format} ?? $user->display_name;
 		}
 	}
 
@@ -186,6 +184,26 @@ class User {
 		global $wpdb;
 
 		return $wpdb->get_col( "SELECT {$wpdb->users}.ID FROM {$wpdb->users}" );
+	}
+
+	/**
+	 * Fetches remote translations. Expires in 7 days.
+	 * @return array[]
+	 */
+	public function get_translations_remote() {
+		$translations = get_site_transient( 'ac_available_translations' );
+
+		if ( false !== $translations ) {
+			return $translations;
+		}
+
+		require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
+
+		$translations = wp_get_available_translations();
+
+		set_site_transient( 'ac_available_translations', wp_get_available_translations(), WEEK_IN_SECONDS );
+
+		return $translations;
 	}
 
 }

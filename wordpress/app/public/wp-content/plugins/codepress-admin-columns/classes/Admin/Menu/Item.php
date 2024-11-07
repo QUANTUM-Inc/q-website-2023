@@ -2,48 +2,51 @@
 
 namespace AC\Admin\Menu;
 
-class Item {
+class Item
+{
 
-	/**
-	 * @var string
-	 */
-	private $slug;
+    private $slug;
 
-	/**
-	 * @var string
-	 */
-	private $label;
+    private $url;
 
-	/**
-	 * @var string
-	 */
-	private $url;
+    private $label;
 
-	public function __construct( $slug, $label, $url ) {
-		$this->slug = $slug;
-		$this->label = $label;
-		$this->url = $url;
-	}
+    private $class;
 
-	/**
-	 * @return string
-	 */
-	public function get_label() {
-		return $this->label;
-	}
+    private $target;
 
-	/**
-	 * @return string
-	 */
-	public function get_slug() {
-		return $this->slug;
-	}
+    public function __construct(string $slug, string $url, string $label, string $class = '', string $target = '')
+    {
+        $this->slug = $slug;
+        $this->url = $url;
+        $this->label = $label;
+        $this->class = $class;
+        $this->target = $target;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function get_url() {
-		return $this->url;
-	}
+    public function get_slug(): string
+    {
+        return $this->slug;
+    }
+
+    public function get_url(): string
+    {
+        return $this->url;
+    }
+
+    public function get_label(): string
+    {
+        return $this->label;
+    }
+
+    public function get_class(): string
+    {
+        return $this->class;
+    }
+
+    public function get_target(): string
+    {
+        return $this->target;
+    }
 
 }

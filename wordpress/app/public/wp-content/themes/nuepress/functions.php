@@ -193,7 +193,8 @@ function get_article_img_url($id)
 {
     // 記事ページの場合
     if (is_single()) {
-        return get_field("main_visual")["url"];
+        $field = get_field(selector: "main_visual");
+        return $field["url"] ?? '';
     }
 }
 function get_outline($id)

@@ -2,68 +2,49 @@
 
 namespace AC\Admin;
 
-use AC\Registrable;
-use AC\Request;
-use AC\View;
+use AC\Asset\Location\Absolute;
+use AC\Registerable;
 
-class Admin implements Registrable {
+class Admin implements Registerable
+{
 
-	const NAME = 'codepress-admin-columns';
+    public const NAME = 'codepress-admin-columns';
 
-	/**
-	 * @var RequestHandlerInterface
-	 */
-	private $request_handler;
+    private $request_handler;
 
-	/**
-	 * @var WpMenuFactory
-	 */
-	private $wp_menu_factory;
+    private $location;
 
-	/**
-	 * @var AdminScripts
-	 */
-	private $scripts;
+    private $scripts;
 
-	public function __construct( RequestHandlerInterface $request_handler, WpMenuFactory $wp_menu_factory, AdminScripts $scripts ) {
-		$this->request_handler = $request_handler;
-		$this->wp_menu_factory = $wp_menu_factory;
-		$this->scripts = $scripts;
-	}
+    public function __construct(RequestHandlerInterface $request_handler, Absolute $location, AdminScripts $scripts)
+    {
+        $this->request_handler = $request_handler;
+        $this->location = $location;
+        $this->scripts = $scripts;
+    }
 
-	public function register() {
-		add_action( 'admin_menu', [ $this, 'init' ] );
-	}
+    public function register(): void
+    {
+        add_action('admin_menu', [$this, 'init']);
+    }
 
-	public function init() {
-		$hook = $this->wp_menu_factory->create_sub_menu( 'options-general.php' );
+    private function get_menu_page_factory(): MenuPageFactory
+    {
+        return apply_filters(
+            'ac/menu_page_factory',
+            new MenuPageFactory\SubMenu()
+        );
+    }
 
-		add_action( $hook, [ $this, 'body' ] );
-		add_action( 'load-' . $hook, [ $this, 'load' ] );
-	}
+    public function init(): void
+    {
+        $hook = $this->get_menu_page_factory()->create([
+            'parent' => 'options-general.php',
+            'icon'   => $this->location->with_suffix('assets/images/page-menu-icon.svg')->get_url(),
+        ]);
 
-	public function body() {
-		$page = $this->request_handler->handle( new Request() );
-
-		if ( $page ) {
-			$view = new View( [
-				'content' => $page->get_head()->render() . $page->get_main()->render(),
-			] );
-
-			echo $view->set_template( 'admin/wrap' )->render();
-		}
-	}
-
-	public function load() {
-		$page = $this->request_handler->handle( new Request() );
-
-		if ( $page instanceof Registrable ) {
-			$page->register();
-		}
-
-		foreach ( $this->scripts->get_assets()->all() as $asset ) {
-			$asset->enqueue();
-		}
-	}
+        $loader = new AdminLoader($hook, $this->request_handler, $this->scripts);
+        $loader->register();
+    }
 
 }
