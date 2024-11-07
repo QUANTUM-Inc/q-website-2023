@@ -64,10 +64,10 @@
             </a>
             <p class="l-section__text text-[16px] md:text-[18px] leading-[30px] mt-6">quantumのハードとソフトウェアを融合できる卓越したクリエイティビティをグローバルで展開するためにインハウスのデザインスタジオとしてMEDUMを組成。<br><br> quantumのものづくりの中心であるMEDUMは「人とモノゴト（人工物）の間に最適な関係性を作るデザイン」を追求しています。</p>
             <ul class="flex flex-wrap md:flex-nowrap mt-6 -mx-1">
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img1.png"></li>
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img2.png"></li>
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img3.png"></li>
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img4.png"></li>
+              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img1.png" class="w-full"></li>
+              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img2.png" class="w-full"></li>
+              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img3.png" class="w-full"></li>
+              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img4.png" class="w-full"></li>
             </ul>
           </div>
         </div>

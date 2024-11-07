@@ -94,6 +94,10 @@ export default {
     setTimeout(() => {
       this.setup()
     }, 100)
+    window.addEventListener('resize', this.refreshScrollTriger())
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.refreshScrollTriger())
   },
   methods: {
     linkto() {
@@ -197,7 +201,9 @@ export default {
           }
         })
       }
-
+    },
+    refreshScrollTriger() {
+      gsap.delayedCall(0.1, ScrollTrigger.refresh)
     }
   }
 };
