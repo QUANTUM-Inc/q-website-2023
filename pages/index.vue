@@ -14,8 +14,8 @@
         <h2>our strength</h2>
         <div class="lg:flex items-start mt-7 pt-2">
           <div class="w-full lg:w-[63%]">
-            <p class="l-section__lead text-[26px] leading-[42px]">ハードとソフトウェアを融合できる卓越した<br class='pc'>クリエイティビティを軸にインキュベーションに<br class='pc'>必要な機能を360°ワンストップで提供</p>
-            <p class="l-section__text text-[16px] leading-[30px] mt-7">quantumはスタートアップスタジオとして、<br class='pc'>プロダクト開発から実証実験、量産設計、エクイティ出資、グロース支援まで<br class='pc'>インキュベーションに必要なあらゆる機能をワンストップで提供しています。<br><br>独自のスタジオモデルとして、①新規事業支援のIncubation business、<br>②ベンチャークリエーションとグロース支援を行うquantum ventures、<br>③デザイン＆エンジニアリングのMEDUMの3つの事業セグメントを<br>重ね合わせて、世界を変えるインパクトのある新規事業の創造に挑戦しています。</p>
+            <p class="l-section__text text-[20px] leading-[34px] md:text-[26px] md:leading-[42px]">ハードとソフトウェアを融合できる卓越した<br class='pc'>クリエイティビティを軸にインキュベーションに<br class='pc'>必要な機能を360°ワンストップで提供</p>
+            <p class="l-section__text text-[15px] md:text-[20px] lg:text-[16px] leading-[30px] mt-7">quantumはスタートアップスタジオとして、<br class='pc'>プロダクト開発から実証実験、量産設計、エクイティ出資、グロース支援まで<br class='pc'>インキュベーションに必要なあらゆる機能をワンストップで提供しています。<br><br>独自のスタジオモデルとして、①新規事業支援のIncubation business、<br>②ベンチャークリエーションとグロース支援を行うquantum ventures、<br>③デザイン＆エンジニアリングのMEDUMの3つの事業セグメントを<br>重ね合わせて、世界を変えるインパクトのある新規事業の創造に挑戦しています。</p>
           </div>
           <div class="w-full lg:w-[37%] mt-[30px] lg:mt-0 img-strength flex justify-center">
             <img src="~/assets/images/home/strength/our_strength.png" class="w-full md:w-[70%] lg:w-full">
@@ -26,7 +26,7 @@
         <div class="lg:flex justify-between mt-[90px] lg:mt-[240px]">
           <h3 class="text-[27px]">incubation business</h3>
           <div class="w-full lg:w-[52%] mt-[20px] lg:mt-0">
-            <p class="l-section__text text-[16px] md:text-[20px] leading-[30px]">
+            <p class="l-section__text text-[15px] md:text-[20px] lg:text-[18px] leading-[30px]">
               2016年の創業以来、venture buildersとして100社を超える企業とインキュベーションを実践。<br><br>quantumはものづくりを追求するプロダクトファーストを行動指針の一つとして掲げ、多様なメンバーから構成されるフルスタックなスタジオで、発想から実装、そしてグロースまでハンズオンで支援をしています。<br><br>R&Dや社内起業プログラムからのカーブアウト創出だけでなく、出資を含めた共同創業など様々な方法で、新事業の創造に挑戦しています。
             </p>
             <div class="md:flex justify-between items-center px-8 lg:px-10 py-6 lg:py-8 border border-[#6C6C6C] border-solid mt-8">
@@ -41,7 +41,7 @@
           <h3>venture creation & growth</h3>
           <div class="w-full lg:w-[52%] mt-[30px] lg:mt-0">
             <img src="~/assets/images/home/strength/q_ventures.svg" class="w-[50%] md:w-[30%] lg:w-auto">
-            <p class="l-section__text text-[16px] md:text-[18px] leading-[30px] mt-6">
+            <p class="l-section__text text-[15px] md:text-[20px] lg:text-[18px] leading-[30px] mt-6">
               起業家とディープイシューに取り組むベンチャークリエーション＆グロース投資のユニット、quantum venturesを運営しています。<br><br>社会課題を解決する大学発のディープテックや企業に眠る技術を軸にしたベンチャークリエーションだけでなく、起業家とともに事業成長を目指したグロース投資を実践しています。<br><span class="text-sm">※quantumの投資子会社のSpotlightからの出資先を含む</span>
             </p>
             <ul class="flex flex-wrap items-center mt-4 md:mt-7 lg:pe-5">
@@ -62,7 +62,7 @@
               <img src="~/assets/images/home/strength/logo_medum.svg" class="w-[40%] md:w-[25%] lg:w-auto">
               <img src="~/assets/images/home/strength/icn_link.svg" class="ms-3">
             </a>
-            <p class="l-section__text text-[16px] md:text-[18px] leading-[30px] mt-6">quantumのハードとソフトウェアを融合できる卓越したクリエイティビティをグローバルで展開するためにインハウスのデザインスタジオとしてMEDUMを組成。<br><br> quantumのものづくりの中心であるMEDUMは「人とモノゴト（人工物）の間に最適な関係性を作るデザイン」を追求しています。</p>
+            <p class="l-section__text text-[15px] md:text-[20px] lg:text-[18px] leading-[30px] mt-6">quantumのハードとソフトウェアを融合できる卓越したクリエイティビティをグローバルで展開するためにインハウスのデザインスタジオとしてMEDUMを組成。<br><br> quantumのものづくりの中心であるMEDUMは「人とモノゴト（人工物）の間に最適な関係性を作るデザイン」を追求しています。</p>
             <ul class="flex flex-wrap md:flex-nowrap mt-6 -mx-1">
               <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img1.png" class="w-full"></li>
               <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img2.png" class="w-full"></li>

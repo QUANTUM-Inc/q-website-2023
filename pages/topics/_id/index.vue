@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="topics--detail">
-      <section class='l-section head'>
+      <section class='l-section head md:mt-[80px] lg:mt-[120px]'>
         <div class='l-section__inner js-lazyclass'>
           <p class="text-[14px] md:text-[16px]">{{ categoryNames  }}</p>
-          <h1 class="text-[32px] leading-[54px] mt-1 md:mt-3 ms-[-3px]">{{ topic.title.rendered }}</h1>
+          <h1 class="text-[22px] leading-[32px] md:text-[32px] md:leading-[54px] mt-1 md:mt-3 ms-[-3px]">{{ topic.title.rendered }}</h1>
           <p class="text-[12px] opacity-50 mt-[10px] md:mt-[20px]">{{ topic.acf.date }}</p>
         </div>
       </section>
@@ -133,21 +133,10 @@ export default {
   padding-top: 120px;
   padding-bottom: 240px;
   .head {
-    padding-top: 136px;
-    @include mq_sp {
-      padding-top: 0;
-    }
-    @include mq_tab {
-      padding-top: 56px;
-    }
     h1 {
-      font-size: 32px;
-      line-height: 54px;
       font-weight: normal;
       
       @include mq_sp {
-        font-size: 22px;
-        line-height: 30px;
         text-align: left;
       }
     }
