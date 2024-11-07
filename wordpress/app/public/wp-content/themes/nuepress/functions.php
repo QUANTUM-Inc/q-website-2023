@@ -203,3 +203,10 @@ function get_outline($id)
         return get_field("outline");
     }
 }
+
+add_filter("rest_topics_query", function ($args, $query) {
+    $args["order"] = "desc";
+    $args["orderby"] = "meta_value";
+    $args["meta_key"] = "date";
+    return $args;
+  }, 10, 2);
