@@ -102,9 +102,11 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.setup()
-    }, 100)
+    this.$nextTick(() => {
+      gsap.delayedCall(0.1, () => {
+        this.setup()
+      })
+    })
     window.addEventListener('resize', this.refreshScrollTriger())
     window.addEventListener('scroll', this.setScrollEvents)
   },
@@ -240,7 +242,7 @@ export default {
       //   this.refreshScrollTriger()
       // }
       // this.prevWindowHeight = window.innerHeight
-    }
+    },
   }
 };
 </script>

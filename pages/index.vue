@@ -33,8 +33,8 @@
               <div class="anim-border-box-inner">
                 <div class="anim-border-box-border">
                   <div class="incubation-box md:flex justify-between items-center px-8 lg:px-10 py-6 lg:py-8">
-                    <img src="~/assets/images/home/strength/incubation.svg" class="relative top-[-2px]">
-                    <p class="l-section__text text-xs leading-5 md:ps-10 mt-[20px] md:mt-0 text-left">全ての挑戦者に向けて、スタートアップスタジオとして培ってきたインキュベーションのノウハウをAIテクノロジーで届け、事業化を加速させる LEAN MODEL を提供しています。</p>
+                    <img src="~/assets/images/home/strength/incubation.svg" class="relative top-[-2px] z-20">
+                    <p class="l-section__text text-xs leading-5 md:ps-10 mt-[20px] md:mt-0 text-left relative z-10">全ての挑戦者に向けて、スタートアップスタジオとして培ってきたインキュベーションのノウハウをAIテクノロジーで届け、事業化を加速させる LEAN MODEL を提供しています。</p>
                   </div>
                 </div>
               </div>
@@ -50,12 +50,12 @@
             <p class="l-section__text text-[15px] md:text-[20px] lg:text-[18px] leading-[30px] mt-6">
               起業家とディープイシューに取り組むベンチャークリエーション＆グロース投資のユニット、quantum venturesを運営しています。<br><br>社会課題を解決する大学発のディープテックや企業に眠る技術を軸にしたベンチャークリエーションだけでなく、起業家とともに事業成長を目指したグロース投資を実践しています。<br><span class="text-sm">※quantumの投資子会社のSpotlightからの出資先を含む</span>
             </p>
-            <ul class="flex flex-wrap items-center mt-4 md:mt-7 lg:pe-5">
-              <li class="md:me-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_wota.svg"></li>
-              <li class="ms-[14px] md:mx-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_dgtakano.svg"></li>
-              <li class="md:mx-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_xen.svg"></li>
-              <li class="ms-[14px] md:me-4 lg:ms-0 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_tbm.svg"></li>
-              <li class="lg:ms-6 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_mirai.svg"></li>
+            <ul class="flex flex-wrap items-center mt-4 md:mt-7 lg:pe-5 js-ventures">
+              <li class="venture-item md:me-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_wota.svg"></li>
+              <li class="venture-item ms-[14px] md:mx-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_dgtakano.svg"></li>
+              <li class="venture-item md:mx-4 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_xen.svg"></li>
+              <li class="venture-item ms-[14px] md:me-4 lg:ms-0 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_tbm.svg"></li>
+              <li class="venture-item lg:ms-6 my-4 h-[28px] md:h-auto"><img src="~/assets/images/home/strength/logo_mirai.svg"></li>
             </ul>
           </div>
         </div>
@@ -69,11 +69,11 @@
               <img src="~/assets/images/home/strength/icn_link.svg" class="ms-3">
             </a>
             <p class="l-section__text text-[15px] md:text-[20px] lg:text-[18px] leading-[30px] mt-6">quantumのハードとソフトウェアを融合できる卓越したクリエイティビティをグローバルで展開するためにインハウスのデザインスタジオとしてMEDUMを組成。<br><br> quantumのものづくりの中心であるMEDUMは「人とモノゴト（人工物）の間に最適な関係性を作るデザイン」を追求しています。</p>
-            <ul class="flex flex-wrap md:flex-nowrap mt-6 -mx-1">
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img1.png" class="w-full"></li>
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img2.png" class="w-full"></li>
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img3.png" class="w-full"></li>
-              <li class="w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img4.png" class="w-full"></li>
+            <ul class="flex flex-wrap md:flex-nowrap mt-6 -mx-1 js-medum">
+              <li class="medum-item w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img1.png" class="w-full"></li>
+              <li class="medum-item w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img2.png" class="w-full"></li>
+              <li class="medum-item w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img3.png" class="w-full"></li>
+              <li class="medum-item w-1/2 md:w-1/4 p-1"><img src="~/assets/images/home/strength/medum_img4.png" class="w-full"></li>
             </ul>
           </div>
         </div>
@@ -224,6 +224,7 @@ import TopicsList from '../components/topics/List';
 import ContactLink from '../components/partial/ContactLink';
 import _filter from 'lodash/filter';
 import _each from 'lodash/each';
+import { Cubic, gsap } from 'gsap';
 
 //import InfiniteLoading from 'vue-infinite-loading';
 import Smile from '~/assets/svg/Smile.vue';
@@ -287,6 +288,11 @@ export default {
 
   mounted() {
     this.$nextTick(() => {
+      gsap.delayedCall(0.1, () => {
+        this.setupAnimations('.js-ventures', '.js-ventures .venture-item')
+        this.setupAnimations('.js-medum', '.js-medum .medum-item')
+      })
+
       Init.setup(this.$store);
       let preview = (this.$route.query.preview && this.$route.query.preview == 'true');
       let postType = (this.$route.query.post_type && this.$route.query.post_type === 'projects');
@@ -359,6 +365,26 @@ export default {
       } else {
         this.ourStrengthSectionShown = false
       }
+    },
+
+    setupAnimations(wrapClass, itemClass) {
+      let wrap = document.querySelector(wrapClass)
+      let peoples = document.querySelectorAll(itemClass)
+      gsap.fromTo(peoples, {
+        opacity: 0,
+        y: 20
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: Cubic.easeOut,
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: wrap,
+          start: 'top 50%',
+          markers: false
+        }
+      })
     }
   }
 };

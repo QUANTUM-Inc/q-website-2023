@@ -154,7 +154,7 @@ export default {
       @include mq_sp {
         margin-bottom: percentage(math.div(20px, $spInner));
         @include spfontsize(35px);
-        line-height: 1.5;
+        line-height: 1.4;
       }
       @include mq_pc {
         @include ease-out-cubic($animationTime);
