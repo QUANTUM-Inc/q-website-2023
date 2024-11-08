@@ -152,15 +152,20 @@ export default {
       line-height: 1.7;
       @include roboto-light;
       @include mq_sp {
-        margin-bottom: percentage(math.div(20px, $spInner));
+        margin-bottom: percentage(math.div(15px, $spInner));
         @include spfontsize(35px);
-        line-height: 1.4;
+        line-height: 1.3;
       }
       @include mq_pc {
         @include ease-out-cubic($animationTime);
         &:hover {
           opacity: 0.6;
         }
+      }
+      @media all and (min-width: 431px) and (max-width: 768px) {
+        font-size: 45px !important;
+        line-height: 1.7 !important;
+        margin-bottom: 0 !important;
       }
 
     }
