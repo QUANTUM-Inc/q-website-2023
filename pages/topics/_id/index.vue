@@ -3,7 +3,7 @@
     <div class="topics--detail">
       <section class='l-section head md:mt-[80px] lg:mt-[120px]'>
         <div class='l-section__inner js-lazyclass'>
-          <p class="text-[14px] md:text-[16px]">{{ categoryNames  }}</p>
+          <p class="text-[14px] md:text-[16px]">{{ categoryNames }}</p>
           <h1 class="text-[22px] leading-[32px] md:text-[32px] md:leading-[54px] mt-1 md:mt-3 ms-[-3px]">{{ topic.title.rendered }}</h1>
           <p class="text-[12px] opacity-50 mt-[10px] md:mt-[20px]">{{ topic.acf.date }}</p>
         </div>
@@ -16,9 +16,9 @@
           <div class="topic__content" v-html="topic.content.rendered"></div>
           <div class="topic__share mt-[80px] md:mt-[120px]">
             <ul class="flex items-center">
-              <li><a href="#"><img src="~/assets/images/topics/icn_facebook.svg"></a></li>
-              <li class="ms-[16px]"><a href="#"><img src="~/assets/images/topics/icn_x.svg"></a></li>
-              <li class="ms-[16px]"><a href="#"><img src="~/assets/images/topics/icn_linkedin.svg"></a></li>
+              <li><a :href="`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`" rel="noopener" target="_blank"><img src="~/assets/images/topics/icn_facebook.svg"></a></li>
+              <li class="ms-[16px]"><a :href="`http://twitter.com/share?url=${currentUrl}&text=${topic.title.rendered}`" rel="noopener" target="_blank"><img src="~/assets/images/topics/icn_x.svg"></a></li>
+              <li class="ms-[16px]"><a :href="`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`" rel="noopener" target="_blank"><img src="~/assets/images/topics/icn_linkedin.svg"></a></li>
             </ul>
           </div>
           <div class="topic__pagination mt-[45px] md:mt-[55px]">
@@ -54,11 +54,11 @@ export default {
 
   head() {
     return {
-      title: `${this.$store.state.meta.name}topics`,
-      meta: [{hid: 'description',
-        name: 'description',
-        content: this.isEnglish ? 'Press releases and announcements from Startup Studio quantum.' : 'スタートアップスタジオquantumからのプレスリリースやお知らせ' },
-        this.keywords]
+      title: `${this.$store.state.meta.name}${this.topic.title.rendered}`,
+      meta: [
+        { hid: 'og:image', property: 'og:image', content: this.topic && this.topic.acf ? this.topic.acf.main_visual : '' },
+        this.keywords
+      ]
     };
   },
   mounted() {
@@ -121,6 +121,9 @@ export default {
         return this.topicIds[index + 1]
       }
       return 0
+    },
+    currentUrl() {
+      return window.location.href;
     }
   },
   methods: {

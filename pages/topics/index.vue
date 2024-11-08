@@ -10,6 +10,7 @@
           </div>
           <div class='tag-seletc select-wrap sp'>
             <select v-on:change='changed'>
+              <option value="0" :selected="categoryId == 0">all</option>
               <option v-for='category in categories' :value='category.id' :selected="category.id === categoryId">{{category.name}}</option>
             </select>
             <div class='label'>{{this.currentSelected}}</div>
@@ -18,11 +19,10 @@
       </section>
       <section class='l-section' ref='topics'>
         <div class='l-section__inner js-lazyclass'>
-          <div class=" pb-[60px] md:pb-0">
+          <div class=" pb-[60px] lg:pb-0">
             <div class="topics--list-wrap md:mt-[40px]" ref="topicsWrap">
-              <TopicsList :topics="filteredTopics" ref="topicsList"></TopicsList>
+              <TopicsList :topics="filteredTopics" ref="topicsList" @selectCategory="selectCategory"></TopicsList>
             </div>
-            <div ref="topicsEnd"></div>
             <div class="text-center" v-if="!isLastPage">
               <a class='l-section__textlink load-more' @click="loadMore">and more</a>
             </div>
@@ -137,10 +137,11 @@ export default {
         opacity: 0,
         duration: 0.3,
         ease: Quint.easeOut,
-        onComplete: () => {
+        onComplete: async () => {
           this.$store.commit('setSelectedTopicsCategory', {
             selectedId: parseInt(this.currentSelectedId, 10)
           });
+          await this.reloadTopics()
           gsap.to([topicsList], {
             opacity: 1,
             duration: 0.5,
@@ -220,6 +221,9 @@ export default {
       if (listHeight) {
         this.$refs.topicsWrap.style.maxHeight = `${listHeight}px`
       }
+    },
+    selectCategory(categoryId) {
+      this.filterCategory(categoryId)
     }
   }
 };

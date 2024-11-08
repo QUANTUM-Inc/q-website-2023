@@ -224,7 +224,7 @@ export default {
         '/en/careers',
         '/en/collective',
         '/en/projects',
-        '/en/privacy',
+        '/en/policies',
         '/en/qletter/complete',
         '/en/qletter/unsubscribe',
         '/en/contact/complete',

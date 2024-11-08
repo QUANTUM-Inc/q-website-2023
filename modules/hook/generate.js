@@ -38,13 +38,13 @@ module.exports = function () {
       description: this.defaultDescriptEn,
       keywords: this.keywordsEn
     },
-    '/privacy': {
-      title: 'quantum | privacy policy',
+    '/policies': {
+      title: 'quantum | policies',
       description: this.defaultDescript,
       keywords: this.keywords
     },
-    '/en/privacy': {
-      title: 'quantum | privacy policy',
+    '/en/policies': {
+      title: 'quantum | policies',
       description: this.defaultDescriptEn,
       keywords: this.keywordsEn
     },

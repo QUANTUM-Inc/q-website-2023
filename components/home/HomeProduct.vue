@@ -90,14 +90,27 @@ export default {
       default: ''
     }
   },
+  data() {
+    return {
+      timeline: {
+        image: null,
+        overlay: null,
+        infoarea: null,
+        linkarea: null,
+      },
+      prevWindowHeight: 0
+    }
+  },
   mounted() {
     setTimeout(() => {
       this.setup()
     }, 100)
     window.addEventListener('resize', this.refreshScrollTriger())
+    window.addEventListener('scroll', this.setScrollEvents)
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.refreshScrollTriger())
+    window.removeEventListener('scroll', this.setScrollEvents)
   },
   methods: {
     linkto() {
@@ -120,7 +133,7 @@ export default {
       let infoarea = this.$refs.infoarea;
       let linkarea = this.$refs.linkarea;
 
-      gsap.fromTo(this.$refs.image, {
+      this.timeline.image = gsap.fromTo(this.$refs.image, {
         scale: 1.8,
         y: '-90%'
       }, {
@@ -137,7 +150,7 @@ export default {
         }
       });
 
-      gsap.fromTo(this.$refs.overlay, {
+      this.timeline.overlay = gsap.fromTo(this.$refs.overlay, {
         opacity: 1,
         //y: '30%'
       }, {
@@ -151,7 +164,7 @@ export default {
         }
       });
 
-      gsap.fromTo(infoarea, {
+      this.timeline.infoarea = gsap.fromTo(infoarea, {
         x: '-100',
         opacity: 0
       }, {
@@ -167,7 +180,7 @@ export default {
           scrub: 0.8
         }
       })
-      gsap.fromTo(linkarea, {
+      this.timeline.linkarea = gsap.fromTo(linkarea, {
         x: '-100',
         opacity: 0
       }, {
@@ -203,7 +216,30 @@ export default {
       }
     },
     refreshScrollTriger() {
-      gsap.delayedCall(0.1, ScrollTrigger.refresh)
+      console.log('resize!')
+      if (this.timeline.image) {
+        gsap.delayedCall(0.1, this.timeline.image.scrollTrigger.refresh)
+      }
+      if (this.timeline.overlay) {
+        gsap.delayedCall(0.1, this.timeline.overlay.scrollTrigger.refresh)
+      }
+      if (this.timeline.infoarea) {
+        gsap.delayedCall(0.1, this.timeline.infoarea.scrollTrigger.refresh)
+      }
+      if (this.timeline.linkarea) {
+        gsap.delayedCall(0.1, this.timeline.linkarea.scrollTrigger.refresh)
+      }
+    },
+    setScrollEvents() {
+      // if (this.prevWindowHeight == 0) {
+      //   this.prevWindowHeight = window.innerHeight
+      //   return
+      // }
+      // console.log(`w:${window.innerHeight}, prev:${this.prevWindowHeight}`)
+      // if (window.innerHeight != this.prevWindowHeight) {
+      //   this.refreshScrollTriger()
+      // }
+      // this.prevWindowHeight = window.innerHeight
     }
   }
 };

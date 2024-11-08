@@ -54,39 +54,16 @@
         <h2 class='type-center'>board member</h2>
         <div class='people__wrap js-peoples'>
           <div class='people'>
-            <img src='/images/who/people/takamatsu.jpg' alt='' class='image'>
-            <div class='people__text'>
-              <p class='people__name' v-if='!isEnglish'>高松 充</p>
-              <p class='people__name_en'>Mitsuru Takamatsu</p>
-              <p class='people__position' v-if='!isEnglish'>代表取締役社長兼CEO</p>
-              <p class='people__position' v-if='isEnglish'>President and CEO</p>
-              <p class='people__body' v-if='!isEnglish'>博報堂にて営業、経営企画、在米日本大使館出向などを経験したのち、TBWA HAKUHODOの創設に携わり、その後同社のCSO、CFOを歴任。2016年4月、TBWA HAKUHODOからスピンオフする形でquantumを創設。以来、70社以上の大企業・スタートアップと新規事業開発に取り組んできた。quantumのvisionである”be a founder”の実践に自ら努め、シルクスキンケアブランド「QINUDE」の立ち上げ、世界の水問題に取り組むスタートアップ「WOTA」へのハンズオン投資、Quality of Animal Lifeの向上をビジョンに掲げる「QAL startups」の創業など、0→１ （事業開発）と1→10（事業成長）の現場に常に身を置いている。好きな言葉は、“常識とは楽をするための幻想”、“New is better than good”。</p>
-              <p class='people__body' v-if='isEnglish'></p>
-            </div>
-          </div>
-
-          <div class='people'>
             <img src='/images/who/people/02.jpg' alt='' class='image'>
             <div class='people__text'>
               <p class='people__name' v-if='!isEnglish'>及部 智仁</p>
               <p class='people__name_en'>Tomohito Oyobe</p>
-              <p class='people__position' v-if='!isEnglish'>代表取締役副社長</p>
+              <p class='people__position' v-if='!isEnglish'>quantum代表取締役社長 共同CEO</p>
               <p class='people__position' v-if='isEnglish'>President and Co-CEO</p>
-              <p class='people__body' v-if='!isEnglish'>世界トップクラスのベンチャービルダーを目指し、高松とともにquantumを創業。数多くの大企業との新規事業開発、ジョイントベンチャー組成やスタートアップのハンズオン支援を経験。また、大学との産学連携にて機械学習技術を活用したサッカー×AIの研究を行い、2017年にはスポーツデータ×機械学習を専門とするSPORTS AIを創業。開発したサッカーの戦況予測AI事業「WARP」を売却。博報堂グループや京都大学などの社内起業／起業家教育プログラムでメンター・審査員を歴任するほか、書籍『スタートアップスタジオ』（日経BP）の翻訳出版・監修など、日本企業から多くの社内ベンチャー、社内起業家を輩出することを目指し活動する。自身の母校、東京工業大学にて特任教授に就任。東工大を中心に主要研究大学の技術を融合し、世界に勝負できる大学発ディープテック・ベンチャーを連続的に生み出すためのエコシステムをデザインしている。</p>
+              <p class='people__body' v-if='!isEnglish'>世界トップクラスのベンチャービルダーを目指し、quantumを社内起業で創業。数多くの大企業との新規事業開発、アクセラレータープログラム、スタートアップのハンズオン支援、ジョイントベンチャー組成を経験。また、産学連携にて機械学習技術を活用したサッカー×AIの研究を行い、2017年にはスポーツデータ×機械学習を専門とするSPORTS AIを創業。開発したサッカーの戦況予測AI事業の売却を経験。博報堂グループや京都大学などの社内起業／起業家教育プログラムでメンター・審査員を歴任するほか、書籍『スタートアップスタジオ』（日経BP）の翻訳出版・監修など、日本企業から多くの社内ベンチャー、社内起業家を輩出することを目指し活動する。また起業を支援するベンチャービルダーを普及させ、起業家支援のネットワークを構築するためにスタートアップ・スタジオ協会の設立理事に就任。「起業をなめからにする社会」を目指し活動している。<br>
+              自身の母校でもある東京工業大学にて特任教授に就任。東工大を中心に主要研究大学のリソースを組み合わせ、世界に勝負できる大学発ディープテック・ベンチャーを連続的に生み出すためのプラットフォームを設計・運営している。</p>
               <p class='people__body' v-if='isEnglish'>With the aim of becoming a world-class venture builder, quantum was founded as an in-house start-up. He has experience in new business development with numerous large companies, accelerator programs, hands-on support for startups, and joint venture formation. He has also conducted research on soccer x AI using machine learning technology in an industry-academia collaboration and founded SPORTS AI in 2017, which specializes in sports data x machine learning. Experienced the divestiture of the soccer match prediction AI business which he had developed. In addition to serving as a mentor and judge for in-house entrepreneurship/entrepreneurship education programs at Hakuhodo Group and Kyoto University, he has translated the book "Startup Studio" (Nikkei BP) and supervised its publication, as well as actively working to produce more in-house ventures and in-house entrepreneurs from Japanese companies.<br>
               He was appointed as a specially-appointed professor at Tokyo Institute of Technology, which is also his alma mater. Combining the resources of Tokyo Institute of Technology and other major research universities, he designs and operates the platform for the continuous creation of university-launched deep-tech ventures that can compete on a global scale.</p>
-            </div>
-          </div>
-
-          <div class='people'>
-            <img src='/images/who/people/03.jpg' alt='' class='image'>
-            <div class='people__text'>
-              <p class='people__name' v-if='!isEnglish'>伊東 和弘</p>
-              <p class='people__name_en'>Kazuhiro Ito</p>
-              <p class='people__position' v-if='!isEnglish'>常務取締役</p>
-              <p class='people__position' v-if='isEnglish'>Managing Executive Officer</p>
-              <p class='people__body' v-if='!isEnglish'>博報堂にて、営業職として自動車メーカー、家電メーカー、音楽レーベル、中央省庁などを担当した後、フリーランスを経て起業。ブランディング及びデジタル系のクリエイティブプロダクションを設立し、ファウンダー兼取締役として会社運営を経験する。quantumの前身となるTBWAHAKUHODOのHuman-Centered Open Innovation事業部より参画し、高松、及部らと共にquantumの黎明期より現在まで、数多くの新規事業開発プロジェクトに携わってきた。  現在は常務取締役として、社外の様々なステークホルダーとの連携にも精力的に取り組み、イノベーティブな事業の創出を推進する。  高校より取り組んできたラグビーのスピリッツでもある「All for One, One for All」の言葉が、今も自らの行動指針。</p>
-              <p class='people__body' v-if='isEnglish'>After working for HAKUHODO as a sales representative for car manufacturers, consumer electronics manufacturers, music labels, and central government ministries, he started his own business after working as a freelancer. He founded a branding and digital creative production company and managed the company as a founder and director. He has participated in the Human-Centered Open Innovation Division of TBWA HAKUHODO, the predecessor of quantum, and has been involved in many new business development projects with Takamatsu and Obe from the dawn of quantum to the present. Currently, as Managing Director, he is actively involved in collaboration with various stakeholders outside the company to promote the creation of innovative businesses. The phrase "All for One, One for All," which is also the spirit of rugby, a sport he has been involved in since high school, still guides his actions.</p>
             </div>
           </div>
 
@@ -95,10 +72,22 @@
             <div class='people__text'>
               <p class='people__name' v-if='!isEnglish'>川下 和彦</p>
               <p class='people__name_en'>Kazuhiko Kawashita</p>
-              <p class='people__position' v-if='!isEnglish'>執行役員</p>
-              <p class='people__position' v-if='isEnglish'>Executive Officer</p>
-              <p class='people__body' v-if='!isEnglish'>博報堂にてマーケティング、PRから広告制作まで、多岐にわたるクリエイティブ業務を経験。2017年春よりquantumに参画し、製造、エンタメ、教育、福祉などの事業開発に従事、日常を旅するクルマイス「Wheeliy」や、タレントのオンラインマッチングサービス「BATTEKI!!」など様々な事業をローンチまで導いてきた。2020年春より、クリエイティブ統括役員を務め、広告創造技術を応用した手法を用いて、発想から実装までパートナー企業との事業創造に取り組む。各種webメディアで連載を持つほか、著書に『コネ持ち父さん コネなし父さん』(ディスカヴァー・トゥエンティワン)、たむらようこ氏との共著『がんばらない戦略』（アスコム）などがある。“口より手を動かす”、“批評するより批評されるものをつくる”が信条。</p>
+              <p class='people__position' v-if='!isEnglish'>quantum取締役 共同CEO </p>
+              <p class='people__position' v-if='isEnglish'>Director and Co-CEO</p>
+              <p class='people__body' v-if='!isEnglish'>株式会社博報堂にてマーケティング、PRから広告制作まで、多岐にわたるクリエイティブ業務を経験。2017年春よりquantumに参画し、製造、エンタメ、教育、福祉などの事業開発に従事。日常を旅するクルマイス「Wheeliy」や、タレントのオンラインマッチングサービス「BATTEKI!!」など様々な事業をローンチまで導いてきた。2020年春より、クリエイティブ統括役員を務め、広告創造技術を応用した手法を用いて、発想から実装までパートナー企業との事業創造に取り組む。各種webメディアで連載を持つほか、『コネ持ち父さん コネなし父さん』(ディスカヴァー・トゥエンティワン)、たむらようこ氏との共著『がんばらない戦略』（アスコム）などの著書を持つ。“口より手を動かす”、“批評するより批評されるものをつくる”が信条。</p>
               <p class='people__body' v-if='isEnglish'>After working for Hakuhodo Inc. in a wide range of creative fields from marketing and PR to advertisement production, He joined quantum in spring 2017 and has been engaged in business development in manufacturing, entertainment, education, welfare, and other fields. He has also developed "Wheeliy," a wheel chair that travels around in daily life, and “BATTEKI!!,” an online talent matching service. Since the spring of 2020, He has served as the executive officer in charge of creative management, working on business creation with partner companies from conception to implementation using methods that apply advertising creation technology.  In addition to writing a series of articles for various online media, he is the author of "Konemochi Tousan, Konenashi Tousan" (Discover 21) and "Gambaranai Senryaku" (Ascom), co-authored with Yoko Tamura. His mottoes are "Move your hands rather than your mouth" and "Create something to be criticized instead of criticizing."</p>
+            </div>
+          </div>
+
+          <div class='people'>
+            <img src='/images/who/people/03.jpg' alt='' class='image'>
+            <div class='people__text'>
+              <p class='people__name' v-if='!isEnglish'>伊東 和弘</p>
+              <p class='people__name_en'>Kazuhiro Ito</p>
+              <p class='people__position' v-if='!isEnglish'>quantum常務執行役員</p>
+              <p class='people__position' v-if='isEnglish'>Managing Executive Officer</p>
+              <p class='people__body' v-if='!isEnglish'>博報堂にて、営業職として自動車メーカー、家電メーカー、音楽レーベル、中央省庁などを担当した後、フリーランスを経て起業。ブランディング及びデジタル系のクリエイティブプロダクションを設立し、ファウンダー兼取締役として会社運営を経験する。quantumの前身となるTBWA\HAKUHODOのHuman-Centered Open Innovation事業部より参画し、高松、及部らと共にquantumの黎明期より現在まで、数多くの新規事業開発プロジェクトに携わってきた。現在は常務取締役として、社外の様々なステークホルダーとの連携にも精力的に取り組み、イノベーティブな事業の創出を推進する。高校より取り組んできたラグビーのスピリッツでもある「All for One, One for All」の言葉が、今も自らの行動指針。</p>
+              <p class='people__body' v-if='isEnglish'>After working for HAKUHODO as a sales representative for car manufacturers, consumer electronics manufacturers, music labels, and central government ministries, he started his own business after working as a freelancer. He founded a branding and digital creative production company and managed the company as a founder and director. He has participated in the Human-Centered Open Innovation Division of TBWA HAKUHODO, the predecessor of quantum, and has been involved in many new business development projects with Takamatsu and Obe from the dawn of quantum to the present. Currently, as Managing Director, he is actively involved in collaboration with various stakeholders outside the company to promote the creation of innovative businesses. The phrase "All for One, One for All," which is also the spirit of rugby, a sport he has been involved in since high school, still guides his actions.</p>
             </div>
           </div>
 
@@ -107,22 +96,22 @@
             <div class='people__text'>
               <p class='people__name' v-if='!isEnglish'>門田 慎太郎</p>
               <p class='people__name_en'>Shintaro Monden</p>
-              <p class='people__position' v-if='!isEnglish'>執行役員</p>
-              <p class='people__position' v-if='isEnglish'>Executive Officer</p>
-              <p class='people__body' v-if='!isEnglish'>国内デザインファーム及び外資系PCメーカーにて、一点モノの家具から世界で数万台を売り上げるラップトップPCまで幅広い分野の製品デザインを担当したのち、quantumに参画。quantumのデザイン部門を統括し、プロダクト、グラフィック、UI/UXデザインなどの境域から幅広い分野の新規事業開発を牽引する。デザインリサーチ、コンセプト開発、実証実験、量産設計支援まで一連の製品開発を一気通貫に行うことを強みとしている。手掛けたプロダクトは、iF Design、RedDot design、D&AD、Cannes Lions、グッドデザイン賞など、数多くのアワードを受賞しているほか、ドイツ・ミュンヘンのPinakothek der Moderneのパーマネントコレクションにも選定されるなど、国内外から高い評価を集めている。</p>
+              <p class='people__position' v-if='!isEnglish'>CDO(Chief Design Officer)</p>
+              <p class='people__position' v-if='isEnglish'>CDO(Chief Design Officer)</p>
+              <p class='people__body' v-if='!isEnglish'>国内デザインファーム及び外資系PCメーカーにて、一点モノの家具から世界で数万台を売り上げるラップトップPCまで幅広い分野の製品デザインを担当したのち、quantumに参画。quantumのデザイン部門を統括し、プロダクト、グラフィック、UI/UXデザインなどの境域から幅広い分野の新規事業開発を牽引する。デザインリサーチ、コンセプト開発、実証実験、量産設計支援まで一連の製品開発を一気通貫に行うことを強みとしている。手掛けたプロダクトは、iF Design Gold、Cannes Lions Gold、RedDot design、Dezeen Awards project of the yearなど、数多くのアワードを受賞しているほか、ドイツのPinakothek der Moderne、デンマークのDesign Museum Danmarkのパーマネントコレクションにも選定されるなど、国内外から高い評価を集めている。</p>
               <p class='people__body' v-if='isEnglish'>After working for a Japanese design firm and a foreign-affiliated PC manufacturer, he designed a wide range of products from one-of-a-kind furniture to laptops that sold tens of thousands of units worldwide before joining quantum. He oversees quantum's design department and leads new business development in a wide range of fields, including product, graphic, and UI/UX design. His strength lies in his ability to provide integrated product development services, including design research, concept development, demonstration testing, and mass production design support. His products have won numerous awards, including iF Design, RedDot design, D&AD, Cannes Lions, and Good Design Award, and have been selected for the permanent collection of Pinakothek der Moderne in Munich, Germany, receiving high acclaims both domestically and internationally.</p>
             </div>
           </div>
 
           <div class='people'>
-            <img src='/images/who/people/watanabe.jpg' alt='' class='image'>
+            <img src='/images/who/people/07.jpg' alt='' class='image'>
             <div class='people__text'>
-              <p class='people__name' v-if='!isEnglish'>渡辺 達哉</p>
-              <p class='people__name_en'>Tatsuya Watanabe</p>
-              <p class='people__position' v-if='!isEnglish'>執行役員</p>
+              <p class='people__name' v-if='!isEnglish'>松倉 昌志</p>
+              <p class='people__name_en'>Masashi Matsukura</p>
+              <p class='people__position' v-if='!isEnglish'>quantum執行役員</p>
               <p class='people__position' v-if='isEnglish'>Executive Officer</p>
-              <p class='people__body' v-if='!isEnglish'>東大発バイオベンチャー・ペプチドリームの研究室にて創薬技術の研究に携わったのち、外資系コンサルティング会社にて戦略策定や企業統合、事業開発に従事。その後、ベルリンでも事業の立ち上げを経験し、2017年12月、quantumに参画。ヘルスケア、フィンテック、ブロックチェーンを中心に、quantumにおいても様々な領域の新規事業プロジェクトに取り組むほか、IoTデバイスの開発からソフトウェア開発まで、多岐にわたる事業開発の経験を元に、大企業の社内起業家育成プログラムの立ち上げ・運営も数多く担当してきた。現在はビジネス開発ならびにグローバルアライアンスの担当執行役員としてスタジオを牽引、新規事業開発・事業戦略の企画推進にあたっている。</p>
-              <p class='people__body' v-if='isEnglish'></p>
+              <p class='people__body' v-if='!isEnglish'>TBWA\HAKUHODOでクリエイティブと技術の融合による新しい体験を作るクリエイティブテクノロジストとして、家電、家具、自動車、スポーツメーカー、飲料などの幅広い広告キャンペーンを担当し、2018年にquantumへ移籍。サービスとプロダクトの立案と開発を担うプロダクトマネージャーチームの責任者として、ハードウェアからサービスまで様々なプロダクトをゼロから企画し開発をリード。2022年4月からサービス、プロダクト開発を統括する執行役員として、quantumならではのクリエイティブ発想と実装力を武器に新しい事業の開発を推進。Cannes Lions、NY Festivals、NY ADC、OneShow、ADFEST、Spikes Asia、グッドデザイン賞など多数受賞。</p>
+              <p class='people__body' v-if='isEnglish'>After working as a creative technologist at TBWA\HAKUHODO with a wide range of advertising campaigns for consumer electronics, furniture, automobiles, sporting goods manufacturers, beverages, etc., he moved to QUANTUM in 2018. As the head of the product manager team responsible for the planning and development of services and products, he plans and leads the development of various products from hardware to services from scratch. From April 2022, as the executive officer in charge of services and product development, he will be responsible for the development of new products with the creative ideas and implementation capabilities that only quantum can offer. He has won numerous awards including Cannes Lions, NY Festivals, NY ADC, OneShow, ADFEST, Spikes Asia, and Good Design Award.</p>
             </div>
           </div>
         </div>

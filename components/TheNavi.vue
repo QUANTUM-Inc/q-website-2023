@@ -8,6 +8,7 @@
           <lang-link :to="{name: 'whatwedo', params: {lang}}" @click.native='closeNavi()'>what we do</lang-link>
           <lang-link :to="{name: 'projects', params: {lang}}" @click.native='closeNavi()'>projects</lang-link>
           <a href='https://note.com/quantum_studio/m/m4512a0eb7e07' target='_blank' @click='closeNavi()'>journal</a>
+          <lang-link :to="{name: 'topics', params: {lang}}" @click.native='closeNavi()'>topics</lang-link>
           <lang-link :to="{name: 'careers', params: {lang}}" @click.native='closeNavi()'>careers</lang-link>
           <lang-link :to="{name: 'contact', params: {lang}}" @click.native='closeNavi()'>contact</lang-link>
         </div>
@@ -148,7 +149,7 @@ export default {
       display: block;
       //@include fontsize(45px);
       font-size: 45px;
-      line-height: 1.9;
+      line-height: 1.7;
       @include roboto-light;
       @include mq_sp {
         margin-bottom: percentage(math.div(20px, $spInner));

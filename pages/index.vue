@@ -9,7 +9,7 @@
       </div>
       
     </section>
-    <section class='l-section our-strength header-color__white' :class="{'is-black': ourStrengthSectionShown}" style="border-bottom: 1px solid red;">
+    <section class='l-section our-strength header-color__white' :class="{'is-black': ourStrengthSectionShown}">
       <div class='l-section__inner js-lazyclass'>
         <h2>our strength</h2>
         <div class="lg:flex items-start mt-7 pt-2">
@@ -29,9 +29,15 @@
             <p class="l-section__text text-[15px] md:text-[20px] lg:text-[18px] leading-[30px]">
               2016年の創業以来、venture buildersとして100社を超える企業とインキュベーションを実践。<br><br>quantumはものづくりを追求するプロダクトファーストを行動指針の一つとして掲げ、多様なメンバーから構成されるフルスタックなスタジオで、発想から実装、そしてグロースまでハンズオンで支援をしています。<br><br>R&Dや社内起業プログラムからのカーブアウト創出だけでなく、出資を含めた共同創業など様々な方法で、新事業の創造に挑戦しています。
             </p>
-            <div class="md:flex justify-between items-center px-8 lg:px-10 py-6 lg:py-8 border border-[#6C6C6C] border-solid mt-8">
-              <img src="~/assets/images/home/strength/incubation.svg" class="relative top-[-2px]">
-              <p class="l-section__text text-xs leading-5 md:ps-10 mt-[20px] md:mt-0">全ての挑戦者に向けて、スタートアップスタジオとして培ってきたインキュベーションのノウハウをAIテクノロジーで届け、事業化を加速させる LEAN MODEL を提供しています。</p>
+            <div class="anim-border-box mt-8 js-lazyclass">
+              <div class="anim-border-box-inner">
+                <div class="anim-border-box-border">
+                  <div class="incubation-box md:flex justify-between items-center px-8 lg:px-10 py-6 lg:py-8">
+                    <img src="~/assets/images/home/strength/incubation.svg" class="relative top-[-2px]">
+                    <p class="l-section__text text-xs leading-5 md:ps-10 mt-[20px] md:mt-0 text-left">全ての挑戦者に向けて、スタートアップスタジオとして培ってきたインキュベーションのノウハウをAIテクノロジーで届け、事業化を加速させる LEAN MODEL を提供しています。</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -436,4 +442,102 @@ export default {
     padding: 100px 0;
   }
 }
+
+.anim-border-box {
+  transition: all 0.2s ease;
+  transition-delay: 0.1s;
+  transform: translateY(-20px);
+  opacity: 0;
+
+  .anim-border-box-inner {
+    width: 100%;
+    text-decoration: none;
+    font-weight: 700;
+    background-color: transparent;
+    width: inherit;
+    position: relative;
+    opacity: 1 !important;
+    transition: all 0.3s;
+  }
+  .anim-border-box-inner:before,
+  .anim-border-box-inner:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #595959;
+    top: 0;
+    pointer-events: none;
+  }
+  .anim-border-box-inner:before {
+    left: 0;
+    width: 0;
+    height: 1px;
+  }
+  .anim-border-box-inner:after {
+    right: 0;
+    width: 1px;
+    height: 0;
+  }
+  .anim-border-box-inner .anim-border-box-border:before,
+  .anim-border-box-inner .anim-border-box-border:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #595959;
+    bottom: 0;
+    pointer-events: none;
+  }
+  .anim-border-box-inner .anim-border-box-border:before {
+    right: 0;
+    width: 0;
+    height: 1px;
+  }
+  .anim-border-box-inner .anim-border-box-border:after {
+    left: 0;
+    width: 1px;
+    height: 0;
+  }
+}
+.incubation-box {
+  // transition: all 0.2s ease;
+  // transition-delay: 0.1s;
+  // transform: translateY(-20px);
+  // opacity: 0;
+}
+.appear {
+  &.anim-border-box {
+    transform: translateY(0px);
+    opacity: 1;
+    .anim-border-box-inner {
+      background-color: #000;
+      &:before {
+        width: 100%;
+        transition: width 0.2s 0.2s;
+      }
+      &:after {
+        height: 100%;
+        transition: height 0.1s 0.4s;
+      }
+
+      .anim-border-box-border {
+        &:before {
+          width: 100%;
+          transition: width 0.2s 0.5s;
+        }
+        &:after {
+          height: 100%;
+          transition: height 0.1s 0.7s;
+        }
+      }
+    }
+    // .incubation-box {
+    //   transform: translateY(0);
+    //   opacity: 1;
+    // }
+  }
+}
+
+
+
+
 </style>

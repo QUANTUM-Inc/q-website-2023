@@ -9,8 +9,8 @@
           </nuxt-link>
         </div>
         <div class='topic__category mt-3' v-if="topic.topics_category">
-          <span v-for="(catId, i) in topic.topics_category">
-            <template v-if="i !== 0"> / </template>{{ getCategoryFromId(catId).name }}
+          <span v-for="(catId, i) in topic.topics_category" >
+            <template v-if="i !== 0"> / </template><span class="cursor-pointer" @click="$emit('selectCategory', catId)">{{ getCategoryFromId(catId).name }}</span>
           </span>
         </div>
         <div class='topic__title mt-[5px]'>
@@ -140,58 +140,9 @@ export default {
     }
     &__date {
       @include noto-light;
-      font-size: 9px;
+      font-size: 11px;
       opacity: 0.5;
     }
-    // display: flex;
-    // align-items: flex-start;
-    // justify-content: flex-start;
-    // padding-bottom: percentage(math.div(20px, $innerWidth));
-    // @include mq_sp {
-    //   padding: percentage(math.div(24px, $spInner)) 0;
-    // }
-    // &__date {
-    //   font-size: 16px;
-    //   width: percentage(math.div(100px, $innerWidth));
-    //   white-space: nowrap;
-    //   @include noto-light;
-    //   @include antialiased;
-    //   text-align: left;
-    //   line-height: 1.6;
-    //   @include mq_sp {
-    //     width: percentage(math.div(90px, $spInner));
-    //     padding: 0;
-    //     line-height: 1.8;
-    //     @include spfontsize(10px);
-    //     @include noto-light;
-    //   }
-    // }
-    // &__title {
-    //   width: percentage(math.div(850px, $innerWidth));
-    //   flex-grow: 1;
-    //   text-align: left;
-    //   padding: 0 percentage(math.div(15px, $innerWidth)) 0 percentage(math.div(80px, $innerWidth));
-    //   @include mq_sp {
-    //     padding: 0 0 0 percentage(math.div(20px, $spInner));
-    //   }
-    //   a,
-    //   p {
-    //     @include noto-light;
-    //     display: block;
-    //     font-size: 16px;
-    //     line-height: 1.6;
-    //     color: #000;
-    //     @include mq_sp {
-    //       line-height: 1.6;
-    //       @include spfontsize(10px);
-
-    //     }
-    //   }
-
-    //   a {
-    //     @include textdecoration-line;
-    //   }
-    // }
   }
 
 }

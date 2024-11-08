@@ -31,7 +31,7 @@
           <a href="https://www.ask.quantum.ne.jp/" target="_blank" ref="noopener noreferrer"><span>business site</span></a>
           <lang-link :to="{name: 'careers', params: {lang}}"><span>careers</span></lang-link>
           <lang-link :to="{name: 'release', params: {lang}}" class='links-release'><span>press release</span></lang-link>
-          <lang-link :to="{name: 'privacy', params: {lang}}"><span>policies</span></lang-link>
+          <lang-link :to="{name: 'policies', params: {lang}}"><span>policies</span></lang-link>
           <lang-link :to="{name: 'qletter', params: {lang}}" class='links-qletter'><span>q letter</span></lang-link>
           <span class='sp copy'>&copy; {{year}} quantum</span>
         </div>
